@@ -1,0 +1,27 @@
+shell-integration = zsh
+
+font-family = JetBrainsMono Nerd Font Mono
+font-size = 13
+
+adjust-cell-width = -4%
+adjust-cell-height = 10%
+
+title = " "
+
+theme = vague
+
+window-save-state = never
+
+window-step-resize = false
+
+window-padding-x = 15
+window-padding-y = 15
+window-padding-balance = true
+
+mouse-hide-while-typing = true
+
+macos-non-native-fullscreen = visible-menu
+window-decoration = true
+macos-titlebar-style = hidden
+macos-option-as-alt = left
+macos-titlebar-proxy-icon = hidden

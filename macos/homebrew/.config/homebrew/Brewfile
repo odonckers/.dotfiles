@@ -1,0 +1,182 @@
+tap "alajmo/mani"
+tap "anomalyco/tap"
+tap "hashicorp/tap"
+tap "jstkdng/programs"
+tap "mediosz/tap"
+tap "nikitabobko/tap"
+# Automatic configure script builder
+brew "autoconf"
+# Collection of over 500 reusable autoconf macros
+brew "autoconf-archive"
+# Tool for generating GNU Standards-compliant Makefiles
+brew "automake"
+# Use AWS IAM credentials to authenticate to Kubernetes
+brew "aws-iam-authenticator"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Object-file caching compiler wrapper
+brew "ccache"
+# Versatile and fast Unicode/ASCII/ANSI graphics renderer
+brew "chafa"
+# Cross-platform make
+brew "cmake"
+# Modern, maintained replacement for ls
+brew "eza"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
+# Generic library support script
+brew "libtool"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# GitHub command-line tool
+brew "gh"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
+# Git extension for versioning large files
+brew "git-lfs"
+# Audit git repos for secrets
+brew "gitleaks"
+# Easiest way to access your cloud
+brew "granted"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
+# Configurable static site generator
+brew "hugo"
+# Tools and libraries to manipulate images in select formats
+brew "imagemagick"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Modern load testing tool, using Go and JavaScript
+brew "k6"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "k9s"
+# Simple terminal UI for git commands
+brew "lazygit"
+# Next-gen compiler infrastructure
+brew "llvm"
+# Language Server for the Lua language
+brew "lua-language-server"
+# Package manager for the Lua programming language
+brew "luarocks"
+# CLI tool to help you manage repositories
+brew "mani"
+# Polyglot runtime manager (asdf rust clone)
+brew "mise"
+# Netwide Assembler (NASM) is an 80x86 assembler
+brew "nasm"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Small build system for use with gyp or CMake
+brew "ninja"
+# General-purpose scripting language
+brew "php"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
+# Cross-platform application and UI framework
+brew "qt"
+# Simple and easy-to-use library to learn videogames programming
+brew "raylib"
+# SVG rendering tool and library
+brew "resvg"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# 7-Zip is a file archiver with a high compression ratio
+brew "sevenzip"
+# Opinionated Lua code formatter
+brew "stylua"
+# Open source continuous file synchronization application
+brew "syncthing", restart_service: :changed
+# Terminal multiplexer
+brew "tmux"
+# Manage complex tmux sessions easily
+brew "tmuxinator"
+# Plugin manager for tmux
+brew "tpm"
+# Parser generator tool
+brew "tree-sitter-cli"
+# Maintained ctags implementation
+brew "universal-ctags"
+# Simple terminal image viewer written in Rust
+brew "viu"
+# Watch files and take action when they change
+brew "watchman"
+# Internet file retriever
+brew "wget"
+# Generate your Xcode project from a spec file and your folder structure
+brew "xcodegen"
+# Check your $HOME for unwanted files and directories
+brew "xdg-ninja"
+# Blazing fast terminal file manager written in Rust, based on async I/O
+brew "yazi"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
+# UNIX shell (command interpreter)
+brew "zsh"
+# The AI coding agent built for the terminal.
+brew "anomalyco/tap/opencode"
+# Vault
+brew "hashicorp/tap/vault"
+# Drop in replacement for ueberzug written in C++
+brew "jstkdng/programs/ueberzugpp"
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "nikitabobko/tap/aerospace"
+# Tools for building Android applications
+cask "android-studio"
+# Application uninstaller
+cask "appcleaner"
+# Brings the power of Copilot coding agent directly to your terminal
+cask "copilot-cli@prerelease"
+# Browser for SQLite databases
+cask "db-browser-for-sqlite"
+# App to build and share containerised applications and microservices
+cask "docker-desktop"
+# Collaborative team software
+cask "figma"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Free and open-source image editor
+cask "gimp"
+# Xcode extension for GitHub Copilot
+cask "github-copilot-for-xcode"
+# Web browser
+cask "google-chrome"
+# Keyboard customiser
+cask "karabiner-elements"
+# GPU-based terminal emulator
+cask "kitty"
+# Web browser
+cask "librewolf"
+# Mouse utility to add gesture functions and smooth scrolling to 3rd party mice
+cask "mac-mouse-fix"
+# Provides updates to various Microsoft products
+cask "microsoft-auto-update"
+# Meet, chat, call, and collaborate in just one place
+cask "microsoft-teams"
+# Visual tool to design, develop and administer MySQL servers
+cask "mysqlworkbench"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# Music streaming service
+cask "spotify"
+# Video game digital distribution service
+cask "steam"
+# SwipeAeroSpace is a tool to switch AeroSpace worksapces by swiping.
+cask "mediosz/tap/swipeaerospace"
+# Virtual machines UI using QEMU
+cask "utm"
+# Open-source code editor
+cask "visual-studio-code"
+# Open-source code editor
+cask "visual-studio-code@insiders"
+# Native desktop client for WhatsApp
+cask "whatsapp"
+# Multiplayer code editor
+cask "zed"
+# Video communication and virtual meeting platform
+cask "zoom"
+go "golang.org/x/tools/cmd/goimports"
+go "golang.org/x/tools/gopls"
+go "mvdan.cc/sh/v3/cmd/shfmt"
+go "honnef.co/go/tools/cmd/staticcheck"

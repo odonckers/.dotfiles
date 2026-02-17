@@ -1,0 +1,175 @@
+""""""""""""""""""""""""""""
+"" @title: IdeaVIM        ""
+"" @author: Owen Donckers ""
+""""""""""""""""""""""""""""
+
+" Basic settings
+set number                  " Line numbers
+set cursorline              " Highlight current line
+set scrolloff=10            " Keep 10 lines above/below cursor
+set sidescrolloff=8         " Keep 8 columns left/right of cursor
+
+" Search settings
+set ignorecase              " Case insensitive search
+set smartcase               " Case sensitive if uppercase in search  
+set hlsearch                " Highlight search results
+set incsearch               " Show matches as you type
+
+" Indentation (handled by IntelliJ, but setting for vim behavior)
+set expandtab               " Use spaces instead of tabs
+set smartindent             " Smart auto-indenting
+set autoindent              " Copy indent from current line
+
+" Behavior settings  
+set backspace=indent,eol,start  " Better backspace behavior
+set iskeyword+=-            " Treat dash as part of word
+set selection=inclusive     " Selection behavior (visual mode)
+set clipboard+=unnamed      " Use system clipboard
+set history=100             " Remember lines in history
+
+" Split behavior
+set splitbelow              " Horizontal splits go below  
+set splitright              " Vertical splits go right
+
+" IdeaVim specific settings
+set ideajoin                " Use IntelliJ's join behavior
+set ideastatusicon=gray     " Show IdeaVim icon in status bar
+set idearefactormode=keep   " Keep selection after refactoring
+set surround                " vim-surround emulation
+set commentary              " vim-commentary emulation
+set highlightedyank         " Highlight yanked text
+set multiple-cursors        " Multiple cursors support  
+set ReplaceWithRegister     " replace with register
+
+" Enable IdeaVim plugins (uncomment as needed)
+" set argtextobj            " argument text objects
+" set exchange              " vim-exchange emulation
+" set textobj-entire        " entire buffer text object
+
+" Leader keys
+let mapleader = ","
+let maplocalleader = "\\"
+
+" Clear search highlighting
+map <Esc> :nohlsearch<CR>
+
+" Better indenting
+vmap > >gv
+vmap < <gv
+
+" Center screen when jumping
+map n nzzzv
+map N Nzzzv
+map <C-d> <C-d>zz
+map <C-u> <C-u>zz
+
+" Navigation
+map <C-o> <Action>(Back)
+map <C-i> <Action>(Forward)
+
+" Buffer navigation
+map <Tab> <Action>(NextTab)
+map <S-Tab> <Action>(PreviousTab)
+
+" Close buffer
+map ZB <Action>(CloseContent)
+
+" Split window
+map <C-w>- <Action>(SplitHorizontally)
+map <C-w>_ <Action>(SplitVertically)
+map <C-w>q <Action>(Unsplit)
+
+" Navigate between splits
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Resize splits
+map <C-left> <Action>(TabShiftActions.StretchLeft)
+map <C-down> <Action>(TabShiftActions.StretchDown)
+map <C-up> <Action>(TabShiftActions.StretchUp)
+map <C-right> <Action>(TabShiftActions.StretchRight)
+
+" Equyalize split sizes
+map <C-w>= <Action>(tabshifter.Actions.EqualSizeSplit)
+
+" Move tab between splits
+map <C-w>H <Action>(TabShiftActions.ShiftLeft)
+map <C-w>J <Action>(TabShiftActions.ShiftDown)
+map <C-w>K <Action>(TabShiftActions.ShiftUp)
+map <C-w>L <Action>(TabShiftActions.ShiftRight)
+
+" Move tab between splits (easier)
+map <C-S-h> <C-w>H
+map <C-S-j> <C-w>J
+map <C-S-k> <C-w>K
+map <C-S-l> <C-w>L
+
+" Move splits
+map <C-S-left> <Action>(MoveTabLeft)
+map <C-S-right> <Action>(MoveTabRight)
+
+" File navigation
+map <leader><space> <Action>(SelectInProjectView)
+map <leader><leader> <Action>(GotoFile)
+
+" Tab/panel navigation
+map <leader><tab> <Action>(Switcher)
+map <leader>e <Action>(RecentFiles)
+
+" Search
+map <leader>` <Action>(ShowBookmarks)
+map <leader>@ <Action>(FileStructurePopup)
+map <leader>/ <Action>(FindInPath)
+map <leader>? <Action>(FindWordAtCaret)
+
+" GitHub Copilot actions
+map <leader>a <Action>(copilot.openCopilot)
+vmap <leader>a <Action>(copilot.openCopilot)
+
+" Format
+map <leader>f <Action>(ReformatCode)
+
+" LSP-like actions
+unmap gr
+map gra <Action>(ShowIntentionActions)
+vmap gra <Action>(ShowIntentionActions)
+map grd <Action>(GotoDeclaration)
+map grD <Action>(GotoDeclaration)
+map gri <Action>(GotoImplementation)
+map grn <Action>(RenameElement)
+map grr <Action>(FindUsages)
+map grt <Action>(GotoTypeDeclaration)
+
+" Diagnostics
+map gd <Action>(ShowErrorDescription)
+
+" Harpoon keybindings
+map <leader>h <Action>(ShowHarpoon)
+map <leader>H <Action>(AddToHarpoon)
+
+" Select specific harpoon marks
+map g1 <Action>(GotoHarpoon1)
+map g2 <Action>(GotoHarpoon2)
+map g3 <Action>(GotoHarpoon3)
+map g4 <Action>(GotoHarpoon4)
+map g5 <Action>(GotoHarpoon5)
+map g6 <Action>(GotoHarpoon6)
+map g7 <Action>(GotoHarpoon7)
+map g8 <Action>(GotoHarpoon8)
+map g9 <Action>(GotoHarpoon9)
+
+" Navigate between harpoon marks
+map ]h <Action>(GotoNextHarpoon)
+map [h <Action>(GotoPreviousHarpoon)
+
+" Configure which handlers to use (vim or IDE) - uncomment as needed
+sethandler <C-i> a:vim
+sethandler <C-j> a:vim
+sethandler <C-k> a:vim
+sethandler <C-l> a:vim
+sethandler <C-n> a:ide
+sethandler <C-p> a:ide
+sethandler <C-w> a:vim
+sethandler <C-h> a:vim

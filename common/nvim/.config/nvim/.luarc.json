@@ -1,0 +1,11 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "actions",
+        "keymap",
+        "set_eol"
+    ],
+    "diagnostics.disable": [
+        "missing-fields"
+    ]
+}

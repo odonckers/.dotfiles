@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+# zsh sources .zshenv → .zprofile → .zshrc → .zlogin → .zlogout
+# .zprofile runs path_helper which appends the system bins to the front of PATH
+# Export homebrew paths here to take precedent in interactive shell
+export PATH="$HOMEBREW_PREFIX/bin:$PATH"
+export PATH="$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
+
+source $XDG_CONFIG_HOME/zsh/functions/azure-cosmos-emulator.zsh
+source $XDG_CONFIG_HOME/zsh/functions/brew.zsh
+source $XDG_CONFIG_HOME/zsh/functions/ide.zsh
+source $XDG_CONFIG_HOME/zsh/functions/port.zsh

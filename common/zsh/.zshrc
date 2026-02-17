@@ -13,12 +13,6 @@ else
   compinit -d "$ZSH_COMPDUMP"
 fi
 
-# zsh sources .zshenv → .zprofile → .zshrc → .zlogin → .zlogout
-# .zprofile runs path_helper which appends the system bins to the front of PATH
-# Export homebrew paths here to take precedent in interactive shell
-export PATH="$HOMEBREW_PREFIX/bin:$PATH"
-export PATH="$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
-
 (( $+commands[mise] )) && eval "$(mise activate zsh)"
 
 (( $+commands[code-insiders] )) && alias codei="codei"
@@ -90,11 +84,8 @@ fi
 
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
-source $XDG_CONFIG_HOME/zsh/functions/azure-cosmos-emulator.zsh
-source $XDG_CONFIG_HOME/zsh/functions/brew.zsh
-source $XDG_CONFIG_HOME/zsh/functions/ide.zsh
-source $XDG_CONFIG_HOME/zsh/functions/port.zsh
-
 set -o vi
 
-[[ -f $XDG_CONFIG_HOME/zsh/zshrc.local ]] && source $XDG_CONFIG_HOME/zsh/zshrc.local
+[[ -f $HOME/.zshrc.linux ]] && source $HOME/.zshrc.linux
+[[ -f $HOME/.zshrc.macos ]] && source $HOME/.zshrc.macos
+[[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local

@@ -20,6 +20,9 @@ window-padding-balance = true
 
 mouse-hide-while-typing = true
 
+background-opacity = 0.9
+background-blur = true
+
 macos-non-native-fullscreen = visible-menu
 window-decoration = true
 macos-titlebar-style = hidden

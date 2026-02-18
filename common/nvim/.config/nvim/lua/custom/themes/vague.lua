@@ -7,6 +7,7 @@ return {
     ---@module "vague"
     ---@type VagueColorscheme.Config
     opts = {
+        transparent = true,
         style = {
             -- "none" is the same thing as default. But "italic" and "bold" are also valid options
             boolean = 'bold',

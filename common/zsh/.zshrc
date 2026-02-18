@@ -32,7 +32,7 @@ if (( $+commands[fzf] )); then
   # upstream: https://github.com/vague-theme/vague-fzf/blob/main/vague
   export FZF_DEFAULT_OPTS="""
   --color=fg:#cdcdcd
-  --color=bg:#141415
+  --color=bg:-1
   --color=hl:#f3be7c
   --color=fg+:#aeaed1
   --color=bg+:#252530

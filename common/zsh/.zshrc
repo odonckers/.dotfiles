@@ -1,11 +1,14 @@
 #!/usr/bin/env zsh
 
+# If not running interactively, don't do anything
+[[ -o interactive ]] || return
+
 if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
   source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
 fi
 
-if [[ -d "$XDG_DATA_HOME/oh-my-zsh" ]]; then
-  export ZSH="$XDG_DATA_HOME/oh-my-zsh"
+if [[ -d "$HOME/.oh-my-zsh" ]]; then
+  export ZSH="$HOME/.oh-my-zsh"
   ZSH_THEME=robbyrussell
   source $ZSH/oh-my-zsh.sh
 else

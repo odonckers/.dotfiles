@@ -3,7 +3,7 @@
   "layer": "top",
   "position": "top",
   "spacing": 0,
-  "height": 26,
+  "height": 30,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": [
@@ -42,7 +42,7 @@
     "interval": 5,
     "format": "󰍛",
     "tooltip-format": "CPU: {usage}%",
-    "on-click": "ghostty --class=ghostty.float -e btop"
+    "on-click": "kitty --class=systemctl.tui -e btop"
   },
   "clock": {
     "format": "{:L%A %H:%M}",
@@ -60,7 +60,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "ghostty --class=ghostty.float -e gazelle"
+    "on-click": "kitty --class=systemctl.tui -e gazelle"
   },
   "battery": {
     "format": "{capacity}% {icon}",
@@ -85,7 +85,7 @@
     "format-disabled": "󰂲",
     "format-connected": "󰂱",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "ghostty --class=ghostty.float -e bluetui"
+    "on-click": "kitty --class=systemctl.tui -e bluetui"
   },
   "pulseaudio": {
     "format": "{icon}",
@@ -96,7 +96,7 @@
       "mute": "",
       "default": ["", "", "", ""]
     },
-    "on-click": "ghostty --class=ghostty.float -e wiremix"
+    "on-click": "kitty --class=systemctl.tui -e wiremix"
   },
   "group/tray-expander": {
     "orientation": "inherit",

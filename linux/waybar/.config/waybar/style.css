@@ -10,10 +10,7 @@
   border-radius: 0;
   min-height: 0;
   font-family: 'CaskaydiaMono Nerd Font', 'Noto Sans Nerd Font', monospace;
-  font-size: 15px;
-
-  padding-top: 1px;
-  padding-bottom: 1px;
+  font-size: 14px;
 }
 
 .modules-left {

@@ -10,6 +10,9 @@ mkdir -p "$XDG_STATE_HOME/zsh"
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
 
+# node
+[[ -d "$XDG_CONFIG_HOME/nvm" ]] && export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+
 # rust
 [[ -f $HOME/.cargo/env ]] && source "$HOME/.cargo/env"
 

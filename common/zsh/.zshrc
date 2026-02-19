@@ -30,22 +30,22 @@ fi
 if (( $+commands[fzf] )); then
   source <(fzf --zsh)
   # upstream: https://github.com/vague-theme/vague-fzf/blob/main/vague
-  export FZF_DEFAULT_OPTS="""
-  --color=fg:#cdcdcd
-  --color=bg:#141415
-  --color=hl:#f3be7c
-  --color=fg+:#aeaed1
-  --color=bg+:#252530
-  --color=hl+:#f3be7c
-  --color=border:#606079
-  --color=header:#6e94b2
-  --color=gutter:#141415
-  --color=spinner:#7fa563
-  --color=info:#f3be7c
-  --color=pointer:#aeaed1
-  --color=marker:#d8647e
-  --color=prompt:#bb9dbd
-  """
+  # export FZF_DEFAULT_OPTS="""
+  # --color=fg:#cdcdcd
+  # --color=bg:#141415
+  # --color=hl:#f3be7c
+  # --color=fg+:#aeaed1
+  # --color=bg+:#252530
+  # --color=hl+:#f3be7c
+  # --color=border:#606079
+  # --color=header:#6e94b2
+  # --color=gutter:#141415
+  # --color=spinner:#7fa563
+  # --color=info:#f3be7c
+  # --color=pointer:#aeaed1
+  # --color=marker:#d8647e
+  # --color=prompt:#bb9dbd
+  # """
 fi
 (( $+commands[gh] )) && alias ghas="gh auth switch"
 if (( $+commands[git] )); then

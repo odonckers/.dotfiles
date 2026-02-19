@@ -34,7 +34,7 @@ vim.opt.colorcolumn = '140' -- Show column in text
 vim.opt.showmatch = true -- Highlight matching brackets
 vim.opt.matchtime = 2 -- How long to show matching bracket
 vim.opt.pumheight = 10 -- Popup menu height
-vim.opt.winborder = 'rounded' -- Floating window border
+vim.opt.winborder = 'none' -- Floating window border
 vim.opt.synmaxcol = 300 -- Syntax highlighting limit
 vim.opt.fillchars = { eob = ' ' } -- Fill characters
 vim.opt.breakindent = true -- Wrapped lines will indent visually

@@ -16,10 +16,10 @@ vim.lsp.enable({
 vim.lsp.inlay_hint.enable(true)
 
 vim.diagnostic.config({
-    float = {
-        border = 'rounded',
-        focusable = true,
-    },
+    -- float = {
+    --     border = 'rounded',
+    --     focusable = true,
+    -- },
     virtual_lines = false,
     virtual_text = {
         current_line = true,

@@ -1,5 +1,5 @@
 [flavor]
-dark = "vague"
+dark = "gruvbox-material"
 
 [status]
 sep_left = { open = "", close = "" }

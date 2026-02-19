@@ -8,5 +8,7 @@ use = "yazi-rs/plugins:full-border"
 rev = "88990a6"
 hash = "3996fc74044bc44144b323686f887e1"
 
-[flavor]
-deps = []
+[[flavor.deps]]
+use = "matt-dong-123/gruvbox-material"
+rev = "6c36491"
+hash = "564f2335540ee2c440c3b671bc28ac60"

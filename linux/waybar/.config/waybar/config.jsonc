@@ -25,7 +25,7 @@
     "on-click": "kitty --class=systemctl.tui -e btop"
   },
   "clock": {
-    "format": "{:L%A %H:%M}",
+    "format": "{:L%A %I:%M %p}",
     "format-alt": "{:L%d %B W%V %Y}",
     "tooltip": false
   },

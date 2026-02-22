@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+pacman-backup() {
+  pacman -Qqen > $HOME/pkglist.txt
+  pacman -Qqem > $HOME/foreignpkglist.txt
+}

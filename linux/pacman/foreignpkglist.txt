@@ -1,0 +1,7 @@
+google-chrome
+librewolf-bin
+teams-for-linux
+ttf-ms-fonts
+winboat-bin
+yay
+yay-debug

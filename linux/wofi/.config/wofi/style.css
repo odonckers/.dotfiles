@@ -1,0 +1,26 @@
+window {
+  border: 2px solid #cdcdcd;
+  background-color: rgba(14, 14, 15, 0.7);
+}
+
+#input {
+  margin: 20px;
+  border: 2px solid #878787;
+  background-color: #141415;
+  border-radius: 0;
+}
+
+#scroll {
+  margin: 0 20px 20px 20px;
+  border: 2px solid #878787;
+  background-color: rgba(14, 14, 15, 0.5);
+  border-radius: 0;
+}
+
+#entry {
+  padding: 10px 15px;
+}
+
+#entry:selected {
+  background-color: #f3be7c;
+}

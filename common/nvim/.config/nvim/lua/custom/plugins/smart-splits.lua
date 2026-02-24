@@ -1,27 +1,30 @@
 return {
     'mrjones2014/smart-splits.nvim',
+    build = './kitty/install-kittens.bash',
     lazy = false,
-    opts = {
-        default_amount = 5,
-    },
-    keys = {
+    config = function()
+        require('smart-splits').setup({
+            default_amount = 5,
+            at_edge = 'stop',
+        })
+
         -- Navigate splits
-        { '<C-h>', function() require('smart-splits').move_cursor_left() end, desc = 'Navigate left' },
-        { '<C-l>', function() require('smart-splits').move_cursor_right() end, desc = 'Navigate right' },
-        { '<C-j>', function() require('smart-splits').move_cursor_down() end, desc = 'Navigate down' },
-        { '<C-k>', function() require('smart-splits').move_cursor_up() end, desc = 'Navigate up' },
-        { '<C-\\>', function() require('smart-splits').move_cursor_previous() end, desc = 'Navigate to previous' },
+        vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)
+        vim.keymap.set('n', '<C-j>', require('smart-splits').move_cursor_down)
+        vim.keymap.set('n', '<C-k>', require('smart-splits').move_cursor_up)
+        vim.keymap.set('n', '<C-l>', require('smart-splits').move_cursor_right)
+        vim.keymap.set('n', '<C-\\>', require('smart-splits').move_cursor_previous)
 
         -- Resize splits
-        { '<C-left>', function() require('smart-splits').resize_left() end, desc = 'Resize left' },
-        { '<C-right>', function() require('smart-splits').resize_right() end, desc = 'Resize right' },
-        { '<C-down>', function() require('smart-splits').resize_down() end, desc = 'Resize down' },
-        { '<C-up>', function() require('smart-splits').resize_up() end, desc = 'Resize up' },
+        vim.keymap.set('n', '<C-left>', require('smart-splits').resize_left)
+        vim.keymap.set('n', '<C-down>', require('smart-splits').resize_down)
+        vim.keymap.set('n', '<C-up>', require('smart-splits').resize_up)
+        vim.keymap.set('n', '<C-right>', require('smart-splits').resize_right)
 
         -- Swap splits
-        { '<C-S-left>', function() require('smart-splits').swap_buf_left() end, desc = 'Swap buffer left' },
-        { '<C-S-right>', function() require('smart-splits').swap_buf_right() end, desc = 'Swap buffer right' },
-        { '<C-S-down>', function() require('smart-splits').swap_buf_down() end, desc = 'Swap buffer down' },
-        { '<C-S-up>', function() require('smart-splits').swap_buf_up() end, desc = 'Swap buffer up' },
-    },
+        vim.keymap.set('n', '<C-S-left>', require('smart-splits').swap_buf_left)
+        vim.keymap.set('n', '<C-S-down>', require('smart-splits').swap_buf_down)
+        vim.keymap.set('n', '<C-S-up>', require('smart-splits').swap_buf_up)
+        vim.keymap.set('n', '<C-S-right>', require('smart-splits').swap_buf_right)
+    end,
 }

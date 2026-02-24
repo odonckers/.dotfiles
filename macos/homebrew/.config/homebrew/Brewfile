@@ -1,5 +1,6 @@
 tap "alajmo/mani"
 tap "anomalyco/tap"
+tap "felixkratz/formulae"
 tap "hashicorp/tap"
 tap "jstkdng/programs"
 tap "mediosz/tap"
@@ -84,6 +85,8 @@ brew "resvg"
 brew "ripgrep"
 # 7-Zip is a file archiver with a high compression ratio
 brew "sevenzip"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
 # Opinionated Lua code formatter
 brew "stylua"
 # Open source continuous file synchronization application
@@ -92,8 +95,6 @@ brew "syncthing", restart_service: :changed
 brew "tmux"
 # Manage complex tmux sessions easily
 brew "tmuxinator"
-# Plugin manager for tmux
-brew "tpm"
 # Parser generator tool
 brew "tree-sitter-cli"
 # Maintained ctags implementation
@@ -116,6 +117,8 @@ brew "zoxide"
 brew "zsh"
 # The AI coding agent built for the terminal.
 brew "anomalyco/tap/opencode"
+# A window border system for macOS
+brew "felixkratz/formulae/borders"
 # Vault
 brew "hashicorp/tap/vault"
 # Drop in replacement for ueberzug written in C++
@@ -134,6 +137,8 @@ cask "db-browser-for-sqlite"
 cask "docker-desktop"
 # Collaborative team software
 cask "figma"
+# Web browser
+cask "firefox"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Free and open-source image editor
@@ -142,6 +147,8 @@ cask "gimp"
 cask "github-copilot-for-xcode"
 # Web browser
 cask "google-chrome"
+# Java IDE by JetBrains
+cask "intellij-idea"
 # Keyboard customiser
 cask "karabiner-elements"
 # GPU-based terminal emulator
@@ -158,6 +165,8 @@ cask "microsoft-teams"
 cask "mysqlworkbench"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Command-line shell and scripting language
+cask "powershell"
 # Music streaming service
 cask "spotify"
 # Video game digital distribution service
@@ -170,13 +179,11 @@ cask "utm"
 cask "visual-studio-code"
 # Open-source code editor
 cask "visual-studio-code@insiders"
+# GPU-accelerated cross-platform terminal emulator and multiplexer
+cask "wezterm"
 # Native desktop client for WhatsApp
 cask "whatsapp"
 # Multiplayer code editor
 cask "zed"
 # Video communication and virtual meeting platform
 cask "zoom"
-go "golang.org/x/tools/cmd/goimports"
-go "golang.org/x/tools/gopls"
-go "mvdan.cc/sh/v3/cmd/shfmt"
-go "honnef.co/go/tools/cmd/staticcheck"

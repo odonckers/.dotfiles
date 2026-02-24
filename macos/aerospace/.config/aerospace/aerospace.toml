@@ -65,16 +65,6 @@ on-mode-changed = []
 
 # Workspace arrangement
 
-# Workspace 1
-[[on-window-detected]]
-if.app-id = 'org.mozilla.librewolf'
-run = ['move-node-to-workspace 1']
-
-# Workspace 3
-[[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace 3'
-
 # Workspace 4
 [[on-window-detected]]
 if.app-id = 'com.electron.cypress'
@@ -164,8 +154,9 @@ run = 'layout floating'
     # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-    alt-t = 'exec-and-forget open -n /Applications/Ghostty.app'
-    alt-b = 'exec-and-forget open -n /Applications/LibreWolf.app'
+    alt-f = 'exec-and-forget open -a Finder'
+    alt-t = 'exec-and-forget open -a Ghostty --new'
+    alt-b = 'exec-and-forget open -a LibreWolf --new'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     alt-comma =  'layout accordion horizontal vertical'

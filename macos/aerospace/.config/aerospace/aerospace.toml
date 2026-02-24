@@ -16,7 +16,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 60
+accordion-padding = 80
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -31,7 +31,7 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center'] # Mouse lazily follows any focus (window or workspace)
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -64,16 +64,6 @@ on-mode-changed = []
 # See: https://nikitabobko.github.io/AeroSpace/guide#on-window-detected-callback
 
 # Workspace arrangement
-
-# Workspace 1
-[[on-window-detected]]
-if.app-id = 'org.mozilla.librewolf'
-run = ['move-node-to-workspace 1']
-
-# Workspace 3
-[[on-window-detected]]
-if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace 3'
 
 # Workspace 4
 [[on-window-detected]]
@@ -164,8 +154,9 @@ run = 'layout floating'
     # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-    alt-t = 'exec-and-forget open -n /Applications/Ghostty.app'
-    alt-b = 'exec-and-forget open -n /Applications/LibreWolf.app'
+    alt-f = 'exec-and-forget open -a Finder'
+    alt-t = 'exec-and-forget open -a Ghostty --new'
+    alt-b = 'exec-and-forget open -a LibreWolf --new'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     alt-comma =  'layout accordion horizontal vertical'
@@ -173,16 +164,16 @@ run = 'layout floating'
     alt-slash =  'layout tiles horizontal vertical'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-    alt-h = 'focus left'
-    alt-j = 'focus down'
-    alt-k = 'focus up'
-    alt-l = 'focus right'
+    alt-h = 'focus left --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+    alt-j = 'focus down --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+    alt-k = 'focus up --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+    alt-l = 'focus right --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move
-    alt-shift-h = 'move left'
-    alt-shift-j = 'move down'
-    alt-shift-k = 'move up'
-    alt-shift-l = 'move right'
+    alt-shift-h = 'move left --boundaries all-monitors-outer-frame'
+    alt-shift-j = 'move down --boundaries all-monitors-outer-frame'
+    alt-shift-k = 'move up --boundaries all-monitors-outer-frame'
+    alt-shift-l = 'move right --boundaries all-monitors-outer-frame'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#join-with
     ctrl-alt-h = 'join-with left'

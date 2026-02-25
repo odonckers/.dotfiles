@@ -3,10 +3,7 @@ return {
     build = './kitty/install-kittens.bash',
     lazy = false,
     config = function()
-        require('smart-splits').setup({
-            default_amount = 5,
-            at_edge = 'stop',
-        })
+        require('smart-splits').setup({ default_amount = 5 })
 
         -- Navigate splits
         vim.keymap.set('n', '<C-h>', require('smart-splits').move_cursor_left)

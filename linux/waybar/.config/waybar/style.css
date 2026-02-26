@@ -21,7 +21,6 @@ window#waybar {
   background-color: @inactiveBg;
 }
 
-
 #workspaces button {
   all: initial;
   padding-left: 10px;

@@ -2,6 +2,7 @@ google-chrome
 librewolf-bin
 teams-for-linux
 ttf-ms-fonts
+visual-studio-code-insiders-bin
 winboat-bin
 yay
 yay-debug

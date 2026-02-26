@@ -26,7 +26,9 @@ ghostty
 git
 git-delta
 github-cli
+gnome-keyring
 gnome-tweaks
+go
 grim
 grub
 hyphen-en
@@ -75,6 +77,7 @@ otf-hermit-nerd
 otf-monaspace-nerd
 otf-opendyslexic-nerd
 otf-overpass-nerd
+pacman-contrib
 pamixer
 pavucontrol
 pipewire
@@ -85,6 +88,8 @@ qt6-tools
 qt6-wayland
 qt6ct
 ripgrep
+rustup
+seahorse
 shfmt
 slurp
 spotify-launcher

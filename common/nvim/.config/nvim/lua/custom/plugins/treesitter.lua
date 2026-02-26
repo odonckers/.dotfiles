@@ -4,7 +4,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     -- Not sure why there is a difference between macos and linux config plural
-    main = vim.fn.has('macunix') and 'nvim-treesitter.configs' or 'nvim-treesitter.config',
+    main = vim.loop.os_uname().sysname == 'Linux' and 'nvim-treesitter.config' or 'nvim-treesitter.configs',
     opts = {
         ensure_installed = {
             'angular',

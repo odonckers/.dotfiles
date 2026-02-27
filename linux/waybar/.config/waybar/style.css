@@ -23,8 +23,8 @@ window#waybar {
 
 #workspaces button {
   all: initial;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 #workspaces button.active {
@@ -33,39 +33,32 @@ window#waybar {
 }
 
 #workspaces button:hover {
+  color: @fg;
   background-color: @bg;
 }
 
 #clock {
-  background-color: @inactiveBg;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-#cpu {
-  margin-left: 10px;
-  padding-left: 10px;
-  padding-right: 11px;
-  background-color: @inactiveBg;
+  font-family: 'Instrument Serif';
+  font-size: 22px;
 }
 
 #network {
   padding-left: 10px;
-  padding-right: 15px;
+  padding-right: 20px;
   background-color: @inactiveBg;
 }
 
 #bluetooth {
-  margin-left: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  margin-left: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
   background-color: @inactiveBg;
 }
 
 #pulseaudio {
   margin-left: 10px;
-  padding-left: 10px;
-  padding-right: 15px;
+  padding-left: 15px;
+  padding-right: 20px;
   background-color: @inactiveBg;
 }
 

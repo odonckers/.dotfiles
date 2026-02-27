@@ -4,5 +4,3 @@
 /common/zed/.config/zed/prompts
 
 /macos/karabiner/.config/karabiner/automatic_backups
-
-*.local

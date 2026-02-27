@@ -20,7 +20,9 @@ dotnet-targeting-pack
 dunst
 efibootmgr
 eza
+fcft
 firefox
+foot
 fzf
 ghostty
 git
@@ -32,6 +34,7 @@ go
 grim
 grub
 hyphen-en
+hypridle
 hyprland
 hyprlock
 hyprpaper
@@ -42,7 +45,6 @@ jq
 kdeconnect
 keyd
 kitty
-kvantum
 lazygit
 libreoffice-still
 linux
@@ -98,6 +100,7 @@ stow
 stylua
 sudo
 syncthing
+tllist
 tmux
 tree-sitter-cli
 ttf-0xproto-nerd

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+URI="$1"
+PATH_PART="${URI#jwlibrary:///}"
+URL="https://www.jw.org/${PATH_PART}"
+
+xdg-open "$URL"

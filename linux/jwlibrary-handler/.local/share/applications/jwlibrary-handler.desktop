@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=JW Library URI Handler
+Exec=/home/odonckers/.local/bin/jwlibrary-handler %u
+Type=Application
+NoDisplay=true
+MimeType=x-scheme-handler/jwlibrary;

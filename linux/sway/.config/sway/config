@@ -186,6 +186,11 @@ exec swayidle -w \
     # Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+    # Special keys to control media via playerctl
+    bindsym --locked XF86AudioNext exec playerctl next
+    bindsym --locked XF86AudioPause exec playerctl play-pause
+    bindsym --locked XF86AudioPlay exec playerctl play-pause
+    bindsym --locked XF86AudioPrev exec playerctl previous
     # Special key to take a screenshot with grim
     bindsym Print exec grim
 
@@ -194,25 +199,35 @@ exec swayidle -w \
 # Read `man 5 sway-bar` for more information about this section.
 bar {
     position top
+
     status_command i3status
+
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        background #00000000
+        statusline #cdcdcd
+        separator #cdcdcd55
+
+        #                 border     background  text
+        focused_workspace #cdcdcdee  #cdcdcdee   #141415
+        active_workspace  #878787    #cdcdcd22   #cdcdcd
+
+
+        inactive_workspace #00000000 #32323200 #5c5c5c
     }
 }
 
 # Appearance:
 
     font "JetBrainsMono Nerd Font Mono" 10
+    default_border pixel 2
 
-    #      class              border   background  text     indicator child_border
-#   client.background                  #ffffff
-    client.focused            #4c7899  #285577     #ffffff  #2e9ef4    #285577
-    client.focused_inactive   #333333  #5f676a     #ffffff  #484e50    #5f676a
-    client.focused_tab_title  #333333  #5f676a     #ffffff
-    client.unfocused          #333333  #222222     #888888  #292d2e    #222222
-    client.urgent             #2f343a  #900000     #ffffff  #900000    #900000
-    client.placeholder        #000000  #0c0c0c     #ffffff  #000000    #0c0c0c
+    #      class              border     background  text       indicator  child_border
+#   client.background                    #ffffff
+    client.focused            #cdcdcdee  #cdcdcdee   #141415    #f3be7cee
+    client.focused_inactive   #878787    #cdcdcd22   #cdcdcd    #484e50
+    client.focused_tab_title  #878787ee  #878787ee   #141415    #f3be7cee
+    client.unfocused          #cdcdcd22  #cdcdcd22   #878787    #bb9dbd
+    client.urgent             #f3be7cee  #f3be7cee   #cdcdcd    #d8647eee
+#   client.placeholder        #000000    #0c0c0c     #ffffff    #000000    #0c0c0c
 
 include /etc/sway/config.d/*

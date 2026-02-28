@@ -2,7 +2,7 @@
 @define-color inactiveBg #1c1c24;
 @define-color fg #cdcdcd;
 @define-color floatBorder #878787;
-@define-color active #f3be7c;
+@define-color active #cdcdcd;
 
 * {
   border: none;

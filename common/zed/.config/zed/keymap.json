@@ -1,0 +1,51 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "((VimControl && !menu) || (!Editor && !Terminal))",
+    "bindings": {
+      "ctrl-w \\": "pane::SplitVertical",
+    },
+  },
+  {
+    "context": "((VimControl && !menu) || (!Editor && !Terminal))",
+    "bindings": {
+      "ctrl-w -": "pane::SplitHorizontal",
+    },
+  },
+  {
+    "context": "((VimControl && !menu) || (!Editor && !Terminal)) && vim_mode == normal",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+    },
+  },
+  {
+    "context": "((VimControl && !menu) || (!Editor && !Terminal)) && vim_mode == normal",
+    "bindings": {
+      "ctrl-j": "workspace::ActivatePaneDown",
+    },
+  },
+  {
+    "context": "((VimControl && !menu) || (!Editor && !Terminal)) && vim_mode == normal",
+    "bindings": {
+      "ctrl-k": "workspace::ActivatePaneUp",
+    },
+  },
+  {
+    "context": "((VimControl && !menu) || (!Editor && !Terminal)) && vim_mode == normal",
+    "bindings": {
+      "ctrl-l": "workspace::ActivatePaneRight",
+    },
+  },
+  {
+    "context": "((VimControl && !menu) || (!Editor && !Terminal)) && vim_mode == normal",
+    "bindings": {
+      ", ,": "file_finder::Toggle",
+    },
+  },
+]

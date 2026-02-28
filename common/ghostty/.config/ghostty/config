@@ -3,6 +3,8 @@ shell-integration = zsh
 font-family = JetBrainsMono Nerd Font Mono
 font-size = 13
 
+font-thicken = true
+
 adjust-cell-width = -4%
 adjust-cell-height = 8%
 

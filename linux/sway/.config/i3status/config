@@ -1,0 +1,22 @@
+general {
+        colors = false
+        interval = 1
+}
+
+order += "volume master"
+order += "memory"
+order += "tztime local"
+
+volume master {
+      format = "Vol %volume"
+      format_muted = "Muted"
+      device = "default"
+}
+memory {
+        format = "Mem %used"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
+}
+tztime local {
+        format = "%Y-%m-%d %X"
+}

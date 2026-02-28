@@ -4,6 +4,7 @@
 
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+set $mod2 Mod4+Shift
 
 set $left h
 set $down j
@@ -64,6 +65,9 @@ exec swayidle -w \
     # Kill focused window
     bindsym $mod+q kill
 
+    # Lock device
+    bindsym $mod+Ctrl+q exec swaylock -f -c 000000
+
     # Start launcher
     bindsym $mod+space exec $menu
 
@@ -78,11 +82,18 @@ exec swayidle -w \
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+r reload
+    bindsym $mod2+r reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-#
+    bindsym $mod2+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# System Control:
+
+    bindsym $mod2+XF86AudioRaiseVolume exec $term -e wiremix
+    bindsym $mod2+b exec $term -e bluetui
+    bindsym $mod2+n exec $term -e nmtui
+    bindsym $mod2+m exec $term -e btop
+
 # Moving around:
 
     # Move your focus around

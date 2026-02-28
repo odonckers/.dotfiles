@@ -151,18 +151,15 @@ exec swayidle -w \
     bindsym $mod+minus splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+comma layout stacking
-    bindsym $mod+period layout tabbed
+    bindsym $mod+comma layout toggle stacking tabbed
+    bindsym $mod+period floating toggle
     bindsym $mod+slash layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+z fullscreen
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+f floating toggle
-
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+Shift+f focus mode_toggle
+    bindsym $mod+Shift+period focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent

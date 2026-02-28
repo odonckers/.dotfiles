@@ -17,7 +17,7 @@ window#waybar {
   color: @fg;
 }
 
-.modules-center {
+.modules-left {
   background-color: @inactiveBg;
 }
 

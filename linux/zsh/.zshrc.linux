@@ -1,6 +1,12 @@
 #!/usr/bin/env zsh
 
-pacman-backup() {
-  pacman -Qqen > $HOME/pkglist.txt
-  pacman -Qqem > $HOME/foreignpkglist.txt
-}
+if (( $+commands[pacman] )); then
+  pacman-backup() {
+    pacman -Qqen > $HOME/pkglist.txt
+    pacman -Qqem > $HOME/foreignpkglist.txt
+  }
+fi
+
+if (( $+commands[sway] )); then
+  alias start-sway="sway --unsupported-gpu"
+fi

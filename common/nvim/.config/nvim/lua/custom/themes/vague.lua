@@ -43,6 +43,9 @@ return {
                 diagnostic_warn = 'bold',
             },
         },
+        on_highlights = function(hl, _)
+            hl.NeoTreeWinSeparator = nil -- make border transparent
+        end,
     },
     config = function(_, opts)
         require('vague').setup(opts)

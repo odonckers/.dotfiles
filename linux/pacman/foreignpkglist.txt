@@ -1,8 +1,12 @@
+debtap
 google-chrome
 librewolf-bin
 teams-for-linux
+timr
 ttf-ms-fonts
 visual-studio-code-insiders-bin
+waydroid-script-git
 winboat-bin
 yay
 yay-debug
+zoom

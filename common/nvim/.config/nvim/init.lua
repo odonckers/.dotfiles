@@ -5,7 +5,7 @@
 
 vim.g.mapleader = ','
 vim.g.maplocalleader = '\\'
-vim.g.relativenumber = true
+vim.g.relativenumber = false
 
 -- Basic settings
 vim.opt.number = true -- Line numbers

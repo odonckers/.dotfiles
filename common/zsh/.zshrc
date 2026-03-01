@@ -19,12 +19,6 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   VI_MODE_SET_CURSOR=true
 
   source $ZSH/oh-my-zsh.sh
-else
-  autoload -Uz compinit
-  compinit -d "$ZSH_COMPDUMP"
-
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
 (( $+commands[code-insiders] )) && alias codei="codei"

@@ -11,7 +11,7 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   export ZSH="$HOME/.oh-my-zsh"
   ZSH_THEME=robbyrussell
 
-  plugins=(dotnet eza gh git ng nvm tmux vi-mode zoxide)
+  plugins=(dotnet eza gh git ng nvm tmux vi-mode zoxide zsh-interactive-cd)
 
   zstyle ':omz:plugins:nvm' lazy yes
   zstyle ':omz:plugins:nvm' lazy-cmd eslint prettier typescript ng

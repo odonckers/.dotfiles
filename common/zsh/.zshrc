@@ -11,7 +11,7 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   export ZSH="$HOME/.oh-my-zsh"
   ZSH_THEME=robbyrussell
 
-  plugins=(dotnet eza gh git ng nvm tmux vi-mode zoxide zsh-interactive-cd)
+  plugins=(dotnet eza gh git mise ng nvm tmux vi-mode zoxide zsh-interactive-cd)
 
   zstyle ':omz:plugins:nvm' lazy yes
   zstyle ':omz:plugins:nvm' lazy-cmd eslint prettier typescript ng
@@ -26,8 +26,6 @@ else
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
-
-(( $+commands[mise] )) && eval "$(mise activate zsh)"
 
 (( $+commands[code-insiders] )) && alias codei="codei"
 (( $+commands[ctags] )) && alias tag="ctags -R ."
@@ -66,9 +64,6 @@ if (( $+commands[nvim] )); then
   alias v="nvim"
   alias vs="nvim -S"
 fi
-(( $+commands[opencode] )) && alias oc=opencode
-(( $+commands[wget] )) && alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
-(( $+commands[yazi] )) && alias y=yazi
 
 [[ -f $HOME/.zshrc.linux ]] && source $HOME/.zshrc.linux
 [[ -f $HOME/.zshrc.macos ]] && source $HOME/.zshrc.macos

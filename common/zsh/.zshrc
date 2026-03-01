@@ -9,7 +9,9 @@ fi
 
 if [[ -d "$HOME/.oh-my-zsh" ]]; then
   export ZSH="$HOME/.oh-my-zsh"
+
   ZSH_THEME=robbyrussell
+  ZSH_DISABLE_COMPFIX=true
 
   plugins=(archlinux brew dotnet eza fzf gh git mise ng nvm tmux vi-mode zoxide zsh-interactive-cd)
 

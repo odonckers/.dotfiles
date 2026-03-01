@@ -7,9 +7,17 @@ return {
     },
     lazy = false, -- neo-tree will lazily load itself
     opts = {
+        default_component_configs = {
+            indent = {
+                padding = 0, -- extra padding on left hand side
+            },
+            icon = {
+                enabled = false,
+            },
+        },
         source_selector = {
-            winbar = true,
-            statusline = false,
+            winbar = false,
+            statusline = true,
         },
         filesystem = {
             filtered_items = {
@@ -22,7 +30,7 @@ return {
             },
         },
         window = {
-            width = 56,
+            width = 52,
         },
     },
     keys = {

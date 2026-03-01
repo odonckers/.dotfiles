@@ -46,7 +46,7 @@ vim.opt.listchars = { -- Whitespace characters definitions
     tab = '» ',
     trail = '·',
     nbsp = '␣',
-    lead = '·',
+    -- lead = '·',
 }
 
 -- File handling

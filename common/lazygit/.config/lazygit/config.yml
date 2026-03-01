@@ -1,7 +1,7 @@
 gui:
   skipRewordInEditorWarning: true
   nerdFontsVersion: "3"
-  border: 'single'
+  border: 'rounded'
   # Upstream: https://github.com/vague-theme/vague-lazygit/blob/main/vague.yml
   authorColors:
     "*": "#f3be7c"

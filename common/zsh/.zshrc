@@ -11,7 +11,7 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   export ZSH="$HOME/.oh-my-zsh"
   ZSH_THEME=robbyrussell
 
-  plugins=(dotnet eza gh git mise ng nvm tmux vi-mode zoxide zsh-interactive-cd)
+  plugins=(dotnet eza fzf gh git mise ng nvm tmux vi-mode zoxide zsh-interactive-cd)
 
   zstyle ':omz:plugins:nvm' lazy yes
   zstyle ':omz:plugins:nvm' lazy-cmd eslint prettier typescript ng
@@ -28,7 +28,6 @@ if (( $+commands[eza] )); then
   alias ll="eza -ahl --git"
 fi
 if (( $+commands[fzf] )); then
-  source <(fzf --zsh)
   # upstream: https://github.com/vague-theme/vague-fzf/blob/main/vague
   export FZF_DEFAULT_OPTS="""
   --color=fg:#cdcdcd

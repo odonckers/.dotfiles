@@ -11,6 +11,10 @@ config.window_decorations = 'RESIZE'
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 
+-- Full screen (macOS only)
+config.native_macos_fullscreen_mode = false
+-- config.macos_fullscreen_extend_behind_notch = true -- nightly only
+
 -- Font
 config.font = wezterm.font('JetBrainsMono Nerd Font Mono')
 config.font_size = 12
@@ -19,6 +23,12 @@ config.font_size = 12
 local theme = require('lua/vague')
 config.colors = theme.colors()
 config.window_frame = theme.window_frame()
+
+-- Multiplexing
+config.unix_domains = {
+    { name = 'unix' },
+}
+config.default_gui_startup_args = { 'connect', 'unix' }
 
 wezterm.on('update-right-status', function(window, _) window:set_right_status(window:active_workspace()) end)
 
@@ -55,11 +65,15 @@ local function split_nav(action, key)
 end
 
 -- Key bindings
-config.leader = { key = 'a', mods = 'CTRL' }
+config.leader = { mods = 'CTRL', key = 'Space' }
 config.keys = {
     -- command pallete
-    { mods = 'CMD', key = 'P', action = wezterm.action.ActivateCommandPalette },
-    { mods = 'CTRL', key = 'P', action = wezterm.action.ActivateCommandPalette },
+    { mods = 'CTRL|SHIFT', key = 'p', action = wezterm.action.ActivateCommandPalette },
+    { mods = 'CMD|SHIFT', key = 'p', action = wezterm.action.ActivateCommandPalette },
+
+    -- fullscreen
+    { mods = 'CTRL', key = 'Enter', action = wezterm.action.ToggleFullScreen },
+    { mods = 'CMD', key = 'Enter', action = wezterm.action.ToggleFullScreen },
 
     -- move between split panes
     split_nav('move', 'h'),
@@ -74,18 +88,39 @@ config.keys = {
     split_nav('resize', 'RightArrow'),
 
     -- splitting
-    { mods = 'LEADER', key = '-', action = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }) },
-    { mods = 'LEADER', key = '\\', action = wezterm.action.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
+    { mods = 'CTRL|SHIFT', key = '_', action = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }) },
+    { mods = 'CTRL|SHIFT', key = '|', action = wezterm.action.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
+    { mods = 'CMD', key = '-', action = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }) },
+    { mods = 'CMD', key = '\\', action = wezterm.action.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
 
     -- zoom
-    { mods = 'LEADER', key = 'z', action = wezterm.action.TogglePaneZoomState },
+    { mods = 'CTRL|SHIFT', key = 'z', action = wezterm.action.TogglePaneZoomState },
+    { mods = 'CMD', key = 'z', action = wezterm.action.TogglePaneZoomState },
 
     -- activate copy mode or vim mode
-    { mods = 'LEADER', key = '[', action = wezterm.action.ActivateCopyMode },
+    { mods = 'CTRL|SHIFT', key = 'x', action = wezterm.action.ActivateCopyMode },
+    { mods = 'CMD', key = 'x', action = wezterm.action.ActivateCopyMode },
 
-    -- Show the launcher in fuzzy selection mode and have it list all workspaces
-    -- and allow activating one.
-    -- { mods = 'CTRL', key = 's', action = wezterm.action.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' }) },
+    -- workspaces/sessions
+    { mods = 'CTRL|SHIFT', key = 'o', action = wezterm.action.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' }) },
+    { mods = 'CMD', key = 'o', action = wezterm.action.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' }) },
+    {
+        mods = 'CTRL|SHIFT',
+        key = 'n',
+        action = wezterm.action.PromptInputLine({
+            description = wezterm.format({
+                { Attribute = { Intensity = 'Bold' } },
+                { Foreground = { AnsiColor = 'Fuchsia' } },
+                { Text = 'Enter name for new workspace' },
+            }),
+            action = wezterm.action_callback(function(window, pane, line)
+                -- line will be `nil` if they hit escape without entering anything
+                -- An empty string if they just hit enter
+                -- Or the actual line of text they wrote
+                if line then window:perform_action(wezterm.action.SwitchToWorkspace({ name = line }), pane) end
+            end),
+        }),
+    },
 }
 
 return config

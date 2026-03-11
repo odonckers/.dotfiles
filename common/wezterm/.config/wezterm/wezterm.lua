@@ -64,6 +64,24 @@ local function split_nav(action, key)
     }
 end
 
+local split_vertical = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' })
+local split_horizontal = wezterm.action.SplitHorizontal({ domain = 'CurrentPaneDomain' })
+
+local fzf_workspace = wezterm.action.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' })
+local new_workspace = wezterm.action.PromptInputLine({
+    description = wezterm.format({
+        { Attribute = { Intensity = 'Bold' } },
+        { Foreground = { AnsiColor = 'Fuchsia' } },
+        { Text = 'Enter name for new workspace' },
+    }),
+    action = wezterm.action_callback(function(window, pane, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then window:perform_action(wezterm.action.SwitchToWorkspace({ name = line }), pane) end
+    end),
+})
+
 -- Key bindings
 config.leader = { mods = 'CTRL', key = 'Space' }
 config.keys = {
@@ -88,10 +106,10 @@ config.keys = {
     split_nav('resize', 'RightArrow'),
 
     -- splitting
-    { mods = 'CTRL|SHIFT', key = '_', action = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }) },
-    { mods = 'CTRL|SHIFT', key = '|', action = wezterm.action.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
-    { mods = 'CMD', key = '-', action = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }) },
-    { mods = 'CMD', key = '\\', action = wezterm.action.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
+    { mods = 'CTRL|SHIFT', key = '_', action = split_vertical },
+    { mods = 'CTRL|SHIFT', key = '|', action = split_horizontal },
+    { mods = 'CMD', key = '-', action = split_vertical },
+    { mods = 'CMD', key = '\\', action = split_horizontal },
 
     -- zoom
     { mods = 'CTRL|SHIFT', key = 'z', action = wezterm.action.TogglePaneZoomState },
@@ -102,25 +120,10 @@ config.keys = {
     { mods = 'CMD', key = 'x', action = wezterm.action.ActivateCopyMode },
 
     -- workspaces/sessions
-    { mods = 'CTRL|SHIFT', key = 'o', action = wezterm.action.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' }) },
-    { mods = 'CMD', key = 'o', action = wezterm.action.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' }) },
-    {
-        mods = 'CTRL|SHIFT',
-        key = 'n',
-        action = wezterm.action.PromptInputLine({
-            description = wezterm.format({
-                { Attribute = { Intensity = 'Bold' } },
-                { Foreground = { AnsiColor = 'Fuchsia' } },
-                { Text = 'Enter name for new workspace' },
-            }),
-            action = wezterm.action_callback(function(window, pane, line)
-                -- line will be `nil` if they hit escape without entering anything
-                -- An empty string if they just hit enter
-                -- Or the actual line of text they wrote
-                if line then window:perform_action(wezterm.action.SwitchToWorkspace({ name = line }), pane) end
-            end),
-        }),
-    },
+    { mods = 'CTRL|SHIFT', key = 'o', action = fzf_workspace },
+    { mods = 'CMD', key = 'o', action = fzf_workspace },
+    { mods = 'CTRL|SHIFT', key = 'n', action = new_workspace },
+    { mods = 'CMD|SHIFT', key = 'n', action = new_workspace },
 }
 
 return config

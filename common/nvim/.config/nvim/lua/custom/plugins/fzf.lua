@@ -7,19 +7,8 @@ return {
     ---@module "fzf-lua"
     ---@type fzf-lua.Config
     opts = {
-        'fzf-tmux',
+        'default',
         fzf_colors = false,
-        fzf_opts = {
-            ['--ansi'] = true,
-            ['--info'] = 'default', -- fzf < v0.42 = "inline"
-            ['--height'] = false,
-            ['--no-height'] = true,
-            ['--layout'] = 'default',
-            ['--border'] = 'rounded',
-            ['--highlight-line'] = false, -- fzf >= v0.53
-            ['--tmux'] = 'center,80%,60%',
-        },
-        fzf_tmux_opts = { ['-p'] = '80%,80%', ['--margin'] = '0,0' },
         winopts = {
             backdrop = 100,
         },

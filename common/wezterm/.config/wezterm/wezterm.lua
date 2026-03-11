@@ -82,6 +82,8 @@ local new_workspace = wezterm.action.PromptInputLine({
     end),
 })
 
+local swap_with_active = wezterm.action.PaneSelect({ mode = 'SwapWithActive' })
+
 -- Key bindings
 config.leader = { mods = 'CTRL', key = 'Space' }
 config.keys = {
@@ -110,6 +112,10 @@ config.keys = {
     { mods = 'CTRL|SHIFT', key = '|', action = split_horizontal },
     { mods = 'CMD', key = '-', action = split_vertical },
     { mods = 'CMD', key = '\\', action = split_horizontal },
+
+    -- swap splits
+    { mods = 'CTRL|SHIFT', key = 'b', action = swap_with_active },
+    { mods = 'CMD', key = 'b', action = swap_with_active },
 
     -- zoom
     { mods = 'CTRL|SHIFT', key = 'z', action = wezterm.action.TogglePaneZoomState },

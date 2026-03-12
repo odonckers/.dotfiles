@@ -25,10 +25,10 @@ config.colors = theme.colors()
 config.window_frame = theme.window_frame()
 
 -- Multiplexing
-config.unix_domains = {
-    { name = 'unix' },
-}
-config.default_gui_startup_args = { 'connect', 'unix' }
+-- config.unix_domains = {
+--     { name = 'unix' },
+-- }
+-- config.default_gui_startup_args = { 'connect', 'unix' }
 
 wezterm.on('update-right-status', function(window, _) window:set_right_status(window:active_workspace()) end)
 
@@ -78,6 +78,19 @@ local new_workspace = wezterm.action.PromptInputLine({
         if line then window:perform_action(wezterm.action.SwitchToWorkspace({ name = line }), pane) end
     end),
 })
+local rename_workspace = wezterm.action.PromptInputLine({
+    description = wezterm.format({
+        { Attribute = { Intensity = 'Bold' } },
+        { Foreground = { AnsiColor = 'Fuchsia' } },
+        { Text = 'Enter new name for active workspace' },
+    }),
+    action = wezterm.action_callback(function(_, _, line)
+        -- line will be `nil` if they hit escape without entering anything
+        -- An empty string if they just hit enter
+        -- Or the actual line of text they wrote
+        if line then wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line) end
+    end),
+})
 
 local swap_with_active = wezterm.action.PaneSelect({ mode = 'SwapWithActive' })
 
@@ -122,6 +135,7 @@ config.keys = {
     { mods = 'CTRL', key = 's', action = fzf_workspace },
     { mods = 'LEADER', key = 's', action = fzf_workspace },
     { mods = 'LEADER', key = 'n', action = new_workspace },
+    { mods = 'LEADER', key = '$', action = rename_workspace },
 }
 
 return config

@@ -64,9 +64,6 @@ local function split_nav(action, key)
     }
 end
 
-local split_vertical = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' })
-local split_horizontal = wezterm.action.SplitHorizontal({ domain = 'CurrentPaneDomain' })
-
 local fzf_workspace = wezterm.action.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' })
 local new_workspace = wezterm.action.PromptInputLine({
     description = wezterm.format({
@@ -85,7 +82,7 @@ local new_workspace = wezterm.action.PromptInputLine({
 local swap_with_active = wezterm.action.PaneSelect({ mode = 'SwapWithActive' })
 
 -- Key bindings
-config.leader = { mods = 'CTRL', key = 'Space' }
+config.leader = { mods = 'CTRL', key = 'a' }
 config.keys = {
     -- command pallete
     { mods = 'CTRL|SHIFT', key = 'p', action = wezterm.action.ActivateCommandPalette },
@@ -108,28 +105,23 @@ config.keys = {
     split_nav('resize', 'RightArrow'),
 
     -- splitting
-    { mods = 'CTRL|SHIFT', key = '_', action = split_vertical },
-    { mods = 'CTRL|SHIFT', key = '|', action = split_horizontal },
-    { mods = 'CMD', key = '-', action = split_vertical },
-    { mods = 'CMD', key = '\\', action = split_horizontal },
+    { mods = 'LEADER', key = '-', action = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }) },
+    { mods = 'LEADER', key = '\\', action = wezterm.action.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
 
-    -- swap splits
-    { mods = 'CTRL|SHIFT', key = 'b', action = swap_with_active },
-    { mods = 'CMD', key = 'b', action = swap_with_active },
+    -- move splits
+    { mods = 'LEADER', key = 'm', action = swap_with_active },
 
     -- zoom
     { mods = 'CTRL|SHIFT', key = 'z', action = wezterm.action.TogglePaneZoomState },
     { mods = 'CMD', key = 'z', action = wezterm.action.TogglePaneZoomState },
 
     -- activate copy mode or vim mode
-    { mods = 'CTRL|SHIFT', key = 'x', action = wezterm.action.ActivateCopyMode },
-    { mods = 'CMD', key = 'x', action = wezterm.action.ActivateCopyMode },
+    { mods = 'LEADER', key = '[', action = wezterm.action.ActivateCopyMode },
 
     -- workspaces/sessions
-    { mods = 'CTRL|SHIFT', key = 'o', action = fzf_workspace },
-    { mods = 'CMD', key = 'o', action = fzf_workspace },
-    { mods = 'CTRL|SHIFT', key = 'n', action = new_workspace },
-    { mods = 'CMD|SHIFT', key = 'n', action = new_workspace },
+    { mods = 'CTRL', key = 's', action = fzf_workspace },
+    { mods = 'LEADER', key = 's', action = fzf_workspace },
+    { mods = 'LEADER', key = 'n', action = new_workspace },
 }
 
 return config

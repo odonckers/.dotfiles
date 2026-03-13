@@ -8,10 +8,6 @@ return {
     ---@type fzf-lua.Config
     opts = {
         'default',
-        fzf_colors = false,
-        winopts = {
-            backdrop = 100,
-        },
         previewers = {
             builtin = {
                 syntax_limit_b = 1024 * 100, -- 100KB

@@ -110,7 +110,6 @@ config.keys = {
 
     -- fullscreen
     { mods = 'CTRL', key = 'Enter', action = wezterm.action.ToggleFullScreen },
-    { mods = 'CMD', key = 'Enter', action = wezterm.action.ToggleFullScreen },
 
     -- move between split panes
     split_nav('move', 'h'),
@@ -133,7 +132,6 @@ config.keys = {
 
     -- zoom
     { mods = 'CTRL|SHIFT', key = 'z', action = wezterm.action.TogglePaneZoomState },
-    { mods = 'CMD', key = 'z', action = wezterm.action.TogglePaneZoomState },
 
     -- activate copy mode or vim mode
     { mods = 'LEADER', key = '[', action = wezterm.action.ActivateCopyMode },
@@ -146,7 +144,6 @@ config.keys = {
     -- rename active workspace
     { mods = 'LEADER', key = '$', action = rename_workspace },
     { mods = 'CTRL|SHIFT', key = 'i', action = rename_workspace },
-    { mods = 'CMD|SHIFT', key = 'i', action = rename_workspace },
 }
 
 return config

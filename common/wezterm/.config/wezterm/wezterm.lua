@@ -4,7 +4,6 @@ local config = wezterm.config_builder()
 -- Basic settings
 config.initial_cols = 140
 config.initial_rows = 40
-config.line_height = 1.1
 config.window_decorations = 'RESIZE'
 
 -- Tab bar
@@ -16,8 +15,16 @@ config.native_macos_fullscreen_mode = false
 -- config.macos_fullscreen_extend_behind_notch = true -- nightly only
 
 -- Font
-config.font = wezterm.font('JetBrainsMono Nerd Font Mono')
+-- https://github.com/wezterm/wezterm/issues/2431#issuecomment-2361733342
+config.font = wezterm.font({
+    family = 'JetBrainsMono Nerd Font Mono',
+    weight = 'Medium',
+    harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
+})
 config.font_size = 12
+config.line_height = 1.2
+config.freetype_load_target = 'Light'
+config.freetype_load_flags = 'NO_HINTING'
 
 -- Theme
 local theme = require('lua/vague')
@@ -135,7 +142,11 @@ config.keys = {
     { mods = 'CTRL', key = 's', action = fzf_workspace },
     { mods = 'LEADER', key = 's', action = fzf_workspace },
     { mods = 'LEADER', key = 'n', action = new_workspace },
+
+    -- rename active workspace
     { mods = 'LEADER', key = '$', action = rename_workspace },
+    { mods = 'CTRL|SHIFT', key = 'i', action = rename_workspace },
+    { mods = 'CMD|SHIFT', key = 'i', action = rename_workspace },
 }
 
 return config

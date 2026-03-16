@@ -29,25 +29,12 @@ if (( $+commands[eza] )); then
   alias l="eza -l --git"
   alias ll="eza -ahl --git"
 fi
-# if (( $+commands[fzf] )); then
-#   # upstream: https://github.com/vague-theme/vague-fzf/blob/main/vague
-#   export FZF_DEFAULT_OPTS="""
-#   --color=fg:#cdcdcd
-#   --color=bg:#141415
-#   --color=hl:#f3be7c
-#   --color=fg+:#aeaed1
-#   --color=bg+:#252530
-#   --color=hl+:#f3be7c
-#   --color=border:#606079
-#   --color=header:#6e94b2
-#   --color=gutter:#141415
-#   --color=spinner:#7fa563
-#   --color=info:#f3be7c
-#   --color=pointer:#aeaed1
-#   --color=marker:#d8647e
-#   --color=prompt:#bb9dbd
-#   """
-# fi
+if (( $+commands[fzf] )); then
+  # upstream: https://github.com/vague-theme/vague-fzf/blob/main/vague
+  export FZF_DEFAULT_OPTS="""
+  --color=16
+  """
+fi
 (( $+commands[gh] )) && alias ghas="gh auth switch"
 (( $+commands[lazygit] )) && alias lg=lazygit
 if (( $+commands[ng] )); then

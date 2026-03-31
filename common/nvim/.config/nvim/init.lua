@@ -82,30 +82,128 @@ vim.opt.foldlevelstart = 99
 vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
 
--- Download lazy and append to path
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
----@diagnostic disable-next-line: undefined-field
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-    local out = vim.fn.system({ 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath })
-    if vim.v.shell_error ~= 0 then
-        vim.api.nvim_echo({
-            { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
-            { out, 'WarningMsg' },
-            { '\nPress any key to exit...' },
-        }, true, {})
-        vim.fn.getchar()
-        os.exit(1)
-    end
-end
-vim.opt.rtp:prepend(lazypath)
+-- Package helpers
+local gh = function(x) return 'https://github.com/' .. x end
 
--- Set up lazy and load plugins
-require('lazy').setup({
-    spec = {
-        { import = 'custom/themes' },
-        { import = 'custom/plugins' },
+-- Package spec
+vim.pack.add({
+    gh('vague-theme/vague.nvim'),
+    gh('nvim-lualine/lualine.nvim'),
+    gh('nvim-treesitter/nvim-treesitter'),
+    gh('nvim-mini/mini.icons'),
+    gh('folke/which-key.nvim'),
+})
+
+-- Pack: Vague theme
+require('vague').setup({
+    style = {
+        -- "none" is the same thing as default. But "italic" and "bold" are also valid options
+        boolean = 'bold',
+        number = 'none',
+        float = 'none',
+        error = 'bold',
+        comments = 'italic',
+        conditionals = 'none',
+        functions = 'none',
+        headings = 'bold',
+        operators = 'none',
+        strings = 'none',
+        variables = 'none',
+
+        -- keywords
+        keywords = 'none',
+        keyword_return = 'italic',
+        keywords_loop = 'none',
+        keywords_label = 'none',
+        keywords_exception = 'bold',
+
+        -- builtin
+        builtin_constants = 'bold',
+        builtin_functions = 'none',
+        builtin_types = 'bold',
+        builtin_variables = 'none',
     },
-    ui = { border = 'rounded' },
-    change_detection = { notify = false },
+    plugins = {
+        lsp = {
+            diagnostic_error = 'bold',
+            diagnostic_hint = 'none',
+            diagnostic_info = 'none',
+            diagnostic_ok = 'none',
+            diagnostic_warn = 'bold',
+        },
+    },
+    on_highlights = function(hl, _)
+        hl.NeoTreeWinSeparator = nil -- make border transparent
+    end,
+})
+vim.cmd('colorscheme vague')
+
+-- Pack: Lualine
+require('lualine').setup({
+    options = {
+        icons_enabled = false,
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+    },
+})
+
+-- Pack: Treesitter
+require('nvim-treesitter').setup({
+    ensure_installed = {
+        'angular',
+        'bash',
+        'c',
+        'c_sharp',
+        'dockerfile',
+        'javascript',
+        'kdl',
+        'kotlin',
+        'lua',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'regex',
+        'tmux',
+        'toml',
+        'typescript',
+        'vim',
+        'vimdoc',
+        'xml',
+        'yaml',
+    },
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
+})
+require('vim.treesitter.query').add_predicate('is-mise?', function(_, _, bufnr, _)
+    local filepath = vim.api.nvim_buf_get_name(tonumber(bufnr) or 0)
+    local filename = vim.fn.fnamemodify(filepath, ':t')
+    return string.match(filename, '.*mise.*%.toml$') ~= nil
+end, { force = true, all = false })
+
+-- Pack: Mini icons
+require('mini.icons').setup()
+
+-- Pack: Which key
+require('which-key').setup({
+    preset = 'helix',
+    icons = { mappings = false },
+    spec = {
+        {
+            '<leader>b',
+            group = 'Buffers',
+            expand = function() return require('which-key.extras').expand.buf() end,
+        },
+        { '<leader>c', group = 'Quickfix list' },
+        { '<leader>d', group = 'Diagnostics' },
+        { '<leader>g', group = 'Git' },
+        { '<leader>gt', group = 'Toggle' },
+        { '<leader>h', group = 'Harpoon' },
+        { '<leader>n', group = 'No Neck Pain' },
+        { '<leader>o', group = 'Obsidian' },
+        { '<leader>t', group = 'Test' },
+        { '<leader>tr', group = 'Run' },
+        { '<leader>w', proxy = '<C-w>', group = 'Windows' },
+    },
 })

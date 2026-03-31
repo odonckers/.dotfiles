@@ -25,21 +25,6 @@ vim.pack.add({
     gh('antosha417/nvim-lsp-file-operations'),
 })
 
-vim.lsp.enable({
-    'clangd', -- brew:llvm
-    'lua_ls', -- LuaLS/lua-language-server
-    'vtsls', -- npm:@vtsls/language-server
-    'angularls', -- npm:@angular/language-server
-    'copilot', -- npm:@github/copilot-language-server
-    'sourcekit', -- macOS:SourceKit
-
-    -- npm:vscode-langservers-extracted
-    'html',
-    'cssls',
-    'jsonls',
-    'eslint',
-})
-
 vim.lsp.inlay_hint.enable(true)
 
 vim.diagnostic.config({
@@ -106,6 +91,22 @@ cmp.setup.cmdline(':', {
     }, {
         { name = 'cmdline' },
     }),
+})
+
+-- Enable LSPs
+vim.lsp.enable({
+    'clangd', -- brew:llvm
+    'lua_ls', -- LuaLS/lua-language-server
+    'vtsls', -- npm:@vtsls/language-server
+    'angularls', -- npm:@angular/language-server
+    'copilot', -- npm:@github/copilot-language-server
+    'sourcekit', -- macOS:SourceKit
+
+    -- npm:vscode-langservers-extracted
+    'html',
+    'cssls',
+    'jsonls',
+    'eslint',
 })
 
 -- Setup LSP capabilities for CMP

@@ -1,0 +1,124 @@
+""""""""""""""""""""""""""""
+"" @title: IdeaVIM        ""
+"" @author: Owen Donckers ""
+""""""""""""""""""""""""""""
+
+" Search settings
+set ignorecase              " Case insensitive search
+set smartcase               " Case sensitive if uppercase in search  
+set hlsearch                " Highlight search results
+set incsearch               " Show matches as you type
+
+" Behavior settings  
+set iskeyword+=-            " Treat dash as part of word
+set selection=inclusive     " Selection behavior (visual mode)
+set clipboard+=unnamed      " Use system clipboard
+set history=100             " Remember lines in history
+
+" Split behavior
+set splitbelow              " Horizontal splits go below  
+set splitright              " Vertical splits go right
+
+" IdeaVim specific settings
+set ideajoin                " Use IntelliJ's join behavior
+set ideastatusicon=gray     " Show IdeaVim icon in status bar
+set idearefactormode=keep   " Keep selection after refactoring
+set surround                " vim-surround emulation
+set commentary              " vim-commentary emulation
+set highlightedyank         " Highlight yanked text
+set multiple-cursors        " Multiple cursors support  
+set ReplaceWithRegister     " replace with register
+
+" Enable IdeaVim plugins (uncomment as needed)
+" set argtextobj            " argument text objects
+" set exchange              " vim-exchange emulation
+" set textobj-entire        " entire buffer text object
+
+" Leader keys
+let mapleader = ","
+let maplocalleader = "\\"
+
+" Clear search highlighting
+nnoremap <Esc> :nohlsearch<CR>
+
+" Better indenting
+vnoremap > >gv
+vnoremap < <gv
+
+" Center screen when jumping
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+" Navigation
+nnoremap <C-o> :action Back<cr>
+nnoremap <C-i> :action Forward<cr>
+
+" Close buffer
+nnoremap ZB :action CloseContent<cr>
+
+" Split window
+nnoremap <C-w>- :action SplitHorizontally<cr>
+nnoremap <C-w>_ :action SplitVertically<cr>
+nnoremap <C-w>q :action Unsplit<cr>
+
+" Navigate between splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Move splits
+nnoremap <C-S-left> :action MoveTabLeft<cr>
+nnoremap <C-S-right> :action MoveTabRight<cr>
+
+" File navigation
+nnoremap <leader><space> :action SelectInProjectView<cr>
+nnoremap <leader><leader> :action GotoFile<cr>
+
+" Tab/panel navigation
+nnoremap <leader>e :action RecentFiles<cr>
+
+" Search
+nnoremap <leader>` :action ShowBookmarks<cr>
+nnoremap <leader>@ :action FileStructurePopup<cr>
+nnoremap <leader>/ :action FindInPath<cr>
+nnoremap <leader>? :action FindWordAtCaret<cr>
+
+" Format
+nnoremap <leader>f :action ReformatCode<cr>
+
+" LSP-like actions
+unmap gr
+unmap gra
+unmap grr
+unmap gra
+unmap grd
+unmap grD
+unmap gri
+unmap grn
+unmap grr
+unmap grt
+
+vnoremap gra :action ShowIntentionActions<cr>
+nnoremap grd :action GotoDeclaration<cr>
+nnoremap grD :action GotoDeclaration<cr>
+nnoremap gri :action GotoImplementation<cr>
+nnoremap grn :action RenameElement<cr>
+nnoremap grr :action FindUsages<cr>
+nnoremap grt :action GotoTypeDeclaration<cr>
+
+" Diagnostics
+nnoremap <C-w>d :action ShowErrorDescription<cr>
+
+" Configure which handlers to use (vim or IDE) - uncomment as needed
+sethandler <C-i> Vim
+sethandler <C-j> Vim
+sethandler <C-k> Vim
+sethandler <C-l> Vim
+sethandler <C-n> IDE
+sethandler <C-o> Vim
+sethandler <C-p> IDE
+sethandler <C-w> Vim
+sethandler <C-h> Vim

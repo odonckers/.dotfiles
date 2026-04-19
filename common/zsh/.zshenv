@@ -14,6 +14,10 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="$PATH:$HOME/.aspire/bin"
 export PATH="$PATH:$HOME/.opencode/bin"
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 [[ -f $HOME/.zshenv.linux ]] && source $HOME/.zshenv.linux
 [[ -f $HOME/.zshenv.macos ]] && source $HOME/.zshenv.macos
 [[ -f $HOME/.zshenv.local ]] && source $HOME/.zshenv.local

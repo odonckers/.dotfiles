@@ -13,7 +13,7 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   ZSH_THEME=robbyrussell
   ZSH_DISABLE_COMPFIX=true
 
-  plugins=(archlinux brew dotnet eza fzf gh git mise ng nvm tmux vi-mode zoxide zsh-interactive-cd)
+  plugins=(archlinux brew bun dotnet eza fzf gh git mise ng nvm tmux vi-mode zoxide zsh-interactive-cd)
 
   zstyle ':omz:plugins:nvm' lazy yes
   zstyle ':omz:plugins:nvm' lazy-cmd eslint prettier typescript ng
@@ -63,3 +63,9 @@ fi
 [[ -f $HOME/.zshrc.linux ]] && source $HOME/.zshrc.linux
 [[ -f $HOME/.zshrc.macos ]] && source $HOME/.zshrc.macos
 [[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+
+# bun completions
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

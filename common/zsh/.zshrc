@@ -16,7 +16,7 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   plugins=(archlinux brew bun dotnet eza fzf gh git mise ng nvm tmux vi-mode zoxide zsh-interactive-cd)
 
   zstyle ':omz:plugins:nvm' lazy yes
-  zstyle ':omz:plugins:nvm' lazy-cmd eslint prettier typescript ng
+  zstyle ':omz:plugins:nvm' lazy-cmd eslint prettier typescript ng jetpack
 
   VI_MODE_SET_CURSOR=true
 

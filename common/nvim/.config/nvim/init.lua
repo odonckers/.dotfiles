@@ -98,7 +98,7 @@ vim.pack.add({
 require('vague').setup({
     transparent = false,
     bold = true,
-    italic = true,
+    italic = false,
     plugins = {
         lsp = {
             diagnostic_error = 'bold',

@@ -20,7 +20,8 @@ vim.pack.add({
     -- Language/file support
     gh('folke/lazydev.nvim'), -- lua
     { src = gh('mrcjkb/rustaceanvim'), version = vim.version.range('^7') }, -- rust
-    gh('GustavEikaas/easy-dotnet.nvim'), -- c# / dotnet
+    gh('seblyng/roslyn.nvim'),
+    -- gh('GustavEikaas/easy-dotnet.nvim'), -- c# / dotnet
     gh('fladson/vim-kitty'), -- kitty config
     gh('antosha417/nvim-lsp-file-operations'),
 })
@@ -68,7 +69,7 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'lazydev', group_index = 0 },
-        { name = 'easy-dotnet', group_index = 0 },
+        -- { name = 'easy-dotnet', group_index = 0 },
         { name = 'path' },
         { name = 'buffer' },
         { name = 'spell' },
@@ -101,6 +102,7 @@ vim.lsp.enable({
     'angularls', -- npm:@angular/language-server
     'copilot', -- npm:@github/copilot-language-server
     'sourcekit', -- macOS:SourceKit
+    'roslyn', -- seblyng/roslyn.nvim
 
     -- npm:vscode-langservers-extracted
     'html',
@@ -119,64 +121,114 @@ vim.lsp.config('*', { capabilities = capabilities })
 
 -- Pack: Easy Dotnet
 -- Requires `dotnet tool install -g EasyDotnet`
-local easy_dotnet = require('easy-dotnet')
-easy_dotnet.setup({
-    lsp = {
-        enabled = true,
-        config = {
-            settings = {
-                ['csharp|symbol_search'] = {
-                    dotnet_search_reference_assemblies = true,
-                },
-                ['csharp|completion'] = {
-                    dotnet_show_name_completion_suggestions = true,
-                    dotnet_provide_regex_completions = true,
-                    dotnet_show_completion_items_from_unimported_namespaces = true,
-                },
-                ['csharp|quick_info'] = {
-                    dotnet_show_remarks_in_quick_info = true,
-                },
-                ['navigation'] = {
-                    dotnet_navigate_to_decompiled_sources = true,
-                },
-                ['csharp|highlighting'] = {
-                    dotnet_highlight_related_regex_components = true,
-                    dotnet_highlight_related_json_components = true,
-                },
-                ['csharp|inlay_hints'] = {
-                    dotnet_enable_inlay_hints_for_parameters = true,
-                    dotnet_enable_inlay_hints_for_literal_parameters = true,
-                    dotnet_enable_inlay_hints_for_indexer_parameters = false,
-                    dotnet_enable_inlay_hints_for_object_creation_parameters = true,
-                    dotnet_enable_inlay_hints_for_other_parameters = true,
-                    dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
-                    dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
-                    dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
-                    csharp_enable_inlay_hints_for_types = false,
-                    csharp_enable_inlay_hints_for_implicit_variable_types = false,
-                    csharp_enable_inlay_hints_for_lambda_parameter_types = false,
-                    csharp_enable_inlay_hints_for_implicit_object_creation = false,
-                },
-                ['csharp|background_analysis'] = {
-                    dotnet_analyzer_diagnostics_scope = 'fullSolution',
-                    dotnet_compiler_diagnostics_scope = 'fullSolution',
-                },
-                ['csharp|code_lens'] = {
-                    dotnet_enable_references_code_lens = true,
-                    dotnet_enable_tests_code_lens = true,
-                },
-                ['csharp|auto_insert'] = {
-                    dotnet_enable_auto_insert = true,
-                },
-                ['csharp|formatting'] = {
-                    dotnet_organize_imports_on_format = true,
-                },
-            },
+-- local easy_dotnet = require('easy-dotnet')
+-- easy_dotnet.setup({
+--     lsp = {
+--         enabled = true,
+--         config = {
+--             settings = {
+--                 ['csharp|symbol_search'] = {
+--                     dotnet_search_reference_assemblies = true,
+--                 },
+--                 ['csharp|completion'] = {
+--                     dotnet_show_name_completion_suggestions = true,
+--                     dotnet_provide_regex_completions = true,
+--                     dotnet_show_completion_items_from_unimported_namespaces = true,
+--                 },
+--                 ['csharp|quick_info'] = {
+--                     dotnet_show_remarks_in_quick_info = true,
+--                 },
+--                 ['navigation'] = {
+--                     dotnet_navigate_to_decompiled_sources = true,
+--                 },
+--                 ['csharp|highlighting'] = {
+--                     dotnet_highlight_related_regex_components = true,
+--                     dotnet_highlight_related_json_components = true,
+--                 },
+--                 ['csharp|inlay_hints'] = {
+--                     dotnet_enable_inlay_hints_for_parameters = true,
+--                     dotnet_enable_inlay_hints_for_literal_parameters = true,
+--                     dotnet_enable_inlay_hints_for_indexer_parameters = false,
+--                     dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+--                     dotnet_enable_inlay_hints_for_other_parameters = true,
+--                     dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+--                     dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+--                     dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+--                     csharp_enable_inlay_hints_for_types = false,
+--                     csharp_enable_inlay_hints_for_implicit_variable_types = false,
+--                     csharp_enable_inlay_hints_for_lambda_parameter_types = false,
+--                     csharp_enable_inlay_hints_for_implicit_object_creation = false,
+--                 },
+--                 ['csharp|background_analysis'] = {
+--                     dotnet_analyzer_diagnostics_scope = 'fullSolution',
+--                     dotnet_compiler_diagnostics_scope = 'fullSolution',
+--                 },
+--                 ['csharp|code_lens'] = {
+--                     dotnet_enable_references_code_lens = true,
+--                     dotnet_enable_tests_code_lens = true,
+--                 },
+--                 ['csharp|auto_insert'] = {
+--                     dotnet_enable_auto_insert = true,
+--                 },
+--                 ['csharp|formatting'] = {
+--                     dotnet_organize_imports_on_format = true,
+--                 },
+--             },
+--         },
+--         debugger = { bin_path = vim.env.XDG_DATA_HOME .. '/netcoredbg/bin/netcoredbg' },
+--     },
+-- })
+-- cmp.register_source('easy-dotnet', easy_dotnet.package_completion_source)
+vim.lsp.config('roslyn', {
+    settings = {
+        ['csharp|symbol_search'] = {
+            dotnet_search_reference_assemblies = true,
         },
-        debugger = { bin_path = vim.env.XDG_DATA_HOME .. '/netcoredbg/bin/netcoredbg' },
+        ['csharp|completion'] = {
+            dotnet_show_name_completion_suggestions = true,
+            dotnet_provide_regex_completions = true,
+            dotnet_show_completion_items_from_unimported_namespaces = true,
+        },
+        ['csharp|quick_info'] = {
+            dotnet_show_remarks_in_quick_info = true,
+        },
+        ['navigation'] = {
+            dotnet_navigate_to_decompiled_sources = true,
+        },
+        ['csharp|highlighting'] = {
+            dotnet_highlight_related_regex_components = true,
+            dotnet_highlight_related_json_components = true,
+        },
+        ['csharp|inlay_hints'] = {
+            dotnet_enable_inlay_hints_for_parameters = true,
+            dotnet_enable_inlay_hints_for_literal_parameters = true,
+            dotnet_enable_inlay_hints_for_indexer_parameters = false,
+            dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+            dotnet_enable_inlay_hints_for_other_parameters = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+            csharp_enable_inlay_hints_for_types = false,
+            csharp_enable_inlay_hints_for_implicit_variable_types = false,
+            csharp_enable_inlay_hints_for_lambda_parameter_types = false,
+            csharp_enable_inlay_hints_for_implicit_object_creation = false,
+        },
+        ['csharp|background_analysis'] = {
+            dotnet_analyzer_diagnostics_scope = 'fullSolution',
+            dotnet_compiler_diagnostics_scope = 'fullSolution',
+        },
+        ['csharp|code_lens'] = {
+            dotnet_enable_references_code_lens = true,
+            dotnet_enable_tests_code_lens = true,
+        },
+        ['csharp|auto_insert'] = {
+            dotnet_enable_auto_insert = true,
+        },
+        ['csharp|formatting'] = {
+            dotnet_organize_imports_on_format = true,
+        },
     },
 })
-cmp.register_source('easy-dotnet', easy_dotnet.package_completion_source)
 
 -- Set virtual lines
 vim.api.nvim_create_user_command('SetVirtualLines', function()

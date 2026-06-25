@@ -1,7 +1,8 @@
 tap "alajmo/mani"
-tap "anomalyco/tap"
-tap "felixkratz/formulae"
+tap "anomalyco/tap", trusted: true
+tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "hashicorp/tap"
+tap "jetbrains/utils", "https://github.com/JetBrains/homebrew-utils"
 tap "jstkdng/programs"
 tap "mediosz/tap"
 tap "nikitabobko/tap"
@@ -15,6 +16,8 @@ brew "automake"
 brew "aws-iam-authenticator"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Incredibly fast JavaScript runtime, bundler, test runner, and package manager
+brew "bun"
 # Object-file caching compiler wrapper
 brew "ccache"
 # Versatile and fast Unicode/ASCII/ANSI graphics renderer
@@ -29,6 +32,8 @@ brew "fd"
 brew "ffmpeg"
 # Generic library support script
 brew "libtool"
+# Text editor for your terminal: easy, powerful and fast
+brew "fresh-editor"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GitHub command-line tool
@@ -39,10 +44,10 @@ brew "git-delta"
 brew "git-lfs"
 # Audit git repos for secrets
 brew "gitleaks"
+# Open-source GitLab command-line tool
+brew "glab"
 # Easiest way to access your cloud
 brew "granted"
-# Package compiler and linker metadata toolkit
-brew "pkgconf"
 # Configurable static site generator
 brew "hugo"
 # Tools and libraries to manipulate images in select formats
@@ -63,16 +68,18 @@ brew "lua-language-server"
 brew "luarocks"
 # CLI tool to help you manage repositories
 brew "mani"
-# Polyglot runtime manager (asdf rust clone)
-brew "mise"
 # Netwide Assembler (NASM) is an 80x86 assembler
 brew "nasm"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Small build system for use with gyp or CMake
 brew "ninja"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node@24", link: true
 # General-purpose scripting language
 brew "php"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Cross-platform application and UI framework
@@ -89,12 +96,8 @@ brew "sevenzip"
 brew "stow"
 # Opinionated Lua code formatter
 brew "stylua"
-# Open source continuous file synchronization application
-brew "syncthing", restart_service: :changed
 # Terminal multiplexer
 brew "tmux"
-# Manage complex tmux sessions easily
-brew "tmuxinator"
 # Parser generator tool
 brew "tree-sitter-cli"
 # Maintained ctags implementation
@@ -107,83 +110,99 @@ brew "watchman"
 brew "wget"
 # Generate your Xcode project from a spec file and your folder structure
 brew "xcodegen"
-# Check your $HOME for unwanted files and directories
-brew "xdg-ninja"
-# Blazing fast terminal file manager written in Rust, based on async I/O
-brew "yazi"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # UNIX shell (command interpreter)
 brew "zsh"
 # The AI coding agent built for the terminal.
-brew "anomalyco/tap/opencode"
-# A window border system for macOS
-brew "felixkratz/formulae/borders"
-# Vault
-brew "hashicorp/tap/vault"
-# Drop in replacement for ueberzug written in C++
-brew "jstkdng/programs/ueberzugpp"
-# AeroSpace is an i3-like tiling window manager for macOS
-cask "nikitabobko/tap/aerospace"
+brew "anomalyco/tap/opencode", trusted: true
+# Terraform
+brew "hashicorp/tap/terraform", trusted: true
+# Official Language Server Protocol for the Kotlin language
+brew "jetbrains/utils/kotlin-lsp", trusted: true
+# Password manager that keeps all passwords secure behind one password
+cask "1password"
 # Tools for building Android applications
 cask "android-studio"
-# Application uninstaller
-cask "appcleaner"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
+# Anthropic's official Claude AI desktop app
+cask "claude"
+# Terminal-based AI coding assistant
+cask "claude-code"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+# OpenAI's Codex desktop app for managing coding agents
+cask "codex-app"
 # Brings the power of Copilot coding agent directly to your terminal
 cask "copilot-cli@prerelease"
+# Write, edit, and chat about your code with AI
+cask "cursor"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
-# Collaborative team software
-cask "figma"
 # Web browser
 cask "firefox"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Free and open-source image editor
-cask "gimp"
-# Xcode extension for GitHub Copilot
-cask "github-copilot-for-xcode"
 # Web browser
 cask "google-chrome"
+# Client for the Google Drive storage service
+cask "google-drive"
+# Chromium-based web browser
+cask "helium-browser"
 # Java IDE by JetBrains
 cask "intellij-idea"
+# JetBrains tools manager
+cask "jetbrains-toolbox"
 # Keyboard customiser
 cask "karabiner-elements"
 # GPU-based terminal emulator
 cask "kitty"
-# Web browser
-cask "librewolf"
 # Mouse utility to add gesture functions and smooth scrolling to 3rd party mice
 cask "mac-mouse-fix"
 # Provides updates to various Microsoft products
 cask "microsoft-auto-update"
+# Presentation software
+cask "microsoft-powerpoint"
 # Meet, chat, call, and collaborate in just one place
 cask "microsoft-teams"
-# Visual tool to design, develop and administer MySQL servers
-cask "mysqlworkbench"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# Command-line shell and scripting language
-cask "powershell"
+# Get up and running with large language models locally
+cask "ollama-app"
+# Desktop and web interface for OpenCode AI agent
+cask "openchamber"
+# Utility to uninstall apps and remove leftover files from old/uninstalled apps
+cask "pearcleaner"
+# Control your tools with a few keystrokes
+cask "raycast"
 # Music streaming service
 cask "spotify"
 # Video game digital distribution service
 cask "steam"
-# SwipeAeroSpace is a tool to switch AeroSpace worksapces by swiping.
-cask "mediosz/tap/swipeaerospace"
-# Virtual machines UI using QEMU
-cask "utm"
+# Speech-to-text and AI text processing
+cask "typewhisper"
 # Open-source code editor
 cask "visual-studio-code"
 # Open-source code editor
 cask "visual-studio-code@insiders"
-# GPU-accelerated cross-platform terminal emulator and multiplexer
-cask "wezterm"
 # Native desktop client for WhatsApp
 cask "whatsapp"
 # Multiplayer code editor
 cask "zed"
 # Video communication and virtual meeting platform
 cask "zoom"
+uv "specify-cli"
+npm "@angular/cli"
+npm "@angular/language-server"
+npm "@apps/cli"
+npm "@apps/jetpack"
+npm "@fission-ai/openspec"
+npm "@github/copilot-language-server"
+npm "@vtsls/language-server"
+npm "corepack"
+npm "headroom-ai"
+npm "typescript"
+npm "vscode-langservers-extracted"

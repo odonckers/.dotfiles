@@ -2,20 +2,10 @@ shell-integration = zsh
 
 font-family = JetBrainsMono Nerd Font Mono
 font-size = 12
-
 font-thicken = false
-
-background-opacity = 1.00
-background-blur = false
 
 adjust-cell-width = 0%
 adjust-cell-height = 15%
-
-title = " "
-
-theme = vague
-
-window-save-state = never
 
 window-step-resize = false
 
@@ -23,10 +13,14 @@ window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
 
+theme = vague
+
+window-save-state = always
+
 mouse-hide-while-typing = true
 
 macos-non-native-fullscreen = visible-menu
-window-decoration = true
-macos-titlebar-style = hidden
-macos-option-as-alt = left
+macos-titlebar-style = transparent
 macos-titlebar-proxy-icon = hidden
+
+macos-option-as-alt = left

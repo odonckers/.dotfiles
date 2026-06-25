@@ -1,9 +1,0 @@
-[tools]
-node = "24"
-"npm:@angular/cli" = "21"
-"npm:@angular/language-server" = "21"
-"npm:@github/copilot-language-server" = "latest"
-"npm:@vtsls/language-server" = "latest"
-"npm:headroom-ai" = "latest"
-"npm:typescript" = "latest"
-"npm:vscode-langservers-extracted" = "latest"

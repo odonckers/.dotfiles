@@ -13,7 +13,7 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   ZSH_THEME=robbyrussell
   ZSH_DISABLE_COMPFIX=true
 
-  plugins=(archlinux brew bun dotnet eza fzf gh git mise ng nvm terraform tmux vi-mode vscode zoxide zsh-interactive-cd)
+  plugins=(archlinux brew bun dotnet eza fzf gh git ng nvm terraform tmux vi-mode vscode zoxide zsh-interactive-cd)
 
   # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm#lazy-startup
   zstyle ':omz:plugins:nvm' lazy yes

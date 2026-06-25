@@ -13,11 +13,7 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   ZSH_THEME=robbyrussell
   ZSH_DISABLE_COMPFIX=true
 
-  plugins=(archlinux brew bun dotnet eza fzf gh git ng nvm terraform tmux vi-mode vscode zoxide zsh-interactive-cd)
-
-  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm#lazy-startup
-  zstyle ':omz:plugins:nvm' lazy yes
-  zstyle ':omz:plugins:nvm' lazy-cmd eslint prettier typescript ng jetpack
+  plugins=(archlinux brew bun dotnet eza fzf gh git ng terraform tmux vi-mode vscode zoxide zsh-interactive-cd)
 
   # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode#settings
   VI_MODE_SET_CURSOR=true
@@ -32,13 +28,11 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   source $ZSH/oh-my-zsh.sh
 fi
 
-(( $+commands[code-insiders] )) && alias codei="codei"
 (( $+commands[ctags] )) && alias tag="ctags -R ."
 if (( $+commands[eza] )); then
   alias l="eza -l --git"
   alias ll="eza -ahl --git"
 fi
-(( $+commands[gh] )) && alias ghas="gh auth switch"
 (( $+commands[lazygit] )) && alias lg=lazygit
 if (( $+commands[ng] )); then
   alias ngr="ng serve"

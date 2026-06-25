@@ -76,6 +76,12 @@ cmp.setup({
     }),
 })
 
+cmp.setup.filetype('markdown', {
+    completion = {
+        autocomplete = false,
+    },
+})
+
 -- Use buffer source for `/` and `?` (if you enabled `view.entries = 'native'`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
@@ -103,6 +109,7 @@ vim.lsp.enable({
     'copilot', -- npm:@github/copilot-language-server
     'sourcekit', -- macOS:SourceKit
     'roslyn', -- seblyng/roslyn.nvim
+    'kotlin-lsp', -- JetBrains/utils/kotlin-lsp
 
     -- npm:vscode-langservers-extracted
     'html',

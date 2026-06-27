@@ -30,7 +30,7 @@ vim.lsp.inlay_hint.enable(true)
 
 vim.diagnostic.config({
     float = {
-        border = 'rounded',
+        -- border = 'rounded',
         focusable = true,
     },
     virtual_lines = false,
@@ -52,10 +52,10 @@ cmp.setup({
     snippet = {
         expand = function(args) vim.snippet.expand(args.body) end,
     },
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-    },
+    -- window = {
+    --     completion = cmp.config.window.bordered(),
+    --     documentation = cmp.config.window.bordered(),
+    -- },
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -270,4 +270,4 @@ vim.keymap.set({ 'i', 's' }, '<C-p>', '<nop>')
 vim.keymap.set({ 'i', 's' }, '<C-n>', '<nop>')
 
 -- Bordered hover
-vim.keymap.set('n', 'K', function() vim.lsp.buf.hover({ border = 'rounded' }) end, { desc = 'Hover' })
+-- vim.keymap.set('n', 'K', function() vim.lsp.buf.hover({ border = 'rounded' }) end, { desc = 'Hover' })

@@ -36,7 +36,7 @@ vim.opt.colorcolumn = '140' -- Show column in text
 vim.opt.showmatch = true -- Highlight matching brackets
 vim.opt.matchtime = 2 -- How long to show matching bracket
 vim.opt.pumheight = 10 -- Popup menu height
-vim.opt.winborder = 'rounded' -- Floating window border
+vim.opt.winborder = 'none' -- Floating window border
 vim.opt.synmaxcol = 300 -- Syntax highlighting limit
 vim.opt.fillchars = { eob = ' ' } -- Fill characters
 vim.opt.breakindent = true -- Wrapped lines will indent visually
@@ -87,32 +87,27 @@ local gh = function(x) return 'https://github.com/' .. x end
 
 -- Package spec
 vim.pack.add({
-    gh('vague-theme/vague.nvim'),
+    gh('datsfilipe/vesper.nvim'),
     gh('nvim-lualine/lualine.nvim'),
     gh('nvim-treesitter/nvim-treesitter'),
     gh('nvim-mini/mini.icons'),
     gh('folke/which-key.nvim'),
 })
 
--- Pack: Vague theme
-require('vague').setup({
-    transparent = false,
-    bold = true,
-    italic = false,
-    plugins = {
-        lsp = {
-            diagnostic_error = 'bold',
-            diagnostic_hint = 'none',
-            diagnostic_info = 'none',
-            diagnostic_ok = 'none',
-            diagnostic_warn = 'bold',
-        },
+-- Pack: Vesper theme
+require('vesper').setup({
+    transparent = true, -- Boolean: Sets the background to transparent
+    italics = {
+        comments = true, -- Boolean: Italicizes comments
+        keywords = false, -- Boolean: Italicizes keywords
+        functions = false, -- Boolean: Italicizes functions
+        strings = false, -- Boolean: Italicizes strings
+        variables = false, -- Boolean: Italicizes variables
     },
-    on_highlights = function(hl, _)
-        hl.NeoTreeWinSeparator = nil -- make border transparent
-    end,
+    overrides = {}, -- A dictionary of group names, can be a function returning a dictionary or a table.
+    palette_overrides = {},
 })
-vim.cmd('colorscheme vague')
+vim.cmd('colorscheme vesper')
 
 -- Pack: Lualine
 require('lualine').setup({

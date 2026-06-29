@@ -1,15 +1,3 @@
-local gh = function(x) return 'https://github.com/' .. x end
-
-vim.pack.add({
-    gh('nvim-neotest/neotest'),
-    gh('nvim-neotest/nvim-nio'),
-    gh('antoinemadec/FixCursorHold.nvim'),
-
-    -- Language support
-    gh('nvim-neotest/neotest-jest'), -- jest
-    gh('nsidorenco/neotest-vstest'), -- dotnet
-})
-
 require('neotest').setup({
     adapters = {
         require('neotest-jest')({

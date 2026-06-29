@@ -1,31 +1,3 @@
-local gh = function(x) return 'https://github.com/' .. x end
-
-vim.pack.add({
-    gh('nvim-lua/plenary.nvim'),
-
-    -- LSP
-    gh('neovim/nvim-lspconfig'),
-
-    -- Completion sources
-    gh('hrsh7th/cmp-nvim-lsp'),
-    gh('hrsh7th/cmp-buffer'),
-    gh('hrsh7th/cmp-path'),
-    gh('hrsh7th/cmp-cmdline'),
-    gh('f3fora/cmp-spell'),
-    gh('hrsh7th/nvim-cmp'),
-
-    -- Snippet collections
-    gh('rafamadriz/friendly-snippets'),
-
-    -- Language/file support
-    gh('folke/lazydev.nvim'), -- lua
-    { src = gh('mrcjkb/rustaceanvim'), version = vim.version.range('^7') }, -- rust
-    gh('seblyng/roslyn.nvim'),
-    -- gh('GustavEikaas/easy-dotnet.nvim'), -- c# / dotnet
-    gh('fladson/vim-kitty'), -- kitty config
-    gh('antosha417/nvim-lsp-file-operations'),
-})
-
 vim.lsp.inlay_hint.enable(true)
 
 vim.diagnostic.config({

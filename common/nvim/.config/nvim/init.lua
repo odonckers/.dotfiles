@@ -89,6 +89,67 @@ vim.pack.add({
     gh('nvim-treesitter/nvim-treesitter'),
     gh('nvim-mini/mini.icons'),
     gh('folke/which-key.nvim'),
+    gh('nvim-lua/plenary.nvim'),
+
+    -- dap
+    gh('mfussenegger/nvim-dap'),
+    gh('Weissle/persistent-breakpoints.nvim'),
+    gh('igorlfs/nvim-dap-view'),
+    gh('theHamsta/nvim-dap-virtual-text'),
+
+    -- editing
+    gh('nvim-mini/mini.surround'),
+
+    -- filetree
+    { src = gh('nvim-neo-tree/neo-tree.nvim'), version = 'v3.x' },
+    gh('MunifTanjim/nui.nvim'),
+
+    -- format
+    gh('stevearc/conform.nvim'),
+
+    -- fzf
+    gh('ibhagwan/fzf-lua'),
+
+    -- git
+    gh('lewis6991/gitsigns.nvim'),
+
+    -- lsp
+    gh('neovim/nvim-lspconfig'),
+
+    -- Completion sources
+    gh('hrsh7th/cmp-nvim-lsp'),
+    gh('hrsh7th/cmp-buffer'),
+    gh('hrsh7th/cmp-path'),
+    gh('hrsh7th/cmp-cmdline'),
+    gh('f3fora/cmp-spell'),
+    gh('hrsh7th/nvim-cmp'),
+
+    -- Snippet collections
+    gh('rafamadriz/friendly-snippets'),
+
+    -- Language/file support
+    gh('folke/lazydev.nvim'), -- lua
+    { src = gh('mrcjkb/rustaceanvim'), version = vim.version.range('^7') }, -- rust
+    gh('seblyng/roslyn.nvim'),
+    -- gh('GustavEikaas/easy-dotnet.nvim'), -- c# / dotnet
+    gh('fladson/vim-kitty'), -- kitty config
+    gh('antosha417/nvim-lsp-file-operations'),
+
+    -- oil
+    gh('stevearc/oil.nvim'),
+
+    -- quick-fix
+    gh('yorickpeterse/nvim-pqf'),
+
+    -- splits
+    gh('mrjones2014/smart-splits.nvim'),
+
+    -- test
+    gh('nvim-neotest/neotest'),
+    gh('nvim-neotest/nvim-nio'),
+    gh('antoinemadec/FixCursorHold.nvim'),
+    gh('nvim-neotest/neotest-jest'), -- jest
+    gh('nsidorenco/neotest-vstest'), -- dotnet
 })
 
 -- Pack: Vesper theme

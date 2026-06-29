@@ -1,10 +1,3 @@
-local gh = function(x) return 'https://github.com/' .. x end
-
-vim.pack.add({
-    { src = gh('nvim-neo-tree/neo-tree.nvim'), version = 'v3.x' },
-    gh('MunifTanjim/nui.nvim'),
-})
-
 require('neo-tree').setup({
     default_component_configs = {
         indent = {

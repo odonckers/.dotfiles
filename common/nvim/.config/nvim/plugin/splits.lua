@@ -1,5 +1,3 @@
-vim.pack.add({ 'https://github.com/mrjones2014/smart-splits.nvim' })
-
 local splits = require('smart-splits')
 splits.setup({ default_amount = 5 })
 

@@ -6,6 +6,12 @@ tap "jetbrains/utils", "https://github.com/JetBrains/homebrew-utils"
 tap "jstkdng/programs"
 tap "mediosz/tap"
 tap "nikitabobko/tap"
+# Browser automation CLI for AI agents
+brew "agent-browser"
+# Terminal multiplexer
+brew "tmux"
+# Terminal session manager for AI coding agents
+brew "aoe"
 # Automatic configure script builder
 brew "autoconf"
 # Collection of over 500 reusable autoconf macros
@@ -22,6 +28,8 @@ brew "bun"
 brew "ccache"
 # Versatile and fast Unicode/ASCII/ANSI graphics renderer
 brew "chafa"
+# Cloudflare Tunnel client (formerly Argo Tunnel)
+brew "cloudflared"
 # Cross-platform make
 brew "cmake"
 # Modern, maintained replacement for ls
@@ -48,6 +56,8 @@ brew "gitleaks"
 brew "glab"
 # Easiest way to access your cloud
 brew "granted"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
 # Configurable static site generator
 brew "hugo"
 # Tools and libraries to manipulate images in select formats
@@ -75,7 +85,7 @@ brew "neovim"
 # Small build system for use with gyp or CMake
 brew "ninja"
 # Open-source, cross-platform JavaScript runtime environment
-brew "node@24", link: true
+brew "node@24"
 # General-purpose scripting language
 brew "php"
 # Package compiler and linker metadata toolkit
@@ -96,8 +106,6 @@ brew "sevenzip"
 brew "stow"
 # Opinionated Lua code formatter
 brew "stylua"
-# Terminal multiplexer
-brew "tmux"
 # Parser generator tool
 brew "tree-sitter-cli"
 # Maintained ctags implementation
@@ -142,6 +150,8 @@ cask "cursor"
 cask "db-browser-for-sqlite"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
+# Text editor
+cask "emacs-app"
 # Web browser
 cask "firefox"
 # Terminal emulator that uses platform-native UI and GPU acceleration
@@ -202,7 +212,6 @@ npm "@apps/jetpack"
 npm "@fission-ai/openspec"
 npm "@github/copilot-language-server"
 npm "@vtsls/language-server"
-npm "corepack"
 npm "headroom-ai"
 npm "typescript"
 npm "vscode-langservers-extracted"

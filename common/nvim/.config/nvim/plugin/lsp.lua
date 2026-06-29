@@ -100,24 +100,6 @@ cmp.setup.cmdline(':', {
     }),
 })
 
--- Enable LSPs
-vim.lsp.enable({
-    'clangd', -- brew:llvm
-    'lua_ls', -- LuaLS/lua-language-server
-    'vtsls', -- npm:@vtsls/language-server
-    'angularls', -- npm:@angular/language-server
-    'copilot', -- npm:@github/copilot-language-server
-    'sourcekit', -- macOS:SourceKit
-    'roslyn', -- seblyng/roslyn.nvim
-    'kotlin-lsp', -- JetBrains/utils/kotlin-lsp
-
-    -- npm:vscode-langservers-extracted
-    'html',
-    'cssls',
-    'jsonls',
-    'eslint',
-})
-
 -- Setup LSP capabilities for CMP
 local capabilities = vim.tbl_deep_extend(
     'force',

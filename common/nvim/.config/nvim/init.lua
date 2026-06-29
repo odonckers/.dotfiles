@@ -30,13 +30,11 @@ vim.opt.ignorecase = true -- Case insensitive search
 vim.opt.smartcase = true -- Case sensitive if uppercase in search
 
 -- Visual settings
-vim.opt.showmode = false -- Hide the -- MODE -- text
 vim.opt.signcolumn = 'yes' -- Always show sign column
 vim.opt.colorcolumn = '140' -- Show column in text
 vim.opt.showmatch = true -- Highlight matching brackets
 vim.opt.matchtime = 2 -- How long to show matching bracket
 vim.opt.pumheight = 10 -- Popup menu height
-vim.opt.winborder = 'none' -- Floating window border
 vim.opt.synmaxcol = 300 -- Syntax highlighting limit
 vim.opt.fillchars = { eob = ' ' } -- Fill characters
 vim.opt.breakindent = true -- Wrapped lines will indent visually
@@ -88,7 +86,6 @@ local gh = function(x) return 'https://github.com/' .. x end
 -- Package spec
 vim.pack.add({
     gh('datsfilipe/vesper.nvim'),
-    gh('nvim-lualine/lualine.nvim'),
     gh('nvim-treesitter/nvim-treesitter'),
     gh('nvim-mini/mini.icons'),
     gh('folke/which-key.nvim'),
@@ -108,15 +105,6 @@ require('vesper').setup({
     palette_overrides = {},
 })
 vim.cmd('colorscheme vesper')
-
--- Pack: Lualine
-require('lualine').setup({
-    options = {
-        icons_enabled = false,
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
-    },
-})
 
 -- Pack: Treesitter
 require('nvim-treesitter').setup({

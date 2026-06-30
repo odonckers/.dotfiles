@@ -4,3 +4,6 @@
 /common/zed/.config/zed/prompts
 
 /macos/karabiner/.config/karabiner/automatic_backups
+
+/common/emacs/.config/emacs/elpa
+/common/emacs/.config/emacs/eshell

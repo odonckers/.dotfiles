@@ -5,7 +5,7 @@ font-size = 12
 font-thicken = false
 
 adjust-cell-width = 0%
-adjust-cell-height = 15%
+adjust-cell-height = 20%
 
 window-step-resize = false
 
@@ -13,7 +13,7 @@ window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
 
-theme = Vesper
+theme = dark:Flexoki Dark, light:Flexoki Light
 
 background-opacity = 0.85
 background-blur = true

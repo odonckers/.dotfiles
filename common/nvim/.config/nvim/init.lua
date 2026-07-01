@@ -39,6 +39,8 @@ vim.opt.synmaxcol = 300 -- Syntax highlighting limit
 vim.opt.fillchars = { eob = ' ' } -- Fill characters
 vim.opt.breakindent = true -- Wrapped lines will indent visually
 vim.opt.linebreak = true -- Wrapped lines will soft break on whitespace
+vim.opt.splitbelow = true -- Split below and focus below
+vim.opt.splitright = true -- Split to the right and focus the right
 
 -- Whitespace characters
 vim.opt.list = true -- Display whitespace characters
@@ -85,7 +87,7 @@ local gh = function(x) return 'https://github.com/' .. x end
 
 -- Package spec
 vim.pack.add({
-    gh('datsfilipe/vesper.nvim'),
+    gh('kepano/flexoki-neovim'),
     gh('nvim-treesitter/nvim-treesitter'),
     gh('nvim-mini/mini.icons'),
     gh('folke/which-key.nvim'),
@@ -152,20 +154,14 @@ vim.pack.add({
     gh('nsidorenco/neotest-vstest'), -- dotnet
 })
 
--- Pack: Vesper theme
-require('vesper').setup({
-    transparent = true, -- Boolean: Sets the background to transparent
-    italics = {
-        comments = true, -- Boolean: Italicizes comments
-        keywords = false, -- Boolean: Italicizes keywords
-        functions = false, -- Boolean: Italicizes functions
-        strings = false, -- Boolean: Italicizes strings
-        variables = false, -- Boolean: Italicizes variables
-    },
-    overrides = {}, -- A dictionary of group names, can be a function returning a dictionary or a table.
-    palette_overrides = {},
-})
-vim.cmd('colorscheme vesper')
+-- Color scheme
+vim.cmd('colorscheme flexoki')
+
+-- Transparent background (must be after color scheme)
+vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
 
 -- Pack: Treesitter
 require('nvim-treesitter').setup({

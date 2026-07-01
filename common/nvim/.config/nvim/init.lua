@@ -205,6 +205,7 @@ require('mini.icons').setup()
 require('which-key').setup({
     preset = 'helix',
     icons = { mappings = false },
+    win = { border = 'none' },
     spec = {
         {
             '<leader>b',

@@ -26,6 +26,7 @@ require('neo-tree').setup({
     },
 })
 
+vim.keymap.set('n', '<leader>.', '<cmd>Neotree focus<cr>', { desc = 'Focus neotree' })
 vim.keymap.set('n', '<leader>E', '<cmd>Neotree toggle<cr>', { desc = 'Toggle explorer' })
 vim.keymap.set('n', '<leader>F', '<cmd>Neotree filesystem<cr>', { desc = 'Explore files' })
 vim.keymap.set('n', '<leader>B', '<cmd>Neotree buffers<cr>', { desc = 'Explore buffers' })

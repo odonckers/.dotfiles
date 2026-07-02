@@ -10,8 +10,10 @@ conform.setup({
         bash = { 'shfmt' },
         shell = { 'shfmt' },
         sh = { 'shfmt' },
-        javascript = { lsp_format = 'prefer' },
-        typescript = { lsp_format = 'prefer' },
+        javascript = { 'prettier', lsp_format = 'never' },
+        javascriptreact = { 'prettier', lsp_format = 'never' },
+        typescript = { 'prettier', lsp_format = 'never' },
+        typescriptreact = { 'prettier', lsp_format = 'never' },
         go = { 'goimports', 'gofmt' },
     },
     format_on_save = function(bufnr)

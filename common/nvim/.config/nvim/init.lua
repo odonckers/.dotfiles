@@ -88,7 +88,7 @@ local gh = function(x) return 'https://github.com/' .. x end
 -- Package spec
 vim.pack.add({
     gh('kepano/flexoki-neovim'),
-    gh('nvim-treesitter/nvim-treesitter'),
+    gh('arborist-ts/arborist.nvim'),
     gh('nvim-mini/mini.icons'),
     gh('folke/which-key.nvim'),
     gh('nvim-lua/plenary.nvim'),
@@ -163,34 +163,9 @@ vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 -- vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
 -- vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
 
--- Pack: Treesitter
-require('nvim-treesitter').setup({
-    ensure_installed = {
-        'angular',
-        'bash',
-        'c',
-        'c_sharp',
-        'dockerfile',
-        'javascript',
-        'kdl',
-        'kotlin',
-        'lua',
-        'markdown',
-        'markdown_inline',
-        'query',
-        'regex',
-        'tmux',
-        'toml',
-        'typescript',
-        'vim',
-        'vimdoc',
-        'xml',
-        'yaml',
-    },
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    },
+-- Pack: Arborist
+require('arborist').setup({
+    prefer_wasm = false,
 })
 require('vim.treesitter.query').add_predicate('is-mise?', function(_, _, bufnr, _)
     local filepath = vim.api.nvim_buf_get_name(tonumber(bufnr) or 0)

@@ -1,4 +1,10 @@
-require('conform').setup({
+local conform = require('conform')
+
+local function restore_fileformat(bufnr, fileformat)
+    if vim.api.nvim_buf_is_valid(bufnr) then vim.bo[bufnr].fileformat = fileformat end
+end
+
+conform.setup({
     formatters_by_ft = {
         lua = { 'stylua' },
         bash = { 'shfmt' },
@@ -9,14 +15,20 @@ require('conform').setup({
         go = { 'goimports', 'gofmt' },
     },
     format_on_save = function(bufnr)
-        if vim.b.autofmt == false then return end
+        if vim.b[bufnr].autofmt == false then return end
         local bufname = vim.api.nvim_buf_get_name(bufnr)
         if bufname:match('/node_modules/') then return end
-        return { timeout_ms = 1000, lsp_format = 'never' }
+
+        local fileformat = vim.bo[bufnr].fileformat
+        return { timeout_ms = 1000, lsp_format = 'fallback' }, function() restore_fileformat(bufnr, fileformat) end
     end,
 })
 
-vim.keymap.set('n', '<leader>f', function() require('conform').format() end, { desc = 'Format current buffer' })
+vim.keymap.set('n', '<leader>f', function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local fileformat = vim.bo[bufnr].fileformat
+    conform.format({}, function() restore_fileformat(bufnr, fileformat) end)
+end, { desc = 'Format current buffer' })
 
 vim.api.nvim_create_user_command('SetAutoFormat', function()
     vim.b.autofmt = true

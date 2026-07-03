@@ -61,7 +61,7 @@
     "reactGrabVersion" : "0.1.29",
     "showImportHintOnBlankTabs" : true,
     "showSearchSuggestions" : true,
-    "theme" : "system",
+    "theme" : "dark",
     "urlsToAlwaysOpenExternally" : [
 
     ]
@@ -226,11 +226,11 @@
     "wrapWorkspaceTitles" : false
   },
   "sidebarAppearance" : {
-    "darkModeTintColor" : null,
+    "darkModeTintColor" : "#100F0F",
     "lightModeTintColor" : null,
-    "matchTerminalBackground" : false,
-    "tintColor" : "#000000",
-    "tintOpacity" : 0.17999999999999999
+    "matchTerminalBackground" : true,
+    "tintColor" : "#100F0F",
+    "tintOpacity" : 1
   },
   "terminal" : {
     "agentHibernation" : {
@@ -256,26 +256,26 @@
   },
   "workspaceColors" : {
     "colors" : {
-      "Amber" : "#7D6608",
-      "Aqua" : "#0E6B8C",
-      "Blue" : "#1565C0",
-      "Brown" : "#7B3F00",
-      "Charcoal" : "#3E4B5E",
-      "Crimson" : "#922B21",
-      "Green" : "#196F3D",
-      "Indigo" : "#283593",
-      "Magenta" : "#AD1457",
-      "Navy" : "#1A5276",
-      "Olive" : "#4A5C18",
-      "Orange" : "#A04000",
-      "Purple" : "#6A1B9A",
-      "Red" : "#C0392B",
-      "Rose" : "#880E4F",
-      "Teal" : "#006B6B"
+      "Amber" : "#D0A215",
+      "Aqua" : "#3AA99F",
+      "Blue" : "#4385BE",
+      "Brown" : "#878580",
+      "Charcoal" : "#403E3C",
+      "Crimson" : "#D14D41",
+      "Green" : "#879A39",
+      "Indigo" : "#4385BE",
+      "Magenta" : "#CE5D97",
+      "Navy" : "#205EA6",
+      "Olive" : "#66800B",
+      "Orange" : "#DA702C",
+      "Purple" : "#8B7EC8",
+      "Red" : "#D14D41",
+      "Rose" : "#CE5D97",
+      "Teal" : "#24837B"
     },
     "indicatorStyle" : "leftRail",
-    "notificationBadgeColor" : null,
-    "selectionColor" : null
+    "notificationBadgeColor" : "#DA702C",
+    "selectionColor" : "#282726"
   },
   "workspaceGroups" : {
     "newWorkspacePlacement" : "afterCurrent"

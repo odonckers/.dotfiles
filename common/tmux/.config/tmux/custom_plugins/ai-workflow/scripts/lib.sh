@@ -121,7 +121,8 @@ provider_status_item() {
   provider="$1"
   statuses="$2"
   icon="$(provider_icon "$provider")"
-  printf "%s %s [%s]" "$icon" "$provider" "$statuses"
+  quota_suffix="$(provider_quota_suffix "$provider")"
+  printf "%s %s [%s]%s" "$icon" "$provider" "$statuses" "$quota_suffix"
 }
 
 format_status_count() {
@@ -133,6 +134,80 @@ format_status_count() {
   else
     printf "%s" "$word"
   fi
+}
+
+quota_dir() {
+  printf "%s" "${TMUX_AI_WORKFLOW_QUOTA_DIR:-$(state_dir)/quota}"
+}
+
+sanitize_quota_percent() {
+  printf "%s\n" "$1" |
+  awk '
+    match($0, /[0-9]+([.][0-9]+)?[[:space:]]*%?/) {
+      value = substr($0, RSTART, RLENGTH)
+      gsub(/[[:space:]%]/, "", value)
+      if (value < 0) {
+        value = 0
+      }
+      printf "%.0f", value
+      exit
+    }
+  '
+}
+
+quota_percent_from_file() {
+  file="$1"
+  [ -f "$file" ] || return 1
+
+  percent="$(sanitize_quota_percent "$(sed -n '1p' "$file" 2>/dev/null)")"
+  [ -n "$percent" ] || return 1
+  printf "%s" "$percent"
+}
+
+provider_quota_percent() {
+  provider="$1"
+
+  case "$provider" in
+    claude)
+      if [ -n "${TMUX_AI_WORKFLOW_CLAUDE_QUOTA_PERCENT:-}" ]; then
+        sanitize_quota_percent "$TMUX_AI_WORKFLOW_CLAUDE_QUOTA_PERCENT"
+        return 0
+      fi
+      ;;
+    codex)
+      if [ -n "${TMUX_AI_WORKFLOW_CODEX_QUOTA_PERCENT:-}" ]; then
+        sanitize_quota_percent "$TMUX_AI_WORKFLOW_CODEX_QUOTA_PERCENT"
+        return 0
+      fi
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+
+  dir="$(quota_dir)"
+  for file in "$dir/$provider" "$dir/$provider.percent" "$(state_dir)/$provider-quota" "$(state_dir)/$provider-quota.percent"; do
+    percent="$(quota_percent_from_file "$file" 2>/dev/null || true)"
+    if [ -n "$percent" ]; then
+      printf "%s" "$percent"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+provider_quota_suffix() {
+  provider="$1"
+
+  case "$provider" in
+    claude|codex) ;;
+    *) return 0 ;;
+  esac
+
+  percent="$(provider_quota_percent "$provider" 2>/dev/null || true)"
+  [ -n "$percent" ] || return 0
+  printf " (%s%% used)" "$percent"
 }
 
 project_name() {

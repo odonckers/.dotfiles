@@ -11,6 +11,15 @@ message="$*"
 event_lc="$(printf "%s" "$event" | tr '[:upper:]' '[:lower:]')"
 
 case "$event_lc" in
+  notification)
+    if [ "$provider" = "claude" ]; then
+      status="idle"
+      message=""
+    else
+      status="waiting"
+      [ -n "$message" ] || message="needs attention"
+    fi
+    ;;
   permissionrequest|permission-request|permission|notification|input|waiting|needs_input|needs-input)
     status="waiting"
     [ -n "$message" ] || message="needs attention"

@@ -14,6 +14,18 @@ highest-priority agent in that tab and groups its states, such as
 `⌘ codex [waiting]` or `⌘ codex [waiting, ready 3]`. The original tab name is
 restored after the last agent state clears.
 
+Claude and Codex status-right entries can append quota usage when a cached
+percentage is available. Write `42`, `42%`, or similar to either:
+
+```text
+${TMUX_AI_WORKFLOW_STATE_DIR:-${XDG_STATE_HOME:-$HOME/.local/state}/tmux/ai-workflow}/quota/claude
+${TMUX_AI_WORKFLOW_STATE_DIR:-${XDG_STATE_HOME:-$HOME/.local/state}/tmux/ai-workflow}/quota/codex
+```
+
+You can also set `TMUX_AI_WORKFLOW_CLAUDE_QUOTA_PERCENT` or
+`TMUX_AI_WORKFLOW_CODEX_QUOTA_PERCENT`. Rendered examples look like
+`✶ claude [working] (42% used)` and `⌘ codex [ready] (17% used)`.
+
 ## Statuses
 
 - `waiting`: needs attention or input; highest priority in `status-right`

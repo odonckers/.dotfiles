@@ -1,0 +1,40 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/tmux/custom_plugins/ai-workflow/hooks/codex.sh UserPromptSubmit working",
+            "timeout": 5,
+            "statusMessage": "Updating tmux AI status"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/tmux/custom_plugins/ai-workflow/hooks/codex.sh PermissionRequest 'permission needed'",
+            "timeout": 5,
+            "statusMessage": "Updating tmux AI status"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.config/tmux/custom_plugins/ai-workflow/hooks/codex.sh Stop",
+            "timeout": 5,
+            "statusMessage": "Updating tmux AI status"
+          }
+        ]
+      }
+    ]
+  }
+}

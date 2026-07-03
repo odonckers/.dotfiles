@@ -5,9 +5,9 @@ reports and only falls back to conservative command-name detection for panes
 whose current command is exactly `opencode`, `claude`, `codex`, or a packaged
 Codex binary such as `codex-aarch64-a`.
 
-The fzf preview renders fullscreen TUIs from the current alternate screen
-instead of scrollback, so Codex, Claude, OpenCode, editors, and other
-fullscreen interfaces keep their visible grid shape in the preview pane.
+The fzf picker opens in a compact centered popup. Rows include status, project,
+branch, linked worktree name when applicable, uncommitted diff summary, and the
+agent CLI name.
 
 Agent panes also update their tmux tab title. The title reflects the
 highest-priority agent in that tab and groups its states, such as

@@ -147,12 +147,133 @@ project_name() {
 picker_row() {
   status="$1"
   project="$2"
-  icon="$3"
-  provider="$4"
+  branch="$3"
+  worktree="$4"
+  diff_summary="$5"
+  icon="$6"
+  provider="$7"
   marker="$(status_icon "$status")"
   name="$icon $provider"
 
-  printf "%-10s  %-28s  %-12s" "$marker $(status_word "$status")" "$(truncate "$project" 28)" "$name"
+  printf "%-10s  %-20s  %-16s  %-12s  %-18s  %-12s" \
+    "$marker $(status_word "$status")" \
+    "$(truncate "$project" 20)" \
+    "$(truncate "${branch:-no-branch}" 16)" \
+    "$(truncate "${worktree:-}" 12)" \
+    "$(truncate "${diff_summary:-clean}" 18)" \
+    "$name"
+}
+
+git_branch() {
+  path="$1"
+  [ -n "$path" ] || return 1
+  git -C "$path" rev-parse --is-inside-work-tree >/dev/null 2>&1 || return 1
+
+  branch="$(git -C "$path" branch --show-current 2>/dev/null)"
+  if [ -z "$branch" ]; then
+    branch="$(git -C "$path" rev-parse --short HEAD 2>/dev/null)"
+  fi
+
+  [ -n "$branch" ] || return 1
+  printf "%s" "$branch"
+}
+
+git_worktree_name() {
+  path="$1"
+  [ -n "$path" ] || return 1
+  git -C "$path" rev-parse --is-inside-work-tree >/dev/null 2>&1 || return 1
+
+  git_dir="$(git -C "$path" rev-parse --absolute-git-dir 2>/dev/null)"
+  case "$git_dir" in
+    */.git/worktrees/*)
+      printf "%s" "$(basename "$git_dir")"
+      return 0
+      ;;
+  esac
+
+  return 1
+}
+
+git_diff_summary() {
+  path="$1"
+  [ -n "$path" ] || return 1
+  git -C "$path" rev-parse --is-inside-work-tree >/dev/null 2>&1 || return 1
+
+  shortstat="$(
+    git -C "$path" diff --shortstat HEAD -- 2>/dev/null |
+    awk -F ',' '
+      {
+        for (i = 1; i <= NF; i++) {
+          gsub(/^ +| +$/, "", $i)
+          if ($i ~ /files? changed/) {
+            split($i, files, " ")
+          } else if ($i ~ /insertions?/) {
+            split($i, insertions, " ")
+          } else if ($i ~ /deletions?/) {
+            split($i, deletions, " ")
+          }
+        }
+      }
+      END {
+        if (files[1] != "") {
+          printf "%sf", files[1]
+        }
+        if (insertions[1] != "") {
+          printf "%s+%s", (files[1] != "" ? " " : ""), insertions[1]
+        }
+        if (deletions[1] != "") {
+          printf "%s-%s", (files[1] != "" || insertions[1] != "" ? " " : ""), deletions[1]
+        }
+      }
+    '
+  )"
+
+  untracked="$(
+    git -C "$path" status --porcelain 2>/dev/null |
+    awk 'substr($0, 1, 2) == "??" { count++ } END { if (count > 0) print count }'
+  )"
+
+  if [ -n "$shortstat" ]; then
+    if [ -n "$untracked" ]; then
+      printf "%s ?%s" "$shortstat" "$untracked"
+    else
+      printf "%s" "$shortstat"
+    fi
+    return 0
+  fi
+
+  status_summary="$(
+    git -C "$path" status --porcelain 2>/dev/null |
+    awk '
+      {
+        x = substr($0, 1, 1)
+        y = substr($0, 2, 1)
+        if (x == "?" && y == "?") { untracked++; next }
+        if (x == "!" && y == "!") { next }
+        if (x == "A" || y == "A") { added++ }
+        if (x == "M" || y == "M") { modified++ }
+        if (x == "D" || y == "D") { deleted++ }
+        if (x == "R" || y == "R") { renamed++ }
+        if (x == "C" || y == "C") { copied++ }
+        if (x == "U" || y == "U" || x == "A" && y == "A" || x == "D" && y == "D") { conflicted++ }
+      }
+      END {
+        if (added) { printf "%s+%d", sep, added; sep = " " }
+        if (modified) { printf "%s~%d", sep, modified; sep = " " }
+        if (deleted) { printf "%s-%d", sep, deleted; sep = " " }
+        if (renamed) { printf "%sr%d", sep, renamed; sep = " " }
+        if (copied) { printf "%sc%d", sep, copied; sep = " " }
+        if (untracked) { printf "%s?%d", sep, untracked; sep = " " }
+        if (conflicted) { printf "%s!%d", sep, conflicted; sep = " " }
+      }
+    '
+  )"
+
+  if [ -n "$status_summary" ]; then
+    printf "%s" "$status_summary"
+  else
+    printf "clean"
+  fi
 }
 
 truncate() {
@@ -367,7 +488,10 @@ ai_panes() {
     target="$session:$window_index.$pane_index"
     location="$session:$window_index.$pane_index"
     project="$(project_name "$path")"
-    display_row="$(picker_row "$status" "$project" "$icon" "$provider")"
+    branch="$(git_branch "$path" 2>/dev/null || true)"
+    worktree="$(git_worktree_name "$path" 2>/dev/null || true)"
+    diff_summary="$(git_diff_summary "$path" 2>/dev/null || true)"
+    display_row="$(picker_row "$status" "$project" "$branch" "$worktree" "$diff_summary" "$icon" "$provider")"
     display_message="$(truncate "$message" 48)"
     if [ -n "$display_message" ]; then
       row_title="$marker $status · $session · $icon $label · $display_message"
@@ -375,7 +499,7 @@ ai_panes() {
       row_title="$marker $status · $session · $icon $label"
     fi
 
-    printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
-      "$rank" "$target" "$marker" "$status" "$icon" "$provider" "$label" "$location" "$row_title" "$command" "$title" "$path" "$message" "$source" "$updated_at" "$project" "$display_row"
+    printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n" \
+      "$rank" "$target" "$marker" "$status" "$icon" "$provider" "$label" "$location" "$row_title" "$command" "$title" "$path" "$message" "$source" "$updated_at" "$project" "$branch" "$worktree" "$diff_summary" "$display_row"
   done
 }

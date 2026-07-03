@@ -4,7 +4,11 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BASH_BIN="/opt/homebrew/bin/bash"
 STATUS_COMMAND="#($BASH_BIN $CURRENT_DIR/scripts/status.sh)"
 STATUS_INTERVAL="$(tmux show-option -gqv "@ai-workflow-status-interval")"
+PICKER_WIDTH="$(tmux show-option -gqv "@ai-workflow-picker-width")"
+PICKER_HEIGHT="$(tmux show-option -gqv "@ai-workflow-picker-height")"
 [ -n "$STATUS_INTERVAL" ] || STATUS_INTERVAL="3"
+[ -n "$PICKER_WIDTH" ] || PICKER_WIDTH="104"
+[ -n "$PICKER_HEIGHT" ] || PICKER_HEIGHT="16"
 
 current_interval="$(tmux show-option -gqv status-interval)"
 if [ -n "$STATUS_INTERVAL" ] && [ "$STATUS_INTERVAL" -gt 0 ] 2>/dev/null; then
@@ -21,4 +25,4 @@ case "$current_status_right" in
     ;;
 esac
 
-tmux bind-key y display-popup -E -w 90% -h 80% "$BASH_BIN $CURRENT_DIR/scripts/picker.sh"
+tmux bind-key y display-popup -BE -w "$PICKER_WIDTH" -h "$PICKER_HEIGHT" "$BASH_BIN $CURRENT_DIR/scripts/picker.sh"

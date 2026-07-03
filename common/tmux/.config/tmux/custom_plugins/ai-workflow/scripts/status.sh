@@ -13,7 +13,7 @@ declare -A emitted_providers
 
 summary_output=""
 
-while IFS="$(printf '\t')" read -r _rank _target _marker status _icon provider _label _location _row_title _command _title _path _message _source _updated_at _project _display_row; do
+while IFS="$(printf '\t')" read -r _rank _target _marker status _icon provider _label _location _row_title _command _title _path _message _source _updated_at _project _branch _worktree _diff_summary _display_row; do
   case "$status" in
     waiting)
       waiting_counts["$provider"]=$(( ${waiting_counts["$provider"]:-0} + 1 ))

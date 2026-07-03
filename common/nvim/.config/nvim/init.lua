@@ -15,8 +15,8 @@ vim.opt.relativenumber = vim.g.relativenumber -- Relative line numbers
 vim.opt.cursorline = true -- Highlight current line
 vim.opt.cursorlineopt = 'screenline,number' -- Parts to highlight of current line
 vim.opt.wrap = false -- Don't wrap lines
-vim.opt.scrolloff = 8 -- Keep some lines above/below cursor
-vim.opt.sidescrolloff = 5 -- Keep some columns left/right of cursor
+vim.opt.scrolloff = 5 -- Keep some lines above/below cursor
+vim.opt.sidescrolloff = 3 -- Keep some columns left/right of cursor
 
 -- Indentation
 vim.opt.tabstop = 2 -- Tab width

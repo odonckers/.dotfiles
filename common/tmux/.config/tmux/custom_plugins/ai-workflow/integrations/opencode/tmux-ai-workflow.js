@@ -11,6 +11,10 @@ function report(event, message = "") {
   child.unref();
 }
 
+function sessionStatusType(event) {
+  return event?.properties?.status?.type;
+}
+
 async function server() {
   return {
     async event(input) {
@@ -18,12 +22,14 @@ async function server() {
 
       switch (event.type) {
         case "permission.asked":
+        case "permission.updated":
           report("PermissionRequest", "permission needed");
           break;
         case "question.asked":
           report("PermissionRequest", "answer needed");
           break;
         case "message.part.delta":
+        case "message.part.updated":
         case "command.executed":
           report("running", "working");
           break;
@@ -33,11 +39,11 @@ async function server() {
           report("running", "working");
           break;
         case "session.status":
-          if (event.properties.status.type === "busy") {
+          if (sessionStatusType(event) === "busy") {
             report("running", "working");
-          } else if (event.properties.status.type === "idle") {
+          } else if (sessionStatusType(event) === "idle") {
             report("idle");
-          } else if (event.properties.status.type === "retry") {
+          } else if (sessionStatusType(event) === "retry") {
             report("running", event.properties.status.message || "retrying");
           }
           break;
@@ -51,6 +57,9 @@ async function server() {
     },
     async "permission.ask"() {
       report("PermissionRequest", "permission needed");
+    },
+    async "command.execute.before"() {
+      report("running", "working");
     },
     async "tool.execute.before"() {
       report("running", "using tool");

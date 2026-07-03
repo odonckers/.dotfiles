@@ -146,22 +146,24 @@ project_name() {
 
 picker_row() {
   status="$1"
-  project="$2"
-  branch="$3"
-  worktree="$4"
+  command="$2"
+  project="$3"
+  branch="$4"
   diff_summary="$5"
   icon="$6"
   provider="$7"
   marker="$(status_icon "$status")"
-  name="$icon $provider"
+  status_text="$marker $(status_word "$status")"
+  cli="$command"
+  [ -n "$cli" ] || cli="$provider"
+  cli_text="$icon $cli"
 
-  printf "%-10s  %-20s  %-16s  %-12s  %-18s  %-12s" \
-    "$marker $(status_word "$status")" \
+  printf "%-10s  %-18s  %-20s  %-28s  %-18s" \
+    "$(truncate "$status_text" 10)" \
+    "$(truncate "$cli_text" 18)" \
     "$(truncate "$project" 20)" \
-    "$(truncate "${branch:-no-branch}" 16)" \
-    "$(truncate "${worktree:-}" 12)" \
-    "$(truncate "${diff_summary:-clean}" 18)" \
-    "$name"
+    "$(truncate "${branch:-no-branch}" 28)" \
+    "$(truncate "${diff_summary:-clean}" 18)"
 }
 
 git_branch() {
@@ -342,9 +344,23 @@ pane_state() {
   printf "%s\t%s\t%s\t%s\t%s\t%s\n" "$provider" "$status" "$message" "$updated_at" "$updated_epoch" "$fingerprint"
 }
 
+codex_title_waiting_message() {
+  title_lc="$(printf "%s" "$1" | tr '[:upper:]' '[:lower:]')"
+
+  case "$title_lc" in
+    *"action required"*|*"[ ! ]"*)
+      printf "action required"
+      return 0
+      ;;
+  esac
+
+  return 1
+}
+
 resolved_pane_state() {
   pane_id="$1"
   command="$2"
+  title="$3"
 
   state="$(pane_state "$pane_id")"
   if [ -n "$state" ]; then
@@ -359,20 +375,39 @@ resolved_pane_state() {
       fi
     fi
 
+    if [ "$provider" = "codex" ]; then
+      title_message="$(codex_title_waiting_message "$title" 2>/dev/null || true)"
+      if [ -n "$title_message" ]; then
+        status="waiting"
+        message="$title_message"
+      fi
+    fi
+
     printf "%s\t%s\t%s\t%s\t%s\t%s\n" "$provider" "$status" "$message" "$updated_at" "$updated_epoch" "$fingerprint"
     return 0
   fi
 
   provider="$(provider_from_command "$command")" || return 1
-  printf "%s\tidle\t\t\t\t\n" "$provider"
+  status="idle"
+  message=""
+
+  if [ "$provider" = "codex" ]; then
+    title_message="$(codex_title_waiting_message "$title" 2>/dev/null || true)"
+    if [ -n "$title_message" ]; then
+      status="waiting"
+      message="$title_message"
+    fi
+  fi
+
+  printf "%s\t%s\t%s\t\t\t\n" "$provider" "$status" "$message"
 }
 
 window_agent_rows() {
   window_target="$1"
 
-  tmux list-panes -t "$window_target" -F "#{pane_id}	#{pane_current_command}" 2>/dev/null |
-  while IFS="$(printf '\t')" read -r pane_id command; do
-    state="$(resolved_pane_state "$pane_id" "$command")" || continue
+  tmux list-panes -t "$window_target" -F "#{pane_id}	#{pane_current_command}	#{pane_title}" 2>/dev/null |
+  while IFS="$(printf '\t')" read -r pane_id command title; do
+    state="$(resolved_pane_state "$pane_id" "$command" "$title")" || continue
     IFS=$'\t' read -r provider status message _updated_at _updated_epoch _fingerprint <<< "$state"
 
     rank="$(status_rank "$status")"
@@ -440,7 +475,7 @@ window_status_item() {
     fi
   done <<< "$status_counts"
 
-  provider_status_item "$provider" "$formatted"
+  printf "%s [%s]" "$provider" "$formatted"
 }
 
 sync_window_title() {
@@ -471,7 +506,7 @@ sync_window_title() {
 ai_panes() {
   tmux list-panes -a -F "#{pane_id}	#{session_name}	#{window_index}	#{window_name}	#{pane_index}	#{pane_current_command}	#{pane_title}	#{pane_current_path}" |
   while IFS="$(printf '\t')" read -r pane_id session window_index window pane_index command title path; do
-    state="$(resolved_pane_state "$pane_id" "$command")" || continue
+    state="$(resolved_pane_state "$pane_id" "$command" "$title")" || continue
     IFS=$'\t' read -r provider status message updated_at _updated_epoch _fingerprint <<< "$state"
 
     state_file_path="$(state_file "$pane_id")"
@@ -491,7 +526,7 @@ ai_panes() {
     branch="$(git_branch "$path" 2>/dev/null || true)"
     worktree="$(git_worktree_name "$path" 2>/dev/null || true)"
     diff_summary="$(git_diff_summary "$path" 2>/dev/null || true)"
-    display_row="$(picker_row "$status" "$project" "$branch" "$worktree" "$diff_summary" "$icon" "$provider")"
+    display_row="$(picker_row "$status" "$command" "$project" "$branch" "$diff_summary" "$icon" "$provider")"
     display_message="$(truncate "$message" 48)"
     if [ -n "$display_message" ]; then
       row_title="$marker $status · $session · $icon $label · $display_message"

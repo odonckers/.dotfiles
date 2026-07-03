@@ -6,7 +6,6 @@ LIST="$CURRENT_DIR/list.sh"
 selected="$("$LIST" | fzf \
   --delimiter="$(printf '\t')" \
   --with-nth=20 \
-  --nth=4,6,13,16,17,18,19,20 \
   --header="Select target agent." \
   --border \
   --bind="ctrl-r:reload($LIST)" \

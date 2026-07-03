@@ -7,7 +7,7 @@ STATUS_INTERVAL="$(tmux show-option -gqv "@ai-workflow-status-interval")"
 PICKER_WIDTH="$(tmux show-option -gqv "@ai-workflow-picker-width")"
 PICKER_HEIGHT="$(tmux show-option -gqv "@ai-workflow-picker-height")"
 [ -n "$STATUS_INTERVAL" ] || STATUS_INTERVAL="3"
-[ -n "$PICKER_WIDTH" ] || PICKER_WIDTH="104"
+[ -n "$PICKER_WIDTH" ] || PICKER_WIDTH="112"
 [ -n "$PICKER_HEIGHT" ] || PICKER_HEIGHT="16"
 
 current_interval="$(tmux show-option -gqv status-interval)"

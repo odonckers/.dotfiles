@@ -3,9 +3,9 @@
 # If not running interactively, don't do anything
 [[ -o interactive ]] || return
 
-if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
-  source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
-fi
+# if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+#   source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+# fi
 
 if [[ -d "$HOME/.oh-my-zsh" ]]; then
   export ZSH="$HOME/.oh-my-zsh"

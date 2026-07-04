@@ -19,19 +19,19 @@
     "preferredEditor" : "",
     "renameSelectsExistingName" : true,
     "reorderOnNotification" : true,
-    "sendAnonymousTelemetry" : true,
+    "sendAnonymousTelemetry" : false,
     "warnBeforeClosingTab" : true,
     "warnBeforeClosingTabXButton" : false,
     "windowTitleTemplate" : "",
     "workspaceInheritWorkingDirectory" : true
   },
   "automation" : {
-    "ampIntegration" : true,
-    "claudeBinaryPath" : "",
+    "ampIntegration" : false,
+    "claudeBinaryPath" : "/opt/homebrew/bin/claude",
     "claudeCodeIntegration" : true,
     "cursorIntegration" : true,
-    "geminiIntegration" : true,
-    "kiroIntegration" : true,
+    "geminiIntegration" : false,
+    "kiroIntegration" : false,
     "kiroNotificationLevel" : "standard",
     "portBase" : 9100,
     "portRange" : 10,
@@ -206,7 +206,7 @@
     }
   },
   "sidebar" : {
-    "branchLayout" : "vertical",
+    "branchLayout" : "inline",
     "hideAllDetails" : false,
     "makePullRequestsClickable" : true,
     "openPortLinksInCmuxBrowser" : true,

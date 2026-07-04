@@ -23,7 +23,7 @@ window-save-state = always
 mouse-hide-while-typing = true
 
 macos-non-native-fullscreen = visible-menu
-macos-titlebar-style = hidden
-macos-titlebar-proxy-icon = hidden
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = visible
 
 macos-option-as-alt = left

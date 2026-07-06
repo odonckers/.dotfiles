@@ -4,9 +4,4 @@ root: <%= ENV["DEV_REPO_ROOT"] %>
 windows:
   - editor: nvim
   - git: lazygit
-  - server:
-      layout: even-vertical
-      panes:
-        - server:
-        - client: cd client/
   - claude: claude

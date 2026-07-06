@@ -4,6 +4,7 @@ tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "hashicorp/tap"
 tap "jetbrains/utils", "https://github.com/JetBrains/homebrew-utils"
 tap "jstkdng/programs"
+tap "manaflow-ai/cmux"
 tap "mediosz/tap"
 tap "nikitabobko/tap"
 # Browser automation CLI for AI agents
@@ -20,6 +21,8 @@ brew "autoconf-archive"
 brew "automake"
 # Use AWS IAM credentials to authenticate to Kubernetes
 brew "aws-iam-authenticator"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Incredibly fast JavaScript runtime, bundler, test runner, and package manager
@@ -106,6 +109,8 @@ brew "sevenzip"
 brew "stow"
 # Opinionated Lua code formatter
 brew "stylua"
+# Manage complex tmux sessions easily
+brew "tmuxinator"
 # Parser generator tool
 brew "tree-sitter-cli"
 # Maintained ctags implementation
@@ -137,7 +142,9 @@ cask "chatgpt"
 # Anthropic's official Claude AI desktop app
 cask "claude"
 # Terminal-based AI coding assistant
-cask "claude-code"
+cask "claude-code@latest"
+# Ghostty-based terminal with vertical tabs and notifications for AI coding agents
+cask "cmux"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
 # OpenAI's Codex desktop app for managing coding agents
@@ -186,8 +193,6 @@ cask "ollama-app"
 cask "openchamber"
 # Utility to uninstall apps and remove leftover files from old/uninstalled apps
 cask "pearcleaner"
-# Control your tools with a few keystrokes
-cask "raycast"
 # Music streaming service
 cask "spotify"
 # Video game digital distribution service
@@ -204,7 +209,7 @@ cask "whatsapp"
 cask "zed"
 # Video communication and virtual meeting platform
 cask "zoom"
-uv "specify-cli"
+uv "specify-cli", source: "git+https://github.com/github/spec-kit.git"
 npm "@angular/cli"
 npm "@angular/language-server"
 npm "@apps/cli"
@@ -212,6 +217,7 @@ npm "@apps/jetpack"
 npm "@fission-ai/openspec"
 npm "@github/copilot-language-server"
 npm "@vtsls/language-server"
+npm "azurite"
 npm "headroom-ai"
 npm "typescript"
 npm "vscode-langservers-extracted"

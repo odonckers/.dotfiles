@@ -13,7 +13,7 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   ZSH_THEME=robbyrussell
   ZSH_DISABLE_COMPFIX=true
 
-  plugins=(archlinux brew bun dotnet eza fzf gh git ng terraform tmux vi-mode vscode zoxide zsh-interactive-cd)
+  plugins=(archlinux brew bun dotnet eza fzf gh git ng terraform tmux tmuxinator vi-mode vscode zoxide zsh-interactive-cd)
 
   # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode#settings
   VI_MODE_SET_CURSOR=true
@@ -51,6 +51,19 @@ if (( $+commands[nvim] )); then
   alias v="nvim"
   alias vs="nvim -S"
 fi
+
+dev() {
+  local template="${1:-dev}"
+  local repo
+  repo=$(fd -HI '^\.git$' ~/dev -x dirname {} | sort -u | fzf --prompt="Select repo > " --height=40% --border --reverse)
+
+  [[ -z "$repo" ]] && return 1
+
+  local name
+  name=$(basename "$repo")
+
+  DEV_REPO_ROOT="$repo" DEV_REPO_NAME="$name" tmuxinator start "$template"
+}
 
 [[ -f $HOME/.zshrc.linux ]] && source $HOME/.zshrc.linux
 [[ -f $HOME/.zshrc.macos ]] && source $HOME/.zshrc.macos

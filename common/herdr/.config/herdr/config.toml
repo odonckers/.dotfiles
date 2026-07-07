@@ -10,6 +10,12 @@ navigate_workspace_down = ["down", "j"]
 split_vertical   = ["prefix+v", "prefix+|", "prefix+backslash"]
 split_horizontal = ["prefix+minus", "prefix+_"]
 
+[[keys.command]]
+key = "prefix+alt+g"
+type = "pane"
+command = "lazygit"
+description = "run lazygit"
+
 [theme]
 name = "vesper" # base theme is irrelevant — every token below is overridden
 auto_switch = false

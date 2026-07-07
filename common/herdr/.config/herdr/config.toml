@@ -1,5 +1,8 @@
 onboarding = false
 
+[worktrees]
+directory = "~/dev/worktrees"
+
 [theme]
 name = "vesper" # base theme is irrelevant — every token below is overridden
 auto_switch = false

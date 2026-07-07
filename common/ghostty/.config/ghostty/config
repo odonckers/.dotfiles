@@ -15,8 +15,8 @@ window-padding-balance = true
 
 theme = Flexoki Dark
 
-background-opacity = 1
-background-blur = false
+background-opacity = 0.9
+background-blur = true
 
 window-save-state = always
 

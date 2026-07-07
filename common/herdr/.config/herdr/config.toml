@@ -4,6 +4,7 @@ onboarding = false
 directory = "~/dev/worktrees"
 
 [keys]
+goto = "prefix+space"
 new_workspace = ["prefix+shift+n", "prefix+shift+c"]
 navigate_workspace_up = ["up", "k"]
 navigate_workspace_down = ["down", "j"]
@@ -11,7 +12,7 @@ split_vertical   = ["prefix+v", "prefix+|", "prefix+backslash"]
 split_horizontal = ["prefix+minus", "prefix+_"]
 
 [[keys.command]]
-key = "prefix+alt+g"
+key = "prefix+g"
 type = "pane"
 command = "lazygit"
 description = "run lazygit"
@@ -42,7 +43,7 @@ teal        = "#3AA99F" # cyan-400 — notification accent
 peach       = "#DA702C" # orange-400 — interrupted/warning
 
 [ui]
-sidebar_width = 40
+sidebar_width = 48
 sidebar_min_width = 16
 sidebar_max_width = 64
 agent_panel_sort = "spaces"

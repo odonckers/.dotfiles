@@ -1,0 +1,36 @@
+onboarding = false
+
+[theme]
+name = "vesper" # base theme is irrelevant — every token below is overridden
+auto_switch = false
+
+[theme.custom]
+# Flexoki Dark, matched to this repo's existing Flexoki colors already used by
+# tmux's agent-indicator (red/blue) and tmux-palette's flexoki.json
+# (bg/panel/selected/fg/muted/accent). Full scale: flexoki-neovim's palette.lua.
+accent      = "#D0A215" # yellow-400 — highlights, active borders
+panel_bg    = "#100F0F" # black — base background
+surface_dim = "#1C1B1A" # base-950 — dim separators
+surface0    = "#282726" # base-900 — selected/focused surface
+surface1    = "#343331" # base-850 — hover/active surface
+overlay1    = "#878580" # base-500 — brighter overlay text
+overlay0    = "#6F6E69" # base-600 — muted secondary text
+text        = "#CECDC3" # base-200 — main text
+subtext0    = "#B7B5AC" # base-300 — subdued labels
+mauve       = "#8B7EC8" # purple-400 — branch/special labels
+green       = "#879A39" # green-400 — done/idle
+yellow      = "#D0A215" # yellow-400 — working/running
+red         = "#D14D41" # red-400 — needs attention/blocked
+blue        = "#4385BE" # blue-400 — unseen/done notifications
+teal        = "#3AA99F" # cyan-400 — notification accent
+peach       = "#DA702C" # orange-400 — interrupted/warning
+
+[keys]
+split_vertical   = ["prefix+|", "prefix+backslash", "prefix+percent"]
+split_horizontal = ["prefix+minus", "prefix+_", "prefix+double_quote"]
+
+[ui]
+agent_panel_sort = "spaces"
+
+[ui.toast]
+delivery = "herdr"

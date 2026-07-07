@@ -4,9 +4,9 @@ tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "hashicorp/tap"
 tap "jetbrains/utils", "https://github.com/JetBrains/homebrew-utils"
 tap "jstkdng/programs"
-tap "manaflow-ai/cmux"
 tap "mediosz/tap"
 tap "nikitabobko/tap"
+tap "rjyo/moshi"
 # Browser automation CLI for AI agents
 brew "agent-browser"
 # Terminal multiplexer
@@ -81,6 +81,8 @@ brew "lua-language-server"
 brew "luarocks"
 # CLI tool to help you manage repositories
 brew "mani"
+# Remote terminal application
+brew "mosh"
 # Netwide Assembler (NASM) is an 80x86 assembler
 brew "nasm"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -133,6 +135,8 @@ brew "anomalyco/tap/opencode", trusted: true
 brew "hashicorp/tap/terraform", trusted: true
 # Official Language Server Protocol for the Kotlin language
 brew "jetbrains/utils/kotlin-lsp", trusted: true
+# Portable daemon + CLI that bridges AI coding agents to the Moshi mobile app
+brew "rjyo/moshi/moshi-hook", trusted: true
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Tools for building Android applications
@@ -143,8 +147,6 @@ cask "chatgpt"
 cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code@latest"
-# Ghostty-based terminal with vertical tabs and notifications for AI coding agents
-cask "cmux"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
 # OpenAI's Codex desktop app for managing coding agents

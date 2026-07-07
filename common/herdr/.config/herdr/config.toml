@@ -42,6 +42,9 @@ teal        = "#3AA99F" # cyan-400 — notification accent
 peach       = "#DA702C" # orange-400 — interrupted/warning
 
 [ui]
+sidebar_width = 40
+sidebar_min_width = 16
+sidebar_max_width = 64
 agent_panel_sort = "spaces"
 
 [ui.toast]

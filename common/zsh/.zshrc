@@ -28,6 +28,28 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   source $ZSH/oh-my-zsh.sh
 fi
 
+if (( $+commands[claude] )); then
+  alias claude-personal='CLAUDE_CONFIG_DIR="$HOME/.claude-personal" command claude'
+  alias claude-bethel='CLAUDE_CONFIG_DIR="$HOME/.claude-bethel" command claude'
+
+  claude() {
+    local choice
+    choice=$(printf 'personal\nbethel\n' | fzf --prompt="Select Claude account > " --height=~10 --layout=reverse)
+
+    case "$choice" in
+      personal)
+        claude-personal
+        ;;
+      bethel)
+        claude-bethel
+        ;;
+      *)
+        echo "No selection made, aborting."
+        return 1
+        ;;
+    esac
+  }
+fi
 (( $+commands[ctags] )) && alias tag="ctags -R ."
 if (( $+commands[eza] )); then
   alias l="eza -l --git"

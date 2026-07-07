@@ -3,6 +3,13 @@ onboarding = false
 [worktrees]
 directory = "~/dev/worktrees"
 
+[keys]
+new_workspace = ["prefix+shift+n", "prefix+shift+c"]
+navigate_workspace_up = ["up", "k"]
+navigate_workspace_down = ["down", "j"]
+split_vertical   = ["prefix+v", "prefix+|", "prefix+backslash"]
+split_horizontal = ["prefix+minus", "prefix+_"]
+
 [theme]
 name = "vesper" # base theme is irrelevant — every token below is overridden
 auto_switch = false
@@ -27,10 +34,6 @@ red         = "#D14D41" # red-400 — needs attention/blocked
 blue        = "#4385BE" # blue-400 — unseen/done notifications
 teal        = "#3AA99F" # cyan-400 — notification accent
 peach       = "#DA702C" # orange-400 — interrupted/warning
-
-[keys]
-split_vertical   = ["prefix+|", "prefix+backslash", "prefix+percent"]
-split_horizontal = ["prefix+minus", "prefix+_", "prefix+double_quote"]
 
 [ui]
 agent_panel_sort = "spaces"

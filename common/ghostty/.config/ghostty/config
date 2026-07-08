@@ -56,6 +56,11 @@ mouse-hide-while-typing = true
 
 theme = Flexoki Dark
 
+# Cursor always contrasts with whatever's underneath instead of a fixed
+# colour pair, like Kitty's default cursor.
+cursor-color = cell-foreground
+cursor-text = cell-background
+
 # 1 = fully opaque, 0 = fully transparent.
 background-opacity = 0.9
 # Blur what shows through the transparent background (only has an effect

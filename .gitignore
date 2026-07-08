@@ -1,3 +1,5 @@
+.claude
+
 /common/nvim/.config/nvim/lazy-lock.json
 /common/tmux/.config/tmux/plugins
 /common/yazi/.config/yazi/plugins

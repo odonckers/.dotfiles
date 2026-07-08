@@ -2,7 +2,6 @@ vim.lsp.inlay_hint.enable(true)
 
 vim.diagnostic.config({
     float = {
-        -- border = 'rounded',
         focusable = true,
     },
     virtual_lines = false,
@@ -24,10 +23,6 @@ cmp.setup({
     snippet = {
         expand = function(args) vim.snippet.expand(args.body) end,
     },
-    -- window = {
-    --     completion = cmp.config.window.bordered(),
-    --     documentation = cmp.config.window.bordered(),
-    -- },
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -41,7 +36,6 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'lazydev', group_index = 0 },
-        -- { name = 'easy-dotnet', group_index = 0 },
         { name = 'path' },
         { name = 'buffer' },
         { name = 'spell' },
@@ -80,66 +74,6 @@ local capabilities = vim.tbl_deep_extend(
 )
 vim.lsp.config('*', { capabilities = capabilities })
 
--- Pack: Easy Dotnet
--- Requires `dotnet tool install -g EasyDotnet`
--- local easy_dotnet = require('easy-dotnet')
--- easy_dotnet.setup({
---     lsp = {
---         enabled = true,
---         config = {
---             settings = {
---                 ['csharp|symbol_search'] = {
---                     dotnet_search_reference_assemblies = true,
---                 },
---                 ['csharp|completion'] = {
---                     dotnet_show_name_completion_suggestions = true,
---                     dotnet_provide_regex_completions = true,
---                     dotnet_show_completion_items_from_unimported_namespaces = true,
---                 },
---                 ['csharp|quick_info'] = {
---                     dotnet_show_remarks_in_quick_info = true,
---                 },
---                 ['navigation'] = {
---                     dotnet_navigate_to_decompiled_sources = true,
---                 },
---                 ['csharp|highlighting'] = {
---                     dotnet_highlight_related_regex_components = true,
---                     dotnet_highlight_related_json_components = true,
---                 },
---                 ['csharp|inlay_hints'] = {
---                     dotnet_enable_inlay_hints_for_parameters = true,
---                     dotnet_enable_inlay_hints_for_literal_parameters = true,
---                     dotnet_enable_inlay_hints_for_indexer_parameters = false,
---                     dotnet_enable_inlay_hints_for_object_creation_parameters = true,
---                     dotnet_enable_inlay_hints_for_other_parameters = true,
---                     dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
---                     dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
---                     dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
---                     csharp_enable_inlay_hints_for_types = false,
---                     csharp_enable_inlay_hints_for_implicit_variable_types = false,
---                     csharp_enable_inlay_hints_for_lambda_parameter_types = false,
---                     csharp_enable_inlay_hints_for_implicit_object_creation = false,
---                 },
---                 ['csharp|background_analysis'] = {
---                     dotnet_analyzer_diagnostics_scope = 'fullSolution',
---                     dotnet_compiler_diagnostics_scope = 'fullSolution',
---                 },
---                 ['csharp|code_lens'] = {
---                     dotnet_enable_references_code_lens = true,
---                     dotnet_enable_tests_code_lens = true,
---                 },
---                 ['csharp|auto_insert'] = {
---                     dotnet_enable_auto_insert = true,
---                 },
---                 ['csharp|formatting'] = {
---                     dotnet_organize_imports_on_format = true,
---                 },
---             },
---         },
---         debugger = { bin_path = vim.env.XDG_DATA_HOME .. '/netcoredbg/bin/netcoredbg' },
---     },
--- })
--- cmp.register_source('easy-dotnet', easy_dotnet.package_completion_source)
 vim.lsp.config('roslyn', {
     settings = {
         ['csharp|symbol_search'] = {
@@ -222,6 +156,3 @@ end, {})
 -- Disable builtin completion keys for nvim-cmp
 vim.keymap.set({ 'i', 's' }, '<C-p>', '<nop>')
 vim.keymap.set({ 'i', 's' }, '<C-n>', '<nop>')
-
--- Bordered hover
--- vim.keymap.set('n', 'K', function() vim.lsp.buf.hover({ border = 'rounded' }) end, { desc = 'Hover' })

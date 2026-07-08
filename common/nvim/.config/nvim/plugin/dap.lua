@@ -1,12 +1,3 @@
-local gh = function(x) return 'https://github.com/' .. x end
-
-vim.pack.add({
-    gh('mfussenegger/nvim-dap'),
-    gh('Weissle/persistent-breakpoints.nvim'),
-    gh('igorlfs/nvim-dap-view'),
-    gh('theHamsta/nvim-dap-virtual-text'),
-})
-
 local dap = require('dap')
 require('persistent-breakpoints').setup({})
 require('dap-view').setup()

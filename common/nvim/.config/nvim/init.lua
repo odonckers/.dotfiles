@@ -5,82 +5,83 @@
 
 vim.loader.enable()
 
+-- Leaders (set before any plugin/mapping loads so they bind correctly)
 vim.g.mapleader = ','
 vim.g.maplocalleader = '\\'
-vim.g.relativenumber = false
 
--- Basic settings
-vim.opt.number = true -- Line numbers
-vim.opt.relativenumber = vim.g.relativenumber -- Relative line numbers
-vim.opt.cursorline = true -- Highlight current line
-vim.opt.cursorlineopt = 'screenline,number' -- Parts to highlight of current line
-vim.opt.wrap = false -- Don't wrap lines
-vim.opt.scrolloff = 5 -- Keep some lines above/below cursor
-vim.opt.sidescrolloff = 3 -- Keep some columns left/right of cursor
+-- UI & appearance ------------------------------------------------------------
+vim.opt.number = true -- Absolute line numbers
+vim.g.relativenumber = false -- Tracked as a global so insert mode can toggle it (see relative-numbers.lua)
+vim.opt.relativenumber = vim.g.relativenumber
+vim.opt.cursorline = true -- Highlight the current line
+vim.opt.cursorlineopt = 'screenline,number' -- ...but only the number + screen line, not the whole row
+vim.opt.signcolumn = 'yes' -- Always reserve the sign column so text doesn't shift
+vim.opt.colorcolumn = '140' -- Visual guide for max line length
+vim.opt.pumheight = 10 -- Cap the completion popup height
+vim.opt.winborder = 'rounded' -- Rounded borders on all floating windows (hover, signature, diagnostics)
+vim.opt.laststatus = 3 -- Single global statusline shared across all splits
+vim.opt.fillchars = { eob = ' ' } -- Hide the ~ on empty lines past the buffer end
+vim.opt.showmatch = true -- Briefly jump to the matching bracket on insert
+vim.opt.matchtime = 2 -- ...for 200ms
 
--- Indentation
-vim.opt.tabstop = 2 -- Tab width
-vim.opt.shiftwidth = 2 -- Indent width
-vim.opt.softtabstop = 2 -- Soft tab stop
-vim.opt.expandtab = true -- Use spaces instead of tabs
-vim.opt.smartindent = true -- Smart auto-indenting
+-- Scrolling & wrapping -------------------------------------------------------
+vim.opt.wrap = false -- Don't soft-wrap long lines
+vim.opt.linebreak = true -- If wrap is ever on, break at word boundaries
+vim.opt.breakindent = true -- ...and keep wrapped lines visually indented
+vim.opt.scrolloff = 5 -- Keep 5 lines of context above/below the cursor
+vim.opt.sidescrolloff = 3 -- Keep 3 columns of context left/right
 
--- Search settings
-vim.opt.ignorecase = true -- Case insensitive search
-vim.opt.smartcase = true -- Case sensitive if uppercase in search
+-- Indentation (2-space soft tabs) --------------------------------------------
+vim.opt.expandtab = true -- Insert spaces instead of tabs
+vim.opt.tabstop = 2 -- A tab renders as 2 columns
+vim.opt.shiftwidth = 2 -- Indent/dedent by 2
+vim.opt.softtabstop = -1 -- Tab/backspace follows shiftwidth (so per-filetype overrides only need shiftwidth)
+vim.opt.smartindent = true -- Language-aware auto-indent
 
--- Visual settings
-vim.opt.signcolumn = 'yes' -- Always show sign column
-vim.opt.colorcolumn = '140' -- Show column in text
-vim.opt.showmatch = true -- Highlight matching brackets
-vim.opt.matchtime = 2 -- How long to show matching bracket
-vim.opt.pumheight = 10 -- Popup menu height
-vim.opt.synmaxcol = 300 -- Syntax highlighting limit
-vim.opt.fillchars = { eob = ' ' } -- Fill characters
-vim.opt.breakindent = true -- Wrapped lines will indent visually
-vim.opt.linebreak = true -- Wrapped lines will soft break on whitespace
-vim.opt.splitbelow = true -- Split below and focus below
-vim.opt.splitright = true -- Split to the right and focus the right
+-- Search ---------------------------------------------------------------------
+vim.opt.ignorecase = true -- Case-insensitive by default...
+vim.opt.smartcase = true -- ...unless the query contains an uppercase letter
+vim.opt.inccommand = 'split' -- Live preview of :substitute in a split
 
--- Whitespace characters
-vim.opt.list = true -- Display whitespace characters
-vim.opt.listchars = { -- Whitespace characters definitions
-    tab = '» ',
-    trail = '·',
-    nbsp = '␣',
-    -- lead = '·',
-}
+-- Splits & windows -----------------------------------------------------------
+vim.opt.splitbelow = true -- Horizontal splits open below
+vim.opt.splitright = true -- Vertical splits open to the right
+vim.opt.splitkeep = 'screen' -- Keep text visually stable when splits open/close
 
--- File handling
-vim.opt.swapfile = false -- Don't create swap files
-vim.opt.undofile = true -- Persistent undo
-vim.opt.updatetime = 400 -- Faster completion
-vim.opt.timeoutlen = 500 -- Key timeout duration
-vim.opt.ttimeoutlen = 0 -- Key code timeout
-vim.opt.fileformats = 'unix,dos,mac' -- Match eof formatting to system
+-- Whitespace rendering -------------------------------------------------------
+vim.opt.list = true -- Show invisible characters
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- Persist undo accross processes
-local undodir = vim.fn.expand('~/.vim/undodir')
-vim.opt.undodir = undodir
-if vim.fn.isdirectory(undodir) == 0 then vim.fn.mkdir(undodir, 'p') end
-
--- Behavior settings
-vim.opt.iskeyword:append('-') -- Treat dash as part of word
-vim.opt.path:append('**') -- include subdirectories in search
-vim.opt.mouse = 'a' -- Enable mouse support
-vim.schedule(function() vim.opt.clipboard:append('unnamedplus') end) -- Use system clipboard
-vim.opt.inccommand = 'split' -- Preview substitutions
-vim.opt.confirm = true -- Confirm dialog for unsaved changes
-vim.cmd('syntax sync minlines=256') -- Limit syntax parsing to N amount of lines
-
--- Folding settings
+-- Folding (treesitter-driven, everything open by default) ---------------------
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.opt.foldlevelstart = 99
 
--- Performance improvements
-vim.opt.redrawtime = 10000
-vim.opt.maxmempattern = 20000
+-- Files, undo & clipboard ----------------------------------------------------
+vim.opt.swapfile = false -- No swap files
+vim.opt.undofile = true -- Persist undo history across sessions
+vim.opt.undodir = vim.fn.expand('~/.vim/undodir')
+vim.opt.fileformats = 'unix,dos,mac' -- Prefer LF, fall back to CRLF/CR
+vim.opt.confirm = true -- Prompt to save instead of failing on unsaved changes
+vim.opt.mouse = 'a' -- Mouse support in all modes
+vim.opt.jumpoptions = 'stack,view' -- Browser-like jumplist + restore the view on jumps
+vim.schedule(function() vim.opt.clipboard:append('unnamedplus') end) -- Share the system clipboard (deferred for faster startup)
+if vim.fn.isdirectory(vim.o.undodir) == 0 then vim.fn.mkdir(vim.o.undodir, 'p') end
+
+-- Timing ---------------------------------------------------------------------
+vim.opt.updatetime = 400 -- Faster CursorHold events & swap writes (ms)
+vim.opt.timeoutlen = 500 -- Time allowed to finish a mapped sequence (ms)
+vim.opt.ttimeoutlen = 0 -- No wait on raw terminal key codes
+
+-- Editing behavior -----------------------------------------------------------
+vim.opt.iskeyword:append('-') -- Treat foo-bar as a single word
+vim.opt.path:append('**') -- :find searches subdirectories recursively
+
+-- Performance (guard the legacy syntax engine; treesitter does the rest) ------
+vim.opt.synmaxcol = 300 -- Stop syntax highlighting past column 300
+vim.opt.redrawtime = 10000 -- Allow slow files more time before disabling highlight
+vim.opt.maxmempattern = 20000 -- Memory ceiling for pattern matching (KB)
+vim.cmd('syntax sync minlines=256') -- Limit syntax look-behind for large files
 
 -- Package helpers
 local gh = function(x) return 'https://github.com/' .. x end
@@ -178,7 +179,6 @@ require('mini.icons').setup()
 require('which-key').setup({
     preset = 'helix',
     icons = { mappings = false },
-    win = { border = 'none' },
     spec = {
         {
             '<leader>b',
@@ -189,9 +189,6 @@ require('which-key').setup({
         { '<leader>d', group = 'Diagnostics' },
         { '<leader>g', group = 'Git' },
         { '<leader>gt', group = 'Toggle' },
-        { '<leader>h', group = 'Harpoon' },
-        { '<leader>n', group = 'No Neck Pain' },
-        { '<leader>o', group = 'Obsidian' },
         { '<leader>t', group = 'Test' },
         { '<leader>tr', group = 'Run' },
         { '<leader>w', proxy = '<C-w>', group = 'Windows' },

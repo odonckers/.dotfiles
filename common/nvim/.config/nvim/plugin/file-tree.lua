@@ -23,7 +23,7 @@ require('neo-tree').setup({
     },
     window = {
         width = 48,
-        position = 'right',
+        -- position = 'right',
     },
 })
 

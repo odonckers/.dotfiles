@@ -38,10 +38,10 @@ if (( $+commands[claude] )); then
 
     case "$choice" in
       personal)
-        claude-personal
+        CLAUDE_CONFIG_DIR="$HOME/.claude-personal" command claude
         ;;
       bethel)
-        claude-bethel
+        CLAUDE_CONFIG_DIR="$HOME/.claude-bethel" command claude
         ;;
       *)
         echo "No selection made, aborting."
@@ -90,9 +90,3 @@ dev() {
 [[ -f $HOME/.zshrc.linux ]] && source $HOME/.zshrc.linux
 [[ -f $HOME/.zshrc.macos ]] && source $HOME/.zshrc.macos
 [[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
-
-# bun completions
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"

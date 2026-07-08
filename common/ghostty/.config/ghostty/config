@@ -1,32 +1,86 @@
+# ==============================================================================
+# Ghostty configuration
+# ------------------------------------------------------------------------------
+# Full docs for any key: `ghostty +show-config --default --docs | less`
+# List available themes/fonts: `ghostty +list-themes` / `ghostty +list-fonts`
+# ==============================================================================
+
+# ---- Environment & shell integration ------------------------------------------
+
+# Force TERM to xterm-256color for launched commands instead of Ghostty's
+# default `xterm-ghostty` -- needed for tools (tmux, older terminfo databases)
+# that don't recognize xterm-ghostty.
 env = TERM=xterm-256color
 
+# Inject shell-integration hooks (cwd tracking, prompt marking, confirm-less
+# close at a bare prompt, better resize repainting). `zsh` targets this
+# shell directly instead of Ghostty auto-detecting it from the binary name.
 shell-integration = zsh
+
+# Feature list is additive over the defaults (cursor, title, path already
+# on) -- this just turns on two SSH-specific features that are off by
+# default:
+#   ssh-env      rewrites TERM/COLORTERM for remote hosts over ssh
+#   ssh-terminfo auto-installs Ghostty's terminfo entry on remote hosts
 shell-integration-features = ssh-env,ssh-terminfo
+
+# ---- Font ----------------------------------------------------------------------
 
 font-family = JetBrainsMono Nerd Font Mono
 font-size = 12
+# Don't synthesize a heavier stroke weight; use the font's own weights.
 font-thicken = false
 
+# Per-cell size tweaks, as a % adjustment from the font's natural metrics.
 adjust-cell-width = 0%
 adjust-cell-height = 20%
 
+# ---- Window behavior -------------------------------------------------------------
+
+# Resize in pixel increments rather than snapping to whole terminal cells.
 window-step-resize = false
 
 window-padding-x = 10
 window-padding-y = 10
+# Distribute leftover space (window size not evenly divisible by cell size)
+# across all four edges instead of dumping it all in the bottom-right.
 window-padding-balance = true
 
-theme = Flexoki Dark
-
-background-opacity = 0.9
-background-blur = true
-
+# Always save/restore window position, size, tabs, and splits across quits
+# (macOS default only does this on a forced kill, not a normal quit).
 window-save-state = always
 
 mouse-hide-while-typing = true
 
+# ---- Appearance -------------------------------------------------------------------
+
+theme = Flexoki Dark
+
+# 1 = fully opaque, 0 = fully transparent.
+background-opacity = 0.9
+# Blur what shows through the transparent background (only has an effect
+# while background-opacity < 1).
+background-blur = true
+
+# ---- macOS integration ----------------------------------------------------------
+
+# Non-native fullscreen (faster, no animation) but keep the menu bar
+# visible. NOTE: native macOS tabs don't work in non-native fullscreen.
 macos-non-native-fullscreen = visible-menu
-macos-titlebar-style = hidden
+
+# "transparent": native titlebar, but it lets the window background color
+# show through for a more seamless look (vs. "native", "tabs", "hidden").
+macos-titlebar-style = transparent
+# The proxy icon (cwd folder icon) only renders with the native titlebar
+# style anyway, so this has no visible effect under "transparent" above --
+# kept explicit in case the titlebar style ever changes back to "native".
 macos-titlebar-proxy-icon = hidden
 
+# Treat left Option as Alt (so e.g. alt+b works in shells/TUIs) instead of
+# producing macOS's Unicode compose characters (option+b -> "∫").
 macos-option-as-alt = left
+
+# ---- Key bindings -----------------------------------------------------------------
+
+# Prompt for a new tab title (overrides the shell/OSC-driven title).
+keybind = cmd+shift+i=prompt_tab_title

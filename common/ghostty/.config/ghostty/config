@@ -1,4 +1,7 @@
+env = TERM=xterm-256color
+
 shell-integration = zsh
+shell-integration-features = ssh-env,ssh-terminfo
 
 font-family = JetBrainsMono Nerd Font Mono
 font-size = 12

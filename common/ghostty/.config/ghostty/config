@@ -75,7 +75,7 @@ macos-non-native-fullscreen = visible-menu
 
 # "transparent": native titlebar, but it lets the window background color
 # show through for a more seamless look (vs. "native", "tabs", "hidden").
-macos-titlebar-style = transparent
+macos-titlebar-style = hidden
 # The proxy icon (cwd folder icon) only renders with the native titlebar
 # style anyway, so this has no visible effect under "transparent" above --
 # kept explicit in case the titlebar style ever changes back to "native".

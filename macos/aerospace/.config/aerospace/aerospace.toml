@@ -47,14 +47,14 @@ persistent-workspaces = []
 # See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
     1 = ['built-in', 'main']  # browser personal
-    2 = 'main'                # browser work
+    2 = ['built-in', 'main']  # browser work
     3 = 'main'                # work / terminal
     4 = 'main'                # work overflow / tests
-    5 = 'main'                # whiteboard / freeform / gimp / figma
+    5 = 'main'
     6 = 'main'                # remote desktop / windows rdp
     7 = 'main'                # notes / study
-    8 = ['secondary', 'main'] # music / spotify
-    9 = ['secondary', 'main'] # communication / teams
+    8 = ['secondary', 'main'] # communication / teams
+    9 = ['secondary', 'main'] # music / spotify
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -70,28 +70,10 @@ on-mode-changed = []
 if.app-id = 'com.electron.cypress'
 run = 'move-node-to-workspace 4'
 
-# Workspace 5
-[[on-window-detected]]
-if.app-id = 'com.apple.freeform'
-run = 'move-node-to-workspace 5'
-
-[[on-window-detected]]
-if.app-id = 'org.gimp.gimp'
-run = 'move-node-to-workspace 5'
-
-[[on-window-detected]]
-if.app-id = 'com.figma.Desktop'
-run = 'move-node-to-workspace 5'
-
 # Workspace 6
 [[on-window-detected]]
 if.app-id = 'com.microsoft.rdc.macos'
 run = 'move-node-to-workspace 6'
-
-# Workspace 7
-[[on-window-detected]]
-if.app-id = 'org.jw.jwlibrary'
-run = 'move-node-to-workspace 7'
 
 # Workspace 8
 [[on-window-detected]]
@@ -123,12 +105,14 @@ run = 'layout floating'
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-    inner.horizontal = 0
-    inner.vertical =   0
+    inner.horizontal = 10
+    inner.vertical =   10
     outer.left =       0
     outer.right =      0
-    outer.top =        [{ monitor."LG Ultra HD" = 300 }, 0] # vertical secondary monitor
-    outer.bottom =     [{ monitor."LG Ultra HD" = 200 }, 0]
+    outer.top =        0
+    outer.bottom =     0
+    # outer.top =        [{ monitor."LG Ultra HD" = 200 }, 0] # vertical secondary monitor
+    # outer.bottom =     [{ monitor."LG Ultra HD" = 200 }, 0]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -156,7 +140,7 @@ run = 'layout floating'
     # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
     alt-f = 'exec-and-forget open -a Finder'
     alt-t = 'exec-and-forget open -a Ghostty --new'
-    alt-b = 'exec-and-forget open -a LibreWolf --new'
+    alt-b = 'exec-and-forget open -a Firefox --new'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     alt-comma =  'layout accordion horizontal vertical'

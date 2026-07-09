@@ -2,10 +2,12 @@
   "trustedformulae": [
     "anomalyco/tap/opencode",
     "hashicorp/tap/terraform",
-    "jetbrains/utils/kotlin-lsp",
-    "rjyo/moshi/moshi-hook"
+    "jetbrains/utils/kotlin-lsp"
   ],
   "trustedtaps": [
     "anomalyco/tap"
+  ],
+  "trustedcasks": [
+    "nikitabobko/tap/aerospace"
   ]
 }

@@ -5,8 +5,10 @@ tap "hashicorp/tap"
 tap "jetbrains/utils", "https://github.com/JetBrains/homebrew-utils"
 tap "jstkdng/programs"
 tap "mediosz/tap"
+tap "neurosnap/tap"
 tap "nikitabobko/tap"
 tap "rjyo/moshi"
+tap "shell-pool/shpool"
 # Browser automation CLI for AI agents
 brew "agent-browser"
 # Terminal multiplexer
@@ -59,8 +61,6 @@ brew "gitleaks"
 brew "glab"
 # Easiest way to access your cloud
 brew "granted"
-# Agent multiplexer that lives in your terminal
-brew "herdr"
 # Configurable static site generator
 brew "hugo"
 # Tools and libraries to manipulate images in select formats
@@ -135,10 +135,10 @@ brew "anomalyco/tap/opencode", trusted: true
 brew "hashicorp/tap/terraform", trusted: true
 # Official Language Server Protocol for the Kotlin language
 brew "jetbrains/utils/kotlin-lsp", trusted: true
-# Portable daemon + CLI that bridges AI coding agents to the Moshi mobile app
-brew "rjyo/moshi/moshi-hook", trusted: true
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
+# AeroSpace is an i3-like tiling window manager for macOS
+cask "nikitabobko/tap/aerospace", trusted: true
 # Tools for building Android applications
 cask "android-studio"
 # OpenAI's official ChatGPT desktop app
@@ -189,8 +189,6 @@ cask "microsoft-powerpoint"
 cask "microsoft-teams"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# Get up and running with large language models locally
-cask "ollama-app"
 # Desktop and web interface for OpenCode AI agent
 cask "openchamber"
 # Utility to uninstall apps and remove leftover files from old/uninstalled apps

@@ -2,11 +2,12 @@
 
 options=(
   style=round
-  active_color="gradient(top_left=0xeecdcdcd,bottom_right=0xee878787)"
-  inactive_color=0x00cdcdcd
-  width=4.0
+  active_color=0xffd0a215
+  inactive_color=0x00403e3c
+  width=1.0
   hidpi=on
   order=above
+  ax_focus=off
 )
 
 borders "${options[@]}"

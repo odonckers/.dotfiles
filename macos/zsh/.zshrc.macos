@@ -9,5 +9,4 @@ export PATH="$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
 source $XDG_CONFIG_HOME/zsh/functions/azure-cosmos-emulator.zsh
 source $XDG_CONFIG_HOME/zsh/functions/brew.zsh
 source $XDG_CONFIG_HOME/zsh/functions/dotnet-link-libraries.zsh
-source $XDG_CONFIG_HOME/zsh/functions/ide.zsh
 source $XDG_CONFIG_HOME/zsh/functions/port.zsh

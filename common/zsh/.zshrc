@@ -74,18 +74,7 @@ if (( $+commands[nvim] )); then
   alias vs="nvim -S"
 fi
 
-dev() {
-  local template="${1:-dev}"
-  local repo
-  repo=$(fd -HI '^\.git$' ~/dev -x dirname {} | sort -u | fzf --prompt="Select repo > " --height=40% --border --reverse)
-
-  [[ -z "$repo" ]] && return 1
-
-  local name
-  name=$(basename "$repo")
-
-  DEV_REPO_ROOT="$repo" DEV_REPO_NAME="$name" tmuxinator start "$template"
-}
+source $XDG_CONFIG_HOME/zsh/functions/dev.zsh
 
 [[ -f $HOME/.zshrc.linux ]] && source $HOME/.zshrc.linux
 [[ -f $HOME/.zshrc.macos ]] && source $HOME/.zshrc.macos

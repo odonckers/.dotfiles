@@ -1,0 +1,91 @@
+{
+  "hooks" : {
+    "PermissionRequest" : [
+      {
+        "hooks" : [
+          {
+            "command" : "'\/opt\/homebrew\/bin\/moshi-hook' codex-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ],
+    "PostToolUse" : [
+      {
+        "hooks" : [
+          {
+            "command" : "'\/Users\/odonckers\/Library\/Application Support\/Bartender\/NotchBar\/AgentStatus\/hooks\/codex-notify-hook.sh' # notchbar-agents-codex-hook",
+            "type" : "command"
+          }
+        ],
+        "matcher" : "Bash"
+      }
+    ],
+    "PreToolUse" : [
+      {
+        "hooks" : [
+          {
+            "command" : "'\/Users\/odonckers\/Library\/Application Support\/Bartender\/NotchBar\/AgentStatus\/hooks\/codex-notify-hook.sh' # notchbar-agents-codex-hook",
+            "type" : "command"
+          }
+        ],
+        "matcher" : "Bash"
+      }
+    ],
+    "SessionStart" : [
+      {
+        "hooks" : [
+          {
+            "command" : "'\/opt\/homebrew\/bin\/moshi-hook' codex-hook",
+            "type" : "command"
+          }
+        ]
+      },
+      {
+        "hooks" : [
+          {
+            "command" : "'\/Users\/odonckers\/Library\/Application Support\/Bartender\/NotchBar\/AgentStatus\/hooks\/codex-notify-hook.sh' # notchbar-agents-codex-hook",
+            "type" : "command"
+          }
+        ],
+        "matcher" : "startup|resume"
+      }
+    ],
+    "Stop" : [
+      {
+        "hooks" : [
+          {
+            "command" : "'\/opt\/homebrew\/bin\/moshi-hook' codex-hook",
+            "type" : "command"
+          }
+        ]
+      },
+      {
+        "hooks" : [
+          {
+            "command" : "'\/Users\/odonckers\/Library\/Application Support\/Bartender\/NotchBar\/AgentStatus\/hooks\/codex-notify-hook.sh' # notchbar-agents-codex-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit" : [
+      {
+        "hooks" : [
+          {
+            "command" : "'\/opt\/homebrew\/bin\/moshi-hook' codex-hook",
+            "type" : "command"
+          }
+        ]
+      },
+      {
+        "hooks" : [
+          {
+            "command" : "'\/Users\/odonckers\/Library\/Application Support\/Bartender\/NotchBar\/AgentStatus\/hooks\/codex-notify-hook.sh' # notchbar-agents-codex-hook",
+            "type" : "command"
+          }
+        ]
+      }
+    ]
+  }
+}

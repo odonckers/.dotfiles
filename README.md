@@ -3,27 +3,52 @@
 Welcome! This is my personal `.dotfiles` repository where I keep all my dotfiles and configuration.
 Feel free to browse around, take inspiration, or use anything you find helpful.
 
-## What's Inside
+## Structure
 
-This repository contains my carefully curated setup for a productive and pleasant development environment.
-At its heart, you'll find:
+Configs are organized into [GNU Stow](https://www.gnu.org/software/stow/) packages, grouped by
+platform and by role:
 
-- **zsh** - My shell of choice
-- **neovim** - My primary text editor
-- **Ghostty** - A fast, modern terminal emulator (although I do like **kitty** too...)
-- **And more** - Additional tools and configurations that make my workflow, well, my workflow
+```
+common/dev     - shell and dev tooling shared across every machine
+macos/dev      - macOS-specific dev tooling
+macos/desktop  - macOS desktop/WM configuration
+linux/dev      - Linux-specific dev tooling
+linux/desktop  - Linux desktop/WM configuration
+```
+
+Each package mirrors the layout of `$HOME`, so stowing a package symlinks its contents straight
+into place. A few configs worth calling out:
+
+- [`nvim`](common/dev/.config/nvim) - my primary text editor config
+- [`ghostty`](common/dev/.config/ghostty) - my terminal emulator config
+- [`tmux`](common/dev/.config/tmux) - my terminal multiplexer config
+- [`aerospace`](macos/desktop/.config/aerospace) - my tiling window manager config (macOS only)
 
 ## Getting Started
 
-If you'd like to use any of these configs:
+This repo is meant to be cloned and stowed, not copy-pasted. Install [GNU Stow](https://www.gnu.org/software/stow/)
+(`brew install stow` or your distro's package manager), clone this repo, then symlink the
+packages relevant to your machine from the repo root:
 
-1. Browse through the files to see what interests you
-2. Copy individual config files or sections that you find useful
-3. Adapt them to your own needs and preferences
+```sh
+git clone https://github.com/odonckers/.dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+
+# on macOS
+stow -t ~ common/dev macos/dev macos/desktop
+
+# on Linux
+stow -t ~ common/dev linux/dev linux/desktop
+```
+
+Stow only creates symlinks, so nothing is copied and nothing is overwritten silently -
+if a target file already exists, stow will refuse and tell you. Adopt or remove the
+conflicting file, then re-run.
 
 **Note:**
 These are my personal configurations, so they're tailored to my workflow.
-I recommend reviewing and understanding what each config does before applying it to your system.
+I recommend reviewing and understanding what each config does before applying it to your system,
+and stowing only the packages that make sense for your platform.
 
 ## Philosophy
 

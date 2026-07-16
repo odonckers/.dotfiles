@@ -5,7 +5,7 @@
 /common/dev/.config/yazi/plugins
 /common/dev/.config/zed/prompts
 
-/macos/karabiner/.config/karabiner/automatic_backups
+/macos/desktop/.config/karabiner/automatic_backups
 
 /common/dev/.config/emacs/elpa
 /common/dev/.config/emacs/eshell

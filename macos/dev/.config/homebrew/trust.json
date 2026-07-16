@@ -2,12 +2,14 @@
   "trustedformulae": [
     "anomalyco/tap/opencode",
     "hashicorp/tap/terraform",
-    "jetbrains/utils/kotlin-lsp"
+    "jetbrains/utils/kotlin-lsp",
+    "magicmark/tap/spacelist"
   ],
   "trustedtaps": [
     "anomalyco/tap"
   ],
   "trustedcasks": [
+    "mediosz/tap/swipeaerospace",
     "nikitabobko/tap/aerospace"
   ]
 }

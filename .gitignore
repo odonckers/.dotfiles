@@ -1,11 +1,11 @@
 /.claude
 
-/common/dev/.config/nvim/lazy-lock.json
-/common/dev/.config/tmux/plugins
-/common/dev/.config/yazi/plugins
-/common/dev/.config/zed/prompts
+/dev/.config/nvim/lazy-lock.json
+/dev/.config/tmux/plugins
+/dev/.config/yazi/plugins
+/dev/.config/zed/prompts
 
-/macos/desktop/.config/karabiner/automatic_backups
+/desktop-macos/.config/karabiner/automatic_backups
 
-/common/dev/.config/emacs/elpa
-/common/dev/.config/emacs/eshell
+/dev/.config/emacs/elpa
+/dev/.config/emacs/eshell

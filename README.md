@@ -9,20 +9,23 @@ Configs are organized into [GNU Stow](https://www.gnu.org/software/stow/) packag
 platform and by role:
 
 ```
-common/dev     - shell and dev tooling shared across every machine
-macos/dev      - macOS-specific dev tooling
-macos/desktop  - macOS desktop/WM configuration
-linux/dev      - Linux-specific dev tooling
-linux/desktop  - Linux desktop/WM configuration
+dev             - shell and dev tooling shared across every machine
+dev-macos       - macOS-specific dev tooling
+desktop-macos   - macOS desktop/WM configuration
+dev-linux       - Linux-specific dev tooling
+desktop-linux   - Linux desktop/WM configuration
 ```
+
+(`macos/.installers` and `macos/.setup.sh` are one-off macOS provisioning scripts, not stow
+packages.)
 
 Each package mirrors the layout of `$HOME`, so stowing a package symlinks its contents straight
 into place. A few configs worth calling out:
 
-- [`nvim`](common/dev/.config/nvim) - my primary text editor config
-- [`ghostty`](common/dev/.config/ghostty) - my terminal emulator config
-- [`tmux`](common/dev/.config/tmux) - my terminal multiplexer config
-- [`aerospace`](macos/desktop/.config/aerospace) - my tiling window manager config (macOS only)
+- [`nvim`](dev/.config/nvim) - my primary text editor config
+- [`ghostty`](dev/.config/ghostty) - my terminal emulator config
+- [`tmux`](dev/.config/tmux) - my terminal multiplexer config
+- [`aerospace`](desktop-macos/.config/aerospace) - my tiling window manager config (macOS only)
 
 ## Getting Started
 
@@ -35,15 +38,23 @@ git clone https://github.com/odonckers/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
 # on macOS
-stow -t ~ common/dev macos/dev macos/desktop
+stow -t ~ dev dev-macos desktop-macos
 
 # on Linux
-stow -t ~ common/dev linux/dev linux/desktop
+stow -t ~ dev dev-linux desktop-linux
 ```
 
 Stow only creates symlinks, so nothing is copied and nothing is overwritten silently -
 if a target file already exists, stow will refuse and tell you. Adopt or remove the
 conflicting file, then re-run.
+
+Once `dev` is stowed, a `syncdots` shell function is available from any directory. It always
+targets `~/.dotfiles` and re-runs the correct `stow` command for the current OS, so future
+pulls can be re-synced with a single command:
+
+```sh
+syncdots
+```
 
 **Note:**
 These are my personal configurations, so they're tailored to my workflow.

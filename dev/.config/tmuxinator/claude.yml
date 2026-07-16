@@ -1,7 +1,0 @@
-name: <%= ENV["DEV_REPO_NAME"] %>
-root: <%= ENV["DEV_REPO_ROOT"] %>
-
-windows:
-  - editor: nvim
-  - git: lazygit
-  - claude: claude

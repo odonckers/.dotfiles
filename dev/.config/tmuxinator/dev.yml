@@ -3,11 +3,11 @@ root: <%= ENV["DEV_REPO_ROOT"] %>
 
 windows:
   - editor:
-      layout: main-vertical-mirrored
+      layout: 171a,362x72,0,0{201x72,0,0[201x51,0,0,33,201x20,0,52,34],160x72,202,0,31}
       panes:
-        - claude
         - nvim
         -
+        - claude
   - server:
       layout: even-horizontal
       panes:

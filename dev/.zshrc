@@ -28,6 +28,7 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   source $ZSH/oh-my-zsh.sh
 fi
 
+(( $+commands[assume] )) && alias assume=". assume"
 if (( $+commands[claude] )); then
   alias claude-personal='CLAUDE_CONFIG_DIR="$HOME/.claude-personal" command claude'
   alias claude-bethel='CLAUDE_CONFIG_DIR="$HOME/.claude-bethel" command claude'

@@ -28,8 +28,8 @@ shell-integration-features = ssh-env,ssh-terminfo
 
 font-family = JetBrainsMono Nerd Font Mono
 font-size = 12
-# Don't synthesize a heavier stroke weight; use the font's own weights.
-font-thicken = false
+font-thicken = true
+font-thicken-strength = 175
 
 # Per-cell size tweaks, as a % adjustment from the font's natural metrics.
 adjust-cell-width = 0%

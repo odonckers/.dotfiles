@@ -12,6 +12,7 @@ set -eu
 DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$DIR/colors.sh"
 . "$DIR/appearance.sh"
+. "$DIR/fzf-opts.sh"
 
 MODE="${1:-$(theming_mode)}"
 theming_colors "$MODE"
@@ -29,6 +30,11 @@ if tmux info >/dev/null 2>&1; then
 
   tmux set-option -g copy-mode-position-style "fg=$THEME_TX,bg=$THEME_UI"
   tmux set-option -g copy-mode-selection-style "fg=$THEME_BG,bg=$THEME_YE,bold"
+
+  # For fzf invocations tmux spawns directly (tmux-fzf's C-s, the
+  # popup-based `prefix + e` repo picker) -- both skip .zshrc, so they'd
+  # otherwise never see a colored fzf until the server was restarted.
+  tmux set-environment -g FZF_DEFAULT_OPTS "$(theming_fzf_opts)"
 fi
 
 # tmux-palette's own theme files follow "<theme>" (dark) / "<theme>-light"

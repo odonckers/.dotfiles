@@ -22,8 +22,8 @@ if tmux info >/dev/null 2>&1; then
   tmux set-option -g message-style "fg=$THEME_TX,bg=$THEME_UI,fill=$THEME_UI"
   tmux set-option -g pane-scrollbars-style "fg=$THEME_YE,bg=default"
 
-  tmux setw -g window-status-format "#[fg=$THEME_TX_2,bg=$THEME_UI] #I:#W "
-  tmux setw -g window-status-current-format "#[fg=$THEME_BG,bg=$THEME_YE,bold] #I:#W "
+  tmux setw -g window-status-format "#[fg=$THEME_TX_2,bg=$THEME_UI] #I:#W#{?window_zoomed_flag, 󰘖,} "
+  tmux setw -g window-status-current-format "#[fg=$THEME_BG,bg=$THEME_YE,bold] #I:#W#{?window_zoomed_flag, 󰘖,} "
 
   tmux set-option -g pane-border-style "fg=$THEME_UI_3,bg=default"
   tmux set-option -g pane-active-border-style "fg=$THEME_YE,bg=default"
@@ -44,7 +44,7 @@ THEME_NAME="$(theming_active_theme)"
 PALETTE_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmux-palette"
 mkdir -p "$PALETTE_DIR"
 if [ "$MODE" = light ]; then
-  printf '{\n  "name": "%s-light"\n}\n' "$THEME_NAME" > "$PALETTE_DIR/theme.json"
+  printf '{\n  "name": "%s-light"\n}\n' "$THEME_NAME" >"$PALETTE_DIR/theme.json"
 else
-  printf '{\n  "name": "%s"\n}\n' "$THEME_NAME" > "$PALETTE_DIR/theme.json"
+  printf '{\n  "name": "%s"\n}\n' "$THEME_NAME" >"$PALETTE_DIR/theme.json"
 fi

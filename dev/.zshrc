@@ -68,8 +68,13 @@ if (( $+commands[fzf] )); then
   # tmux spawns directly (tmux-fzf's C-s, the `prefix + e` popup) skip
   # .zshrc entirely, so apply-tmux.sh pushes the same value into tmux's
   # environment table for those.
+  _theming_last_mode=""
   _theming_fzf_opts() {
-    theming_colors "$(theming_mode)"
+    local mode
+    mode="$(theming_mode)"
+    [[ "$mode" == "$_theming_last_mode" ]] && return
+    _theming_last_mode="$mode"
+    theming_colors "$mode"
     export FZF_DEFAULT_OPTS="$(theming_fzf_opts)"
   }
   _theming_fzf_opts

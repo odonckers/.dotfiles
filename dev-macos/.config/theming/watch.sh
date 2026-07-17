@@ -13,8 +13,11 @@ last=""
 while true; do
   mode="$(theming_mode)"
   if [ "$mode" != "$last" ]; then
-    "$CONFIG_DIR/apply-tmux.sh" "$mode"
-    last="$mode"
+    if "$CONFIG_DIR/apply-tmux.sh" "$mode"; then
+      last="$mode"
+    else
+      echo "watch.sh: apply-tmux.sh failed for mode=$mode, will retry" >&2
+    fi
   fi
   sleep 2
 done

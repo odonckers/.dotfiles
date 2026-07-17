@@ -12,8 +12,10 @@ My [Ghostty](https://ghostty.org) terminal emulator config.
 
 - **Theme**: [Flexoki](https://stephango.com/flexoki), following macOS appearance --
   built-in `Flexoki Dark` / `Flexoki Light` (`theme = dark:Flexoki Dark, light:Flexoki Light`).
-  tmux and fzf mirror this switch too; see [`dev/.config/flexoki`](../flexoki). Neovim already
-  follows the terminal's `background` automatically, so it needs no separate wiring.
+  tmux and fzf mirror this switch too; see [`dev/.config/theming`](../theming). Neovim already
+  follows the terminal's `background` automatically, so it needs no separate wiring. This line
+  is tied to macOS appearance only, not to `theming/active-theme` -- update it by hand if you
+  switch the active theme away from Flexoki.
 - **Font**: JetBrainsMono Nerd Font Mono @ 12pt, `font-thicken = false` (native weights, no
   synthetic bold), with a slightly taller cell height (`adjust-cell-height = 20%`) for extra
   line spacing.

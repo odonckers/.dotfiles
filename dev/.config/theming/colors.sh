@@ -22,6 +22,11 @@
 # The "-2" tier is the counterpart tier from Flexoki's 12-tone accent scale
 # (see themes/flexoki.sh) -- tx-3 is unused today but reserved for a future
 # faint-text role.
+#
+# Ghostty is NOT wired into this: its `theme = dark:X, light:Y` in
+# dev/.config/ghostty/config only follows macOS appearance, not this file's
+# active theme. Switching the active theme here will not change Ghostty --
+# update that line by hand to match.
 THEMING_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/theming"
 
 # Name of the active theme, from the `active-theme` key file. Falls back to

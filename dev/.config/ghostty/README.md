@@ -6,12 +6,14 @@ My [Ghostty](https://ghostty.org) terminal emulator config.
 
 - `config` - the single config file, well-commented with section headers.
 - `themes/vague` - a spare copy of the [vague-ghostty](https://github.com/vague-theme/vague-ghostty)
-  theme, kept for reference/future use. The active theme is Ghostty's built-in `Flexoki Dark`,
-  not this file.
+  theme, kept for reference/future use. Not the active theme.
 
 ## Key settings
 
-- **Theme**: `Flexoki Dark` (built-in).
+- **Theme**: [Flexoki](https://stephango.com/flexoki), following macOS appearance --
+  built-in `Flexoki Dark` / `Flexoki Light` (`theme = dark:Flexoki Dark, light:Flexoki Light`).
+  tmux and fzf mirror this switch too; see [`dev/.config/flexoki`](../flexoki). Neovim already
+  follows the terminal's `background` automatically, so it needs no separate wiring.
 - **Font**: JetBrainsMono Nerd Font Mono @ 12pt, `font-thicken = false` (native weights, no
   synthetic bold), with a slightly taller cell height (`adjust-cell-height = 20%`) for extra
   line spacing.

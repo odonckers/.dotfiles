@@ -57,12 +57,24 @@ if (( $+commands[eza] )); then
   alias ll="eza -ahl --git"
 fi
 if (( $+commands[fzf] )); then
-   export FZF_DEFAULT_OPTS="
-    --color=fg:#878580,bg:#100F0F,hl:#CECDC3
-    --color=fg+:#878580,bg+:#1C1B1A,hl+:#CECDC3
-    --color=border:#AF3029,header:#CECDC3,gutter:#100F0F
-    --color=spinner:#24837B,info:#24837B,separator:#1C1B1A
-    --color=pointer:#AD8301,marker:#AF3029,prompt:#AD8301"
+  source "$XDG_CONFIG_HOME/theming/colors.sh"
+  source "$XDG_CONFIG_HOME/theming/appearance.sh"
+
+  # Recomputed every prompt so a mid-session light/dark flip (macOS System
+  # Settings, or the appearance watcher on a wake/sleep cycle) is picked up
+  # without opening a new shell -- matches Ghostty's live switching.
+  _theming_fzf_opts() {
+    theming_colors "$(theming_mode)"
+    export FZF_DEFAULT_OPTS="
+    --color=fg:$THEME_TX_2,bg:$THEME_BG,hl:$THEME_TX
+    --color=fg+:$THEME_TX_2,bg+:$THEME_BG_2,hl+:$THEME_TX
+    --color=border:$THEME_RE_2,header:$THEME_TX,gutter:$THEME_BG
+    --color=spinner:$THEME_CY_2,info:$THEME_CY_2,separator:$THEME_BG_2
+    --color=pointer:$THEME_YE_2,marker:$THEME_RE_2,prompt:$THEME_YE_2"
+  }
+  _theming_fzf_opts
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd _theming_fzf_opts
 fi
 (( $+commands[lazygit] )) && alias lg=lazygit
 if (( $+commands[ng] )); then

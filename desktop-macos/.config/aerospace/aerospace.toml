@@ -107,10 +107,10 @@ run = 'layout floating'
 [gaps]
     inner.horizontal = 10
     inner.vertical =   10
-    outer.left =       10
-    outer.right =      10
+    outer.left =       0
+    outer.right =      0
     outer.top =        0
-    outer.bottom =     10
+    outer.bottom =     0
     # outer.top =        [{ monitor."LG Ultra HD" = 200 }, 0] # vertical secondary monitor
     # outer.bottom =     [{ monitor."LG Ultra HD" = 200 }, 0]
 

@@ -4,11 +4,9 @@ tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "hashicorp/tap"
 tap "jetbrains/utils", "https://github.com/JetBrains/homebrew-utils"
 tap "jstkdng/programs"
-tap "mediosz/tap"
 tap "neurosnap/tap"
 tap "nikitabobko/tap"
 tap "rjyo/moshi"
-tap "shell-pool/shpool"
 # Browser automation CLI for AI agents
 brew "agent-browser"
 # Terminal multiplexer
@@ -141,6 +139,8 @@ cask "1password"
 cask "nikitabobko/tap/aerospace", trusted: true
 # Tools for building Android applications
 cask "android-studio"
+# App to write and organise your ideas
+cask "capacities"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
 # Anthropic's official Claude AI desktop app
@@ -149,8 +149,6 @@ cask "claude"
 cask "claude-code@latest"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
-# OpenAI's Codex desktop app for managing coding agents
-cask "codex-app"
 # Brings the power of Copilot coding agent directly to your terminal
 cask "copilot-cli@prerelease"
 # Write, edit, and chat about your code with AI
@@ -165,6 +163,8 @@ cask "emacs-app"
 cask "firefox"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Native client for GitHub Copilot
+cask "github-copilot-app"
 # Web browser
 cask "google-chrome"
 # Client for the Google Drive storage service
@@ -191,12 +191,16 @@ cask "microsoft-teams"
 cask "obsidian"
 # Desktop and web interface for OpenCode AI agent
 cask "openchamber"
+# AI coding agent desktop client
+cask "opencode-desktop"
 # Utility to uninstall apps and remove leftover files from old/uninstalled apps
 cask "pearcleaner"
 # Music streaming service
 cask "spotify"
 # Video game digital distribution service
 cask "steam"
+# To-do list
+cask "todoist-app"
 # Speech-to-text and AI text processing
 cask "typewhisper"
 # Open-source code editor

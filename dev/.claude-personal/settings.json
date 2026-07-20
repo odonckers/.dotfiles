@@ -1,5 +1,12 @@
 {
-  "model": "sonnet",
+  "extraKnownMarketplaces": {
+    "indie-apple-stack": {
+      "source": {
+        "source": "github",
+        "repo": "rshankras/claude-code-apple-skills"
+      }
+    }
+  },
   "effortLevel": "medium",
   "voice": {
     "enabled": true,
@@ -8,5 +15,6 @@
   "theme": "auto",
   "editorMode": "vim",
   "agentPushNotifEnabled": true,
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "inputNeededNotifEnabled": true
 }

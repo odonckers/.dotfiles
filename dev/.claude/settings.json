@@ -8,5 +8,6 @@
   "theme": "auto",
   "editorMode": "vim",
   "agentPushNotifEnabled": true,
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "inputNeededNotifEnabled": true
 }

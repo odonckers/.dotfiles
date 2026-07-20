@@ -16,8 +16,7 @@ dev-linux       - Linux-specific dev tooling
 desktop-linux   - Linux desktop/WM configuration
 ```
 
-(`macos/.installers` and `macos/.setup.sh` are one-off macOS provisioning scripts, not stow
-packages.)
+(`macos/.setup.sh` is a one-off macOS provisioning script, not a stow package.)
 
 Each package mirrors the layout of `$HOME`, so stowing a package symlinks its contents straight
 into place. A few configs worth calling out:
@@ -26,6 +25,7 @@ into place. A few configs worth calling out:
 - [`ghostty`](dev/.config/ghostty) - my terminal emulator config
 - [`tmux`](dev/.config/tmux) - my terminal multiplexer config
 - [`aerospace`](desktop-macos/.config/aerospace) - my tiling window manager config (macOS only)
+- [`Installers`](dev-macos/Installers) - macOS install scripts, stowed to `~/Installers`
 
 ## Getting Started
 

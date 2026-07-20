@@ -2,7 +2,7 @@
 # Switch the active theme: writes the name into `active-theme` and, if a
 # tmux server is running, applies it immediately (both dark and light don't
 # need a restart -- fzf/delta already recompute from active-theme on every
-# use). Usage: theming/set.sh <name>   e.g. theming/set.sh flexoki
+# use). Usage: theming/set.sh <name>   e.g. theming/set.sh github
 set -eu
 
 DIR="$(cd "$(dirname "$0")" && pwd)"

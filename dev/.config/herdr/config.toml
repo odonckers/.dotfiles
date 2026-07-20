@@ -22,25 +22,26 @@ name = "vesper" # base theme is irrelevant — every token below is overridden
 auto_switch = false
 
 [theme.custom]
-# Flexoki Dark, matched to this repo's existing Flexoki colors already used by
-# tmux's agent-indicator (red/blue) and tmux-palette's flexoki.json
-# (bg/panel/selected/fg/muted/accent). Full scale: flexoki-neovim's palette.lua.
-accent      = "#D0A215" # yellow-400 — highlights, active borders
-panel_bg    = "#100F0F" # black — base background
-surface_dim = "#1C1B1A" # base-950 — dim separators
-surface0    = "#282726" # base-900 — selected/focused surface
-surface1    = "#343331" # base-850 — hover/active surface
-overlay1    = "#878580" # base-500 — brighter overlay text
-overlay0    = "#6F6E69" # base-600 — muted secondary text
-text        = "#CECDC3" # base-200 — main text
-subtext0    = "#B7B5AC" # base-300 — subdued labels
-mauve       = "#8B7EC8" # purple-400 — branch/special labels
-green       = "#879A39" # green-400 — done/idle
-yellow      = "#D0A215" # yellow-400 — working/running
-red         = "#D14D41" # red-400 — needs attention/blocked
-blue        = "#4385BE" # blue-400 — unseen/done notifications
-teal        = "#3AA99F" # cyan-400 — notification accent
-peach       = "#DA702C" # orange-400 — interrupted/warning
+# GitHub Dark Default, matched to this repo's existing GitHub colors already
+# used by tmux's agent-indicator (red/blue) and tmux-palette's github.json
+# (bg/panel/selected/fg/muted/accent). Full scale: GitHub Primer's dark
+# "default" tokens.
+accent      = "#58A6FF" # blue — highlights, active borders
+panel_bg    = "#0D1117" # canvas.default — base background
+surface_dim = "#161B22" # canvas.subtle — dim separators
+surface0    = "#21262D" # selected/focused surface
+surface1    = "#262C36" # hover/active surface
+overlay1    = "#8B949E" # fg.muted — brighter overlay text
+overlay0    = "#6E7681" # fg.subtle — muted secondary text
+text        = "#E6EDF3" # fg.default — main text
+subtext0    = "#B1BAC4" # subdued labels
+mauve       = "#BC8CFF" # purple — branch/special labels
+green       = "#3FB950" # green — done/idle
+yellow      = "#D29922" # yellow — working/running
+red         = "#F85149" # red — needs attention/blocked
+blue        = "#58A6FF" # blue — unseen/done notifications
+teal        = "#39C5CF" # cyan — notification accent
+peach       = "#FFA657" # orange — interrupted/warning
 
 [ui]
 sidebar_width = 48

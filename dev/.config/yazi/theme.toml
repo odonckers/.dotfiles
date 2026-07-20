@@ -1,6 +1,6 @@
 [flavor]
-dark = "vague"
-light = "rose-pine-dawn"
+dark = "github-dark"
+light = "github-light"
 
 [status]
 sep_left = { open = "", close = "" }

@@ -88,7 +88,7 @@ local gh = function(x) return 'https://github.com/' .. x end
 
 -- Package spec
 vim.pack.add({
-    gh('kepano/flexoki-neovim'),
+    gh('projekt0n/github-nvim-theme'),
     gh('arborist-ts/arborist.nvim'),
     gh('nvim-mini/mini.icons'),
     gh('folke/which-key.nvim'),
@@ -154,7 +154,27 @@ vim.pack.add({
 })
 
 -- Color scheme
-vim.cmd('colorscheme flexoki')
+-- github-nvim-theme ships one colorscheme per variant rather than reading
+-- `background` itself, so pick the variant by hand and re-pick whenever the
+-- terminal flips `background` (Ghostty does on macOS appearance changes), to
+-- keep an open session in sync like tmux and fzf are.
+local function apply_colorscheme()
+    vim.cmd('colorscheme github_' .. (vim.o.background == 'light' and 'light' or 'dark') .. '_default')
+
+    -- The theme's StatusLine is a saturated blue bar, which is a lot of color
+    -- with laststatus=3 spanning the full window width. Borrow the tabline's
+    -- subdued panel colors instead, so it reads like tmux's status bar.
+    local tabline = vim.api.nvim_get_hl(0, { name = 'TabLine' })
+    vim.api.nvim_set_hl(0, 'StatusLine', { fg = tabline.fg, bg = tabline.bg })
+end
+
+apply_colorscheme()
+
+vim.api.nvim_create_autocmd('OptionSet', {
+    group = vim.api.nvim_create_augroup('ColorschemeBackground', {}),
+    pattern = 'background',
+    callback = apply_colorscheme,
+})
 
 -- Transparent background (must be after color scheme)
 -- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })

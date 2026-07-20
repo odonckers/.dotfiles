@@ -18,15 +18,15 @@ exec delta \
   --line-numbers \
   --line-numbers-left-style "$THEME_TX_2" \
   --line-numbers-right-style "$THEME_TX_2" \
-  --line-numbers-minus-style "$THEME_RE_2" \
-  --line-numbers-plus-style "$THEME_GR_2" \
+  --line-numbers-minus-style "$THEME_REMOVED" \
+  --line-numbers-plus-style "$THEME_ADDED" \
   --line-numbers-zero-style "$THEME_UI_3" \
   --file-style "$THEME_TX bold" \
   --file-decoration-style "$THEME_UI_3 ul" \
   --hunk-header-style "file line-number syntax" \
   --hunk-header-decoration-style "$THEME_UI_3 box" \
   --hunk-header-file-style "$THEME_TX" \
-  --hunk-header-line-number-style "$THEME_YE" \
-  --commit-style "$THEME_YE bold" \
+  --hunk-header-line-number-style "$THEME_ACCENT" \
+  --commit-style "$THEME_ACCENT bold" \
   --commit-decoration-style "none" \
   "$@"

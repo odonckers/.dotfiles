@@ -20,16 +20,25 @@ theming_colors "$MODE"
 if tmux info >/dev/null 2>&1; then
   tmux set-option -g status-style "fg=$THEME_TX_2,bg=$THEME_BG_2"
   tmux set-option -g message-style "fg=$THEME_TX,bg=$THEME_UI,fill=$THEME_UI"
-  tmux set-option -g pane-scrollbars-style "fg=$THEME_YE,bg=default"
+  tmux set-option -g pane-scrollbars-style "fg=$THEME_ACCENT,bg=default"
 
   tmux setw -g window-status-format "#[fg=$THEME_TX_2,bg=$THEME_UI] #I:#W#{?window_zoomed_flag, 󰘖,} "
-  tmux setw -g window-status-current-format "#[fg=$THEME_BG,bg=$THEME_YE,bold] #I:#W#{?window_zoomed_flag, 󰘖,} "
+  tmux setw -g window-status-current-format "#[fg=$THEME_BG,bg=$THEME_ACCENT,bold] #I:#W#{?window_zoomed_flag, 󰘖,} "
 
   tmux set-option -g pane-border-style "fg=$THEME_UI_3,bg=default"
-  tmux set-option -g pane-active-border-style "fg=$THEME_YE,bg=default"
+  tmux set-option -g pane-active-border-style "fg=$THEME_ACCENT,bg=default"
 
   tmux set-option -g copy-mode-position-style "fg=$THEME_TX,bg=$THEME_UI"
-  tmux set-option -g copy-mode-selection-style "fg=$THEME_BG,bg=$THEME_YE,bold"
+  tmux set-option -g copy-mode-selection-style "fg=$THEME_BG,bg=$THEME_ACCENT,bold"
+
+  # The choosers (`prefix s` / `prefix w` choose-tree) and the pane
+  # display-menu default to a literal ANSI yellow highlight, which ignores
+  # the palette entirely -- theme them explicitly.
+  tmux set-option -g mode-style "fg=$THEME_BG,bg=$THEME_ACCENT,bold"
+  tmux set-option -g menu-style "fg=$THEME_TX,bg=$THEME_UI"
+  tmux set-option -g menu-selected-style "fg=$THEME_BG,bg=$THEME_ACCENT,bold"
+  tmux set-option -g menu-border-style "fg=$THEME_UI_3"
+  tmux set-option -g message-command-style "fg=$THEME_TX,bg=$THEME_UI"
 
   # For fzf invocations tmux spawns directly (tmux-fzf's C-s, the
   # popup-based `prefix + e` repo picker) -- both skip .zshrc, so they'd

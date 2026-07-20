@@ -54,7 +54,7 @@ mouse-hide-while-typing = true
 
 # ---- Appearance -------------------------------------------------------------------
 
-theme = dark:Flexoki Dark, light:Flexoki Light
+theme = dark:GitHub Dark Default, light:GitHub Light Default
 
 # Cursor always contrasts with whatever's underneath instead of a fixed
 # colour pair, like Kitty's default cursor.

@@ -1,0 +1,257 @@
+# vim:fileencoding=utf-8:foldmethod=marker
+
+# GitHub Light Default, hand-written to match the rest of this repo's theming
+# (see ../../../theming/themes/github.sh). Structure mirrors the vendored
+# rose-pine flavor; colors are GitHub Primer's light "default" tokens.
+
+# : App {{{
+
+[app]
+overall = { bg = "#ffffff" }
+
+# : }}}
+
+
+# : Manager {{{
+
+[mgr]
+cwd = { fg = "#0969da" }
+
+# Find
+find_keyword  = { fg = "#9a6700", bold = true, italic = true, underline = true }
+find_position = { fg = "#8250df", bg = "reset", bold = true, italic = true }
+
+# Symlink
+symlink_target = { italic = true }
+
+# Marker
+marker_copied   = { fg = "#1a7f37", bg = "#1a7f37" }
+marker_cut      = { fg = "#cf222e", bg = "#cf222e" }
+marker_marked   = { fg = "#1b7c83", bg = "#1b7c83" }
+marker_selected = { fg = "#0969da", bg = "#0969da" }
+
+# Count
+count_copied   = { fg = "#ffffff", bg = "#1a7f37" }
+count_cut      = { fg = "#ffffff", bg = "#cf222e" }
+count_selected = { fg = "#ffffff", bg = "#0969da" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "#d0d7de" }
+
+# Highlighting
+syntect_theme = ""
+
+# : }}}
+
+
+# : Tabs {{{
+
+[tabs]
+active   = { fg = "#ffffff", bg = "#0969da", bold = true }
+inactive = { fg = "#656d76", bg = "#eaeef2" }
+
+# Separator
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+
+# : }}}
+
+
+# : Mode {{{
+
+[mode]
+normal_main = { fg = "#ffffff", bg = "#0969da", bold = true }
+normal_alt  = { fg = "#1f2328", bg = "#eaeef2", bold = true }
+
+# Select mode
+select_main = { fg = "#ffffff", bg = "#cf222e", bold = true }
+select_alt  = { fg = "#1f2328", bg = "#eaeef2", bold = true }
+
+# Unset mode
+unset_main = { fg = "#ffffff", bg = "#cf222e", bold = true }
+unset_alt  = { fg = "#1f2328", bg = "#eaeef2", bold = true }
+
+# : }}}
+
+
+# : Indicator of hovered file {{{
+
+[indicator]
+parent  = { reversed = true }
+current = { reversed = true }
+preview = { underline = true }
+padding = { open = "", close = "" }
+
+# : }}}
+
+
+# : Status bar {{{
+
+[status]
+overall   = { bg = "#ffffff" }
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+# Permissions
+perm_sep   = { fg = "#8c959f" }
+perm_type  = { fg = "#8250df" }
+perm_read  = { fg = "#9a6700" }
+perm_write = { fg = "#cf222e" }
+perm_exec  = { fg = "#1a7f37" }
+
+# Progress
+progress_label  = { fg = "#1f2328", bold = true }
+progress_normal = { fg = "#0969da", bg = "#eaeef2" }
+progress_error  = { fg = "#cf222e", bg = "#eaeef2" }
+
+# : }}}
+
+
+# : Which {{{
+
+[which]
+cols            = 3
+mask            = { bg = "#f6f8fa" }
+cand            = { fg = "#0969da" }
+rest            = { fg = "#8c959f" }
+desc            = { fg = "#9a6700" }
+separator       = "  "
+separator_style = { fg = "#8c959f" }
+
+# : }}}
+
+
+# : Confirmation {{{
+
+[confirm]
+border     = { fg = "#d0d7de" }
+title      = { fg = "#cf222e", bold = true }
+body       = { fg = "#1f2328" }
+list       = { fg = "#1f2328" }
+btn_yes    = { fg = "#ffffff", bg = "#0969da", bold = true }
+btn_no     = { fg = "#1f2328", bg = "#eaeef2", bold = true }
+btn_labels = [ "  [y]es  ", "  (n)o  " ]
+
+# : }}}
+
+
+# : Spotter {{{
+
+[spot]
+border = { fg = "#d0d7de" }
+title  = { fg = "#0969da", bold = true }
+
+# Table
+tbl_col  = { fg = "#0969da" }
+tbl_cell = { fg = "#ffffff", bg = "#9a6700", bold = true }
+
+# : }}}
+
+
+# : Notification {{{
+
+[notify]
+title_info  = { fg = "#1a7f37" }
+title_warn  = { fg = "#9a6700" }
+title_error = { fg = "#cf222e" }
+
+# Icons
+icon_info  = ""
+icon_warn  = ""
+icon_error = ""
+
+# : }}}
+
+
+# : Picker {{{
+
+[pick]
+border   = { fg = "#0969da" }
+active   = { fg = "#8250df", bold = true }
+inactive = { fg = "#656d76" }
+
+# : }}}
+
+
+# : Input {{{
+
+[input]
+border   = { fg = "#0969da" }
+title    = { bold = true }
+value    = { fg = "#1f2328" }
+selected = { reversed = true }
+
+# : }}}
+
+
+# : Completion {{{
+
+[cmp]
+border   = { fg = "#0969da" }
+active   = { bg = "#0969da", fg = "#ffffff", bold = true }
+inactive = { fg = "#656d76" }
+
+# Icons
+icon_file    = ""
+icon_folder  = ""
+icon_command = ""
+
+# : }}}
+
+
+# : Task manager {{{
+
+[tasks]
+border  = { fg = "#0969da" }
+title   = { bold = true }
+hovered = { fg = "#8250df", bold = true, reversed = true }
+
+# : }}}
+
+
+# : Help menu {{{
+
+[help]
+on      = { fg = "#0969da" }
+run     = { fg = "#8250df" }
+desc    = { fg = "#9a6700" }
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#ffffff", bg = "#1f2328" }
+
+# : }}}
+
+
+# : File-specific styles {{{
+
+[filetype]
+rules = [
+  # Images
+  { mime = "image/*", fg = "#8250df" },
+
+  # Media
+  { mime = "{audio,video}/*", fg = "#9a6700" },
+
+  # Archives
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#cf222e" },
+
+  # Documents
+  { mime = "application/{pdf,doc,rtf}", fg = "#bc4c00" },
+
+  # Empty files
+  # { mime = "inode/empty", fg = "#cf222e" },
+
+  # Special files
+  { url = "*", is = "orphan", fg = "#ffffff", bg = "#cf222e" },
+  { url = "*", is = "exec", fg = "#1a7f37" },
+
+  # Dummy files
+  { url = "*", is = "dummy", fg = "#ffffff", bg = "#cf222e" },
+  { url = "*/", is = "dummy", fg = "#ffffff", bg = "#cf222e" },
+
+  # Fallback
+  { url = "*", fg = "#1f2328" },
+  { url = "*/", fg = "#0969da" }
+]
+
+# : }}}

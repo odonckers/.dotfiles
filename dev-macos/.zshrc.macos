@@ -10,3 +10,6 @@ source $XDG_CONFIG_HOME/zsh/functions/azure-cosmos-emulator.zsh
 source $XDG_CONFIG_HOME/zsh/functions/brew.zsh
 source $XDG_CONFIG_HOME/zsh/functions/dotnet-link-libraries.zsh
 source $XDG_CONFIG_HOME/zsh/functions/port.zsh
+
+alias open-claude='open -n -a "Claude" --args --user-data-dir="$HOME/Library/Application Support/Claude"'
+alias open-claude-bethel='open -n -a "Claude" --args --user-data-dir="$HOME/Library/Application Support/Claude-Bethel"'

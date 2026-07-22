@@ -1,6 +1,6 @@
 [flavor]
-dark = "github-dark"
-light = "github-light"
+dark = "flexoki-dark"
+light = "flexoki-light"
 
 [status]
 sep_left = { open = "", close = "" }

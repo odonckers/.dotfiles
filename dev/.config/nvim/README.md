@@ -26,7 +26,7 @@ Leader is `,`, local leader is `\`.
   (deeply tuned C#/.NET setup), `lazydev.nvim`, `nvim-lsp-file-operations`.
 - **Completion** - `nvim-cmp` (LSP/buffer/path/cmdline/spell sources) + `friendly-snippets`.
 - **Fuzzy finder** - `fzf-lua` (files, live grep, oldfiles, buffers, marks, resume).
-- **Colorscheme** - `github-nvim-theme`, following the terminal's `background`.
+- **Colorscheme** - `flexoki-neovim`, following the terminal's `background`.
 - **Git** - `gitsigns.nvim`, extensively mapped (hunk stage/reset/preview, blame, diff,
   quickfix).
 - **File explorer** - `neo-tree.nvim` and `oil.nvim` for buffer-style directory editing.

@@ -7,8 +7,8 @@ windows:
       # layout: 8035,362x72,0,0{211x72,0,0,0,150x72,212,0,1} # two panes
       layout: main-vertical
       panes:
-        - nvim
-        - claude
+        -
+        -
   - server:
       layout: even-horizontal
       panes:

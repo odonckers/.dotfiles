@@ -46,8 +46,8 @@ persistent-workspaces = []
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
-    1 = ['built-in', 'main']  # browser personal
-    2 = ['built-in', 'main']  # browser work
+    1 = 'main'                # browser personal
+    2 = 'main'                # browser work
     3 = 'main'                # work / terminal
     4 = 'main'                # work overflow / tests
     5 = 'main'

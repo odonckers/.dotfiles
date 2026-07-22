@@ -1,14 +1,13 @@
 name: <%= ENV["DEV_REPO_NAME"] %>
 root: <%= ENV["DEV_REPO_ROOT"] %>
 
+# layout: 4009,362x72,0,0{206x72,0,0[206x51,0,0,37,206x20,0,52,39],155x72,207,0,40} # three panes
+# layout: 8035,362x72,0,0{211x72,0,0,0,150x72,212,0,1} # two panes
+# layout: main-vertical
+
 windows:
   - editor:
-      # layout: 4009,362x72,0,0{206x72,0,0[206x51,0,0,37,206x20,0,52,39],155x72,207,0,40} # three panes
-      # layout: 8035,362x72,0,0{211x72,0,0,0,150x72,212,0,1} # two panes
-      layout: main-vertical
-      panes:
-        -
-        -
+  - agent:
   - server:
       layout: even-horizontal
       panes:

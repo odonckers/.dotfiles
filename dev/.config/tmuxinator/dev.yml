@@ -6,7 +6,7 @@ root: <%= ENV["DEV_REPO_ROOT"] %>
 # layout: main-vertical
 
 windows:
-  - editor:
+  - editor: nvim
   - agent:
   - server:
       layout: even-horizontal

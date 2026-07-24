@@ -46,10 +46,10 @@ persistent-workspaces = []
 
 # See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [workspace-to-monitor-force-assignment]
-    1 = 'main'                # browser personal
-    2 = 'main'                # browser work
-    3 = 'main'                # work / terminal
-    4 = 'main'                # work overflow / tests
+    1 = 'main'                # personal browser
+    2 = 'main'                # work browser
+    3 = 'main'                # agents
+    4 = 'main'                # terminal
     5 = 'main'
     6 = 'main'                # remote desktop / windows rdp
     7 = 'main'                # notes / study
@@ -65,9 +65,22 @@ on-mode-changed = []
 
 # Workspace arrangement
 
-# Workspace 4
+# Workspace 3 - agents
 [[on-window-detected]]
-if.app-id = 'com.electron.cypress'
+if.app-id = 'com.openai.codex'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-id = 'com.github.githubapp'
+run = 'move-node-to-workspace 3'
+
+# Workspace 4 - terminal
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace 4'
 
 # Workspace 6

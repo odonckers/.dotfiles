@@ -26,7 +26,7 @@ auto_switch = false
 # used by tmux's agent-indicator (red/blue) and tmux-palette's flexoki.json
 # (bg/panel/selected/fg/muted/accent). Full scale: Flexoki's dark base
 # tones with the 400-series accents.
-accent      = "#D0A215" # yellow-400 — highlights, active borders
+accent      = "#3AA99F" # cyan-400 — highlights, active borders
 panel_bg    = "#100F0F" # base — base background
 surface_dim = "#1C1B1A" # 950 — dim separators
 surface0    = "#282726" # 900 — selected/focused surface

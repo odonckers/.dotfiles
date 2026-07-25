@@ -16,7 +16,7 @@ overall = { bg = "#100f0f" }
 # : Manager {{{
 
 [mgr]
-cwd = { fg = "#d0a215" }
+cwd = { fg = "#3aa99f" }
 
 # Find
 find_keyword  = { fg = "#da702c", bold = true, italic = true, underline = true }
@@ -28,13 +28,13 @@ symlink_target = { italic = true }
 # Marker
 marker_copied   = { fg = "#879a39", bg = "#879a39" }
 marker_cut      = { fg = "#d14d41", bg = "#d14d41" }
-marker_marked   = { fg = "#3aa99f", bg = "#3aa99f" }
-marker_selected = { fg = "#d0a215", bg = "#d0a215" }
+marker_marked   = { fg = "#4385be", bg = "#4385be" }
+marker_selected = { fg = "#3aa99f", bg = "#3aa99f" }
 
 # Count
 count_copied   = { fg = "#100f0f", bg = "#879a39" }
 count_cut      = { fg = "#100f0f", bg = "#d14d41" }
-count_selected = { fg = "#100f0f", bg = "#d0a215" }
+count_selected = { fg = "#100f0f", bg = "#3aa99f" }
 
 # Border
 border_symbol = "│"
@@ -49,7 +49,7 @@ syntect_theme = ""
 # : Tabs {{{
 
 [tabs]
-active   = { fg = "#100f0f", bg = "#d0a215", bold = true }
+active   = { fg = "#100f0f", bg = "#3aa99f", bold = true }
 inactive = { fg = "#878580", bg = "#282726" }
 
 # Separator
@@ -62,7 +62,7 @@ sep_outer = { open = "", close = "" }
 # : Mode {{{
 
 [mode]
-normal_main = { fg = "#100f0f", bg = "#d0a215", bold = true }
+normal_main = { fg = "#100f0f", bg = "#3aa99f", bold = true }
 normal_alt  = { fg = "#cecdc3", bg = "#282726", bold = true }
 
 # Select mode
@@ -103,7 +103,7 @@ perm_exec  = { fg = "#879a39" }
 
 # Progress
 progress_label  = { fg = "#cecdc3", bold = true }
-progress_normal = { fg = "#d0a215", bg = "#282726" }
+progress_normal = { fg = "#3aa99f", bg = "#282726" }
 progress_error  = { fg = "#d14d41", bg = "#282726" }
 
 # : }}}
@@ -114,7 +114,7 @@ progress_error  = { fg = "#d14d41", bg = "#282726" }
 [which]
 cols            = 3
 mask            = { bg = "#1c1b1a" }
-cand            = { fg = "#d0a215" }
+cand            = { fg = "#3aa99f" }
 rest            = { fg = "#6f6e69" }
 desc            = { fg = "#da702c" }
 separator       = "  "
@@ -130,7 +130,7 @@ border     = { fg = "#403e3c" }
 title      = { fg = "#d14d41", bold = true }
 body       = { fg = "#cecdc3" }
 list       = { fg = "#cecdc3" }
-btn_yes    = { fg = "#100f0f", bg = "#d0a215", bold = true }
+btn_yes    = { fg = "#100f0f", bg = "#3aa99f", bold = true }
 btn_no     = { fg = "#cecdc3", bg = "#282726", bold = true }
 btn_labels = [ "  [y]es  ", "  (n)o  " ]
 
@@ -141,10 +141,10 @@ btn_labels = [ "  [y]es  ", "  (n)o  " ]
 
 [spot]
 border = { fg = "#403e3c" }
-title  = { fg = "#d0a215", bold = true }
+title  = { fg = "#3aa99f", bold = true }
 
 # Table
-tbl_col  = { fg = "#d0a215" }
+tbl_col  = { fg = "#3aa99f" }
 tbl_cell = { fg = "#100f0f", bg = "#da702c", bold = true }
 
 # : }}}
@@ -168,7 +168,7 @@ icon_error = ""
 # : Picker {{{
 
 [pick]
-border   = { fg = "#d0a215" }
+border   = { fg = "#3aa99f" }
 active   = { fg = "#8b7ec8", bold = true }
 inactive = { fg = "#878580" }
 
@@ -178,7 +178,7 @@ inactive = { fg = "#878580" }
 # : Input {{{
 
 [input]
-border   = { fg = "#d0a215" }
+border   = { fg = "#3aa99f" }
 title    = { bold = true }
 value    = { fg = "#cecdc3" }
 selected = { reversed = true }
@@ -189,8 +189,8 @@ selected = { reversed = true }
 # : Completion {{{
 
 [cmp]
-border   = { fg = "#d0a215" }
-active   = { bg = "#d0a215", fg = "#100f0f", bold = true }
+border   = { fg = "#3aa99f" }
+active   = { bg = "#3aa99f", fg = "#100f0f", bold = true }
 inactive = { fg = "#878580" }
 
 # Icons
@@ -204,7 +204,7 @@ icon_command = ""
 # : Task manager {{{
 
 [tasks]
-border  = { fg = "#d0a215" }
+border  = { fg = "#3aa99f" }
 title   = { bold = true }
 hovered = { fg = "#8b7ec8", bold = true, reversed = true }
 
@@ -214,7 +214,7 @@ hovered = { fg = "#8b7ec8", bold = true, reversed = true }
 # : Help menu {{{
 
 [help]
-on      = { fg = "#d0a215" }
+on      = { fg = "#3aa99f" }
 run     = { fg = "#8b7ec8" }
 desc    = { fg = "#da702c" }
 hovered = { reversed = true, bold = true }
@@ -252,7 +252,7 @@ rules = [
 
   # Fallback
   { url = "*", fg = "#cecdc3" },
-  { url = "*/", fg = "#d0a215" }
+  { url = "*/", fg = "#3aa99f" }
 ]
 
 # : }}}

@@ -36,7 +36,7 @@ wired into `tmux.conf` - staged for future use.
 - `C-Space` - command palette.
 - `C-h/j/k/l` and `C-arrow` - unified pane navigation/resizing (tmux + nvim splits).
 - Copy mode uses vi keys, hybrid line numbers, and custom `v`/`y` selection/yank bindings.
-- Theme: warm dark palette (`#1C1B1A` background, `#D0A215` gold accent), status bar on top,
+- Theme: warm dark palette (`#1C1B1A` background, `#3AA99F` cyan accent), status bar on top,
   minimal `#S`/`#H` segments, styled window tabs and single-line pane borders with a
   mouse-driven pane-border quick-action menu.
 

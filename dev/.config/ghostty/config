@@ -29,11 +29,11 @@ shell-integration-features = ssh-env,ssh-terminfo
 font-family = JetBrainsMono Nerd Font Mono
 font-size = 12
 font-thicken = true
-font-thicken-strength = 1
+font-thicken-strength = 50
 
 # Per-cell size tweaks, as a % adjustment from the font's natural metrics.
 adjust-cell-width = 0%
-adjust-cell-height = 21%
+adjust-cell-height = 25%
 
 # ---- Window behavior -------------------------------------------------------------
 
@@ -58,8 +58,8 @@ theme = dark:Modus Vivendi, light:Modus Operandi
 
 # Cursor always contrasts with whatever's underneath instead of a fixed
 # colour pair, like Kitty's default cursor.
-cursor-color = cell-foreground
-cursor-text = cell-background
+# cursor-color = cell-foreground
+# cursor-text = cell-background
 
 # 1 = fully opaque, 0 = fully transparent.
 background-opacity = 1

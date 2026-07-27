@@ -1,0 +1,8 @@
+{
+  "bg": "#FFFFFF",
+  "panel": "#F2F2F2",
+  "selected": "#E0E0E0",
+  "fg": "#000000",
+  "muted": "#595959",
+  "accent": "#0031A9"
+}

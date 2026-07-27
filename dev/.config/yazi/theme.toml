@@ -1,6 +1,6 @@
 [flavor]
-dark = "rose-pine"
-light = "rose-pine-dawn"
+dark = "modus-vivendi"
+light = "modus-operandi"
 
 [status]
 sep_left = { open = "", close = "" }

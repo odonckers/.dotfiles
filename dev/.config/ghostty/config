@@ -54,7 +54,7 @@ mouse-hide-while-typing = true
 
 # ---- Appearance -------------------------------------------------------------------
 
-theme = dark:Rose Pine, light:Rose Pine Dawn
+theme = dark:Modus Vivendi, light:Modus Operandi
 
 # Cursor always contrasts with whatever's underneath instead of a fixed
 # colour pair, like Kitty's default cursor.

@@ -1,6 +1,6 @@
 [flavor]
-dark = "flexoki-dark"
-light = "flexoki-light"
+dark = "rose-pine"
+light = "rose-pine-dawn"
 
 [status]
 sep_left = { open = "", close = "" }

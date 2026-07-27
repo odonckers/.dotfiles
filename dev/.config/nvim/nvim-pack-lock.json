@@ -81,6 +81,10 @@
       "rev": "8588c3c988c7ed49879dddf937b42681cfa7ce30",
       "src": "https://github.com/nsidorenco/neotest-vstest"
     },
+    "neovim": {
+      "rev": "ff483051a47e27d84bdef47703538df1ed9f4a47",
+      "src": "https://github.com/rose-pine/neovim"
+    },
     "nui.nvim": {
       "rev": "de740991c12411b663994b2860f1a4fd0937c130",
       "src": "https://github.com/MunifTanjim/nui.nvim"
@@ -141,6 +145,10 @@
     "smart-splits.nvim": {
       "rev": "0e5bc00d2a32e6c782cd279cb96ab6c7ae49cd94",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
+    },
+    "token": {
+      "rev": "97984f9bf273042e18b4d74764fd586593d9fa18",
+      "src": "https://github.com/ThorstenRhau/token"
     },
     "vesper.nvim": {
       "rev": "1717b1ad657c94bec3fc2bdebb0c55452d9fe46d",

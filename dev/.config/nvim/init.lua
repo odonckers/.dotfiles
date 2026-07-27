@@ -88,7 +88,7 @@ local gh = function(x) return 'https://github.com/' .. x end
 
 -- Package spec
 vim.pack.add({
-    gh('kepano/flexoki-neovim'),
+    gh('rose-pine/neovim'),
     gh('arborist-ts/arborist.nvim'),
     gh('nvim-mini/mini.icons'),
     gh('folke/which-key.nvim'),
@@ -154,7 +154,10 @@ vim.pack.add({
 })
 
 -- Color scheme
-vim.cmd('colorscheme flexoki')
+require('rose-pine').setup({
+    styles = { italic = false },
+})
+vim.cmd('colorscheme rose-pine')
 
 -- Transparent background (must be after color scheme)
 -- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })

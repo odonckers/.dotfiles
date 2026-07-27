@@ -19,7 +19,7 @@ vim.opt.signcolumn = 'yes' -- Always reserve the sign column so text doesn't shi
 vim.opt.colorcolumn = '140' -- Visual guide for max line length
 vim.opt.pumheight = 10 -- Cap the completion popup height
 vim.opt.winborder = 'rounded' -- Rounded borders on all floating windows (hover, signature, diagnostics)
-vim.opt.laststatus = 3 -- Single global statusline shared across all splits
+vim.opt.laststatus = 2 -- Multiple statuslines per splits
 vim.opt.fillchars = { eob = ' ' } -- Hide the ~ on empty lines past the buffer end
 vim.opt.showmatch = true -- Briefly jump to the matching bracket on insert
 vim.opt.matchtime = 2 -- ...for 200ms

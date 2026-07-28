@@ -22,9 +22,8 @@ if tmux info >/dev/null 2>&1; then
   tmux set-option -g message-style "fg=$THEME_TX,bg=$THEME_UI,fill=$THEME_UI"
   tmux set-option -g pane-scrollbars-style "fg=$THEME_ACCENT,bg=default"
 
-  # Default tab format (set in tmux.conf); here we only color it. Non-current
-  # tabs inherit status-style; the active tab gets the accent as its text color.
-  tmux setw -g window-status-current-style "fg=$THEME_ACCENT,bold"
+  tmux setw -g window-status-format "#[fg=$THEME_TX_2,bg=$THEME_UI] #I:#W#{?window_zoomed_flag, 󰘖,} "
+  tmux setw -g window-status-current-format "#[fg=$THEME_BG,bg=$THEME_ACCENT,bold] #I:#W#{?window_zoomed_flag, 󰘖,} "
 
   tmux set-option -g pane-border-style "fg=$THEME_UI_3,bg=default"
   tmux set-option -g pane-active-border-style "fg=$THEME_ACCENT,bg=default"

@@ -5,9 +5,11 @@
     "jetbrains/utils/kotlin-lsp"
   ],
   "trustedtaps": [
-    "anomalyco/tap"
+    "anomalyco/tap",
+    "docker/tap"
   ],
   "trustedcasks": [
+    "docker/tap/sbx",
     "mediosz/tap/swipeaerospace",
     "nikitabobko/tap/aerospace"
   ]

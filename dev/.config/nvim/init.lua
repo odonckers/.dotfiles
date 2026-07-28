@@ -168,6 +168,23 @@ require('modus-themes').setup({
         functions = {},
         variables = {},
     },
+    -- Modus Soft: lift the pure black/white backgrounds one 5% tick (13/255 =
+    -- 0x0D) off the extremes; the adjacent background greys move by the same
+    -- amount to keep the ramp spaced. Backgrounds only -- text and accents are
+    -- untouched. See dev/.config/theming/MODUS-SOFT.md for the derivation.
+    on_colors = function(colors)
+        if colors.bg_main == '#000000' then -- Modus Vivendi (dark), +13
+            colors.bg_main = '#0d0d0d'
+            colors.bg_dim = '#2b2b2b'
+            colors.bg_active = '#3d3d3d'
+            colors.bg_inactive = '#353535'
+        elseif colors.bg_main == '#ffffff' then -- Modus Operandi (light), -13
+            colors.bg_main = '#f2f2f2'
+            colors.bg_dim = '#e5e5e5'
+            colors.bg_active = '#d3d3d3'
+            colors.bg_inactive = '#dcdcdc'
+        end
+    end,
 })
 vim.cmd('colorscheme modus')
 

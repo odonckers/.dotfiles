@@ -18,6 +18,13 @@ desktop-linux   - Linux desktop/WM configuration
 
 (`macos/.setup.sh` is a one-off macOS provisioning script, not a stow package.)
 
+## Theming
+
+Everything shares one custom color scheme: **[Modus Soft](dev/.config/theming/MODUS-SOFT.md)**,
+a variant of the [Modus themes](https://protesilaos.com/emacs/modus-themes) with
+the backgrounds lifted one tick off pure black/white. The central role-based
+color system lives in [`dev/.config/theming`](dev/.config/theming).
+
 Each package mirrors the layout of `$HOME`, so stowing a package symlinks its contents straight
 into place. A few configs worth calling out:
 

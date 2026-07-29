@@ -5,22 +5,25 @@ My [Ghostty](https://ghostty.org) terminal emulator config.
 ## Structure
 
 - `config` - the single config file, well-commented with section headers.
-- `themes/modus-vivendi-soft`, `themes/modus-operandi-soft` - the active custom
-  themes: [Modus](https://protesilaos.com/emacs/modus-themes) with backgrounds
-  lifted one 5% tick off pure black/white. See
+- `themes/modus-vivendi`, `themes/modus-operandi` - the active themes: the stock
+  [Modus](https://protesilaos.com/emacs/modus-themes) pair (WCAG-AAA, pure
+  black/white backgrounds).
+- `themes/modus-vivendi-soft`, `themes/modus-operandi-soft` - the Modus Soft
+  variant with backgrounds lifted one 5% tick off pure black/white. Kept for
+  easy switch-back; see
   [`dev/.config/theming/MODUS-SOFT.md`](../theming/MODUS-SOFT.md) for the math.
 - `themes/vague` - a spare copy of the [vague-ghostty](https://github.com/vague-theme/vague-ghostty)
   theme, kept for reference/future use. Not the active theme.
 
 ## Key settings
 
-- **Theme**: Modus Soft, following macOS appearance -- custom
-  `modus-vivendi-soft` / `modus-operandi-soft` theme files in `themes/`
-  (`theme = dark:modus-vivendi-soft, light:modus-operandi-soft`). tmux and fzf
+- **Theme**: stock Modus, following macOS appearance -- `modus-vivendi` /
+  `modus-operandi` theme files in `themes/`
+  (`theme = dark:modus-vivendi, light:modus-operandi`). tmux and fzf
   mirror this switch too; see [`dev/.config/theming`](../theming). Neovim already
   follows the terminal's `background` automatically, so it needs no separate wiring. This line
   is tied to macOS appearance only, not to `theming/active-theme` -- update it by hand if you
-  switch the active theme away from Modus Soft.
+  switch the active theme (e.g. back to Modus Soft with `dark:modus-vivendi-soft, light:modus-operandi-soft`).
 - **Font**: JetBrainsMono Nerd Font Mono @ 12pt, `font-thicken = false` (native weights, no
   synthetic bold), with a slightly taller cell height (`adjust-cell-height = 20%`) for extra
   line spacing.

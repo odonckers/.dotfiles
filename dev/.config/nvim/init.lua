@@ -155,10 +155,10 @@ vim.pack.add({
 
 -- Color scheme
 require('modus-themes').setup({
-    transparent = false, -- Transparent background (as supported by the terminal)
+    transparent = true, -- Transparent background (as supported by the terminal)
     dim_inactive = false, -- "non-current" windows are dimmed
     hide_inactive_statusline = false, -- Hide statuslines on inactive windows. Works with the standard **StatusLine**, **LuaLine** and **mini.statusline**
-    line_nr_column_background = true, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
+    line_nr_column_background = false, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
     sign_column_background = false, -- Distinct background colors in sign column. `false` will disable background color and fallback to Normal background
     styles = {
         -- Style to be applied to different syntax groups
@@ -168,23 +168,24 @@ require('modus-themes').setup({
         functions = {},
         variables = {},
     },
-    -- Modus Soft: lift the pure black/white backgrounds one 5% tick (13/255 =
-    -- 0x0D) off the extremes; the adjacent background greys move by the same
-    -- amount to keep the ramp spaced. Backgrounds only -- text and accents are
-    -- untouched. See dev/.config/theming/MODUS-SOFT.md for the derivation.
-    on_colors = function(colors)
-        if colors.bg_main == '#000000' then -- Modus Vivendi (dark), +13
-            colors.bg_main = '#0d0d0d'
-            colors.bg_dim = '#2b2b2b'
-            colors.bg_active = '#3d3d3d'
-            colors.bg_inactive = '#353535'
-        elseif colors.bg_main == '#ffffff' then -- Modus Operandi (light), -13
-            colors.bg_main = '#f2f2f2'
-            colors.bg_dim = '#e5e5e5'
-            colors.bg_active = '#d3d3d3'
-            colors.bg_inactive = '#dcdcdc'
-        end
-    end,
+    -- Modus Soft (disabled -- using stock Modus): lift the pure black/white
+    -- backgrounds one 5% tick (13/255 = 0x0D) off the extremes; the adjacent
+    -- background greys move by the same amount to keep the ramp spaced.
+    -- Backgrounds only -- text and accents untouched. Re-enable this on_colors
+    -- override to switch back to Modus Soft. See dev/.config/theming/MODUS-SOFT.md.
+    -- on_colors = function(colors)
+    --     if colors.bg_main == '#000000' then -- Modus Vivendi (dark), +13
+    --         colors.bg_main = '#0d0d0d'
+    --         colors.bg_dim = '#2b2b2b'
+    --         colors.bg_active = '#3d3d3d'
+    --         colors.bg_inactive = '#353535'
+    --     elseif colors.bg_main == '#ffffff' then -- Modus Operandi (light), -13
+    --         colors.bg_main = '#f2f2f2'
+    --         colors.bg_dim = '#e5e5e5'
+    --         colors.bg_active = '#d3d3d3'
+    --         colors.bg_inactive = '#dcdcdc'
+    --     end
+    -- end,
 })
 vim.cmd('colorscheme modus')
 

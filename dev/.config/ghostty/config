@@ -54,9 +54,10 @@ mouse-hide-while-typing = true
 
 # ---- Appearance -------------------------------------------------------------------
 
-# Modus Soft: Modus with backgrounds lifted one 5% tick off pure black/white.
-# Custom theme files live in themes/ (see dev/.config/theming/MODUS-SOFT.md).
-theme = dark:modus-vivendi-soft, light:modus-operandi-soft
+# Modus: the stock WCAG-AAA accessible pair, following macOS appearance.
+# The Modus Soft variant (backgrounds lifted one 5% tick off pure black/white)
+# lives in themes/modus-{vivendi,operandi}-soft (see dev/.config/theming/MODUS-SOFT.md).
+theme = dark:modus-vivendi, light:modus-operandi
 
 # Cursor always contrasts with whatever's underneath instead of a fixed
 # colour pair, like Kitty's default cursor.

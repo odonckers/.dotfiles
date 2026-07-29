@@ -1,6 +1,6 @@
 [flavor]
-dark = "modus-vivendi-soft"
-light = "modus-operandi-soft"
+dark = "modus-vivendi"
+light = "modus-operandi"
 
 [status]
 sep_left = { open = "", close = "" }

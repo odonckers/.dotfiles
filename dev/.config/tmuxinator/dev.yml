@@ -7,9 +7,9 @@ root: <%= ENV["DEV_REPO_ROOT"] %>
 
 windows:
   - editor: nvim
-  - agent:
+  - git: lazygit
   - server:
-      layout: even-horizontal
-      panes:
-        -
-        -
+      # layout: even-horizontal
+      # panes:
+      #   -
+      #   -

@@ -1,9 +1,20 @@
 {
+  "enabledPlugins": {
+    "lua-lsp@claude-plugins-official": true,
+    "mattpocock-skills@mattpocock": true,
+    "apple-skills@indie-apple-stack": true
+  },
   "extraKnownMarketplaces": {
     "indie-apple-stack": {
       "source": {
         "source": "github",
         "repo": "rshankras/claude-code-apple-skills"
+      }
+    },
+    "mattpocock": {
+      "source": {
+        "source": "github",
+        "repo": "mattpocock/skills"
       }
     }
   },
@@ -14,7 +25,7 @@
   },
   "theme": "auto",
   "editorMode": "vim",
+  "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
-  "voiceEnabled": true,
-  "inputNeededNotifEnabled": true
+  "voiceEnabled": true
 }

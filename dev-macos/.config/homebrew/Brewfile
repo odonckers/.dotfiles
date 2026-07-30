@@ -1,11 +1,12 @@
 tap "alajmo/mani"
 tap "anomalyco/tap", trusted: true
+tap "docker/tap", trusted: true
 tap "felixkratz/formulae", "https://github.com/FelixKratz/homebrew-formulae"
 tap "hashicorp/tap"
 tap "jetbrains/utils", "https://github.com/JetBrains/homebrew-utils"
 tap "jstkdng/programs"
 tap "neurosnap/tap"
-tap "nikitabobko/tap"
+tap "nikitabobko/tap", trusted: { casks: ["aerospace"] }
 tap "rjyo/moshi"
 # Browser automation CLI for AI agents
 brew "agent-browser"
@@ -135,8 +136,6 @@ brew "hashicorp/tap/terraform", trusted: true
 brew "jetbrains/utils/kotlin-lsp", trusted: true
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
-# AeroSpace is an i3-like tiling window manager for macOS
-cask "nikitabobko/tap/aerospace", trusted: true
 # Tools for building Android applications
 cask "android-studio"
 # App to write and organise your ideas
@@ -157,8 +156,6 @@ cask "cursor"
 cask "db-browser-for-sqlite"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
-# Text editor
-cask "emacs-app"
 # Web browser
 cask "firefox"
 # Terminal emulator that uses platform-native UI and GPU acceleration
@@ -195,6 +192,8 @@ cask "openchamber"
 cask "opencode-desktop"
 # Utility to uninstall apps and remove leftover files from old/uninstalled apps
 cask "pearcleaner"
+# Build, run, and govern agents across the software development lifecycle
+cask "docker/tap/sbx", trusted: true
 # Music streaming service
 cask "spotify"
 # Video game digital distribution service
@@ -216,6 +215,7 @@ cask "zoom"
 uv "specify-cli", source: "git+https://github.com/github/spec-kit.git"
 npm "@angular/cli"
 npm "@angular/language-server"
+npm "@anthropic-ai/sandbox-runtime"
 npm "@apps/cli"
 npm "@apps/jetpack"
 npm "@fission-ai/openspec"

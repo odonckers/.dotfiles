@@ -136,7 +136,8 @@ validate_config() {
   done
 
   target="$(config_get "appearance.themes.$theme.targets.nvim.scheme")"
-  [[ "$target" == modus ]] || die "unsupported Neovim scheme for this checkout: $target"
+  [[ "$target" == modus || "$target" == flexoki ]] ||
+    die "unsupported Neovim scheme for this checkout: $target"
 
   for variant in dark light; do
     target="$(config_get "appearance.themes.$theme.targets.emacs.$variant")"

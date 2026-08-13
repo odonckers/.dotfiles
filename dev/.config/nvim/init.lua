@@ -89,6 +89,7 @@ local gh = function(x) return 'https://github.com/' .. x end
 -- Package spec
 vim.pack.add({
     gh('miikanissi/modus-themes.nvim'),
+    gh('kepano/flexoki-neovim'),
     gh('arborist-ts/arborist.nvim'),
     gh('nvim-mini/mini.icons'),
     gh('folke/which-key.nvim'),
@@ -155,21 +156,23 @@ vim.pack.add({
 
 -- Color scheme
 local dots_appearance = require('dots-appearance').current()
-require('modus-themes').setup({
-    transparent = dots_appearance.transparent, -- Transparent background (as supported by the terminal)
-    dim_inactive = false, -- "non-current" windows are dimmed
-    hide_inactive_statusline = false, -- Hide statuslines on inactive windows. Works with the standard **StatusLine**, **LuaLine** and **mini.statusline**
-    line_nr_column_background = false, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
-    sign_column_background = false, -- Distinct background colors in sign column. `false` will disable background color and fallback to Normal background
-    styles = {
-        -- Style to be applied to different syntax groups
-        -- Value is any valid attr-list value for `:help nvim_set_hl`
-        comments = { italic = true },
-        keywords = { italic = false },
-        functions = {},
-        variables = {},
-    },
-})
+if dots_appearance.scheme == 'modus' then
+    require('modus-themes').setup({
+        transparent = dots_appearance.transparent, -- Transparent background (as supported by the terminal)
+        dim_inactive = false, -- "non-current" windows are dimmed
+        hide_inactive_statusline = false, -- Hide statuslines on inactive windows. Works with the standard **StatusLine**, **LuaLine** and **mini.statusline**
+        line_nr_column_background = false, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
+        sign_column_background = false, -- Distinct background colors in sign column. `false` will disable background color and fallback to Normal background
+        styles = {
+            -- Style to be applied to different syntax groups
+            -- Value is any valid attr-list value for `:help nvim_set_hl`
+            comments = { italic = true },
+            keywords = { italic = false },
+            functions = {},
+            variables = {},
+        },
+    })
+end
 vim.cmd.colorscheme(dots_appearance.scheme)
 
 -- Transparent background (must be after color scheme)

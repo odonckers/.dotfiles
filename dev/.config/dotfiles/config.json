@@ -1,6 +1,6 @@
 {
   "appearance": {
-    "theme": "modus",
+    "theme": "flexoki",
     "mode": "system",
     "fallbackMode": "dark",
     "themes": {
@@ -62,6 +62,67 @@
           "tmuxPalette": {
             "dark": "modus",
             "light": "modus-light"
+          }
+        }
+      },
+      "flexoki": {
+        "variants": {
+          "dark": {
+            "colors": {
+              "bg": "#100F0F",
+              "bg2": "#1C1B1A",
+              "ui": "#282726",
+              "ui2": "#343331",
+              "ui3": "#403E3C",
+              "text": "#CECDC3",
+              "text2": "#878580",
+              "accent": "#3AA99F",
+              "accent2": "#24837B",
+              "added": "#66800B",
+              "removed": "#AF3029",
+              "info": "#4385BE"
+            }
+          },
+          "light": {
+            "colors": {
+              "bg": "#FFFCF0",
+              "bg2": "#F2F0E5",
+              "ui": "#E6E4D9",
+              "ui2": "#DAD8CE",
+              "ui3": "#CECDC3",
+              "text": "#100F0F",
+              "text2": "#6F6E69",
+              "accent": "#24837B",
+              "accent2": "#3AA99F",
+              "added": "#879A39",
+              "removed": "#D14D41",
+              "info": "#205EA6"
+            }
+          }
+        },
+        "targets": {
+          "ghostty": {
+            "dark": "Flexoki Dark",
+            "light": "Flexoki Light"
+          },
+          "kitty": {
+            "dark": "flexoki-dark.conf",
+            "light": "flexoki-light.conf"
+          },
+          "yazi": {
+            "dark": "flexoki-dark",
+            "light": "flexoki-light"
+          },
+          "nvim": {
+            "scheme": "flexoki"
+          },
+          "emacs": {
+            "dark": "modus-vivendi",
+            "light": "modus-operandi"
+          },
+          "tmuxPalette": {
+            "dark": "flexoki",
+            "light": "flexoki-light"
           }
         }
       }

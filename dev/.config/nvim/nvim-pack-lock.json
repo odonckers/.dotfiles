@@ -154,6 +154,10 @@
       "rev": "97984f9bf273042e18b4d74764fd586593d9fa18",
       "src": "https://github.com/ThorstenRhau/token"
     },
+    "vague.nvim": {
+      "rev": "f9060fdaf7b20f68575d6f8214da6f1cf0c72825",
+      "src": "https://github.com/vague-theme/vague.nvim"
+    },
     "vesper.nvim": {
       "rev": "1717b1ad657c94bec3fc2bdebb0c55452d9fe46d",
       "src": "https://github.com/datsfilipe/vesper.nvim"
@@ -161,6 +165,10 @@
     "vim-kitty": {
       "rev": "cd72f2d9cfee8d6aba5a180a5ac3ca265b5d3a46",
       "src": "https://github.com/fladson/vim-kitty"
+    },
+    "vscode.nvim": {
+      "rev": "aa1102a7e15195c9cca22730b09224a7f7745ba8",
+      "src": "https://github.com/Mofiqul/vscode.nvim"
     },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",

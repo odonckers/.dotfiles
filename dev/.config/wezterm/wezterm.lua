@@ -27,7 +27,8 @@ config.freetype_load_target = 'Light'
 config.freetype_load_flags = 'NO_HINTING'
 
 -- Theme
-local theme = require('lua/vague')
+local appearance = require('lua/dots-appearance')
+local theme = require('lua/' .. appearance.theme_module())
 config.colors = theme.colors()
 config.window_frame = theme.window_frame()
 

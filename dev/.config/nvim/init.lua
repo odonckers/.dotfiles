@@ -154,8 +154,9 @@ vim.pack.add({
 })
 
 -- Color scheme
+local dots_appearance = require('dots-appearance').current()
 require('modus-themes').setup({
-    transparent = true, -- Transparent background (as supported by the terminal)
+    transparent = dots_appearance.transparent, -- Transparent background (as supported by the terminal)
     dim_inactive = false, -- "non-current" windows are dimmed
     hide_inactive_statusline = false, -- Hide statuslines on inactive windows. Works with the standard **StatusLine**, **LuaLine** and **mini.statusline**
     line_nr_column_background = false, -- Distinct background colors in line number column. `false` will disable background color and fallback to Normal background
@@ -168,26 +169,15 @@ require('modus-themes').setup({
         functions = {},
         variables = {},
     },
-    -- Modus Soft (disabled -- using stock Modus): lift the pure black/white
-    -- backgrounds one 5% tick (13/255 = 0x0D) off the extremes; the adjacent
-    -- background greys move by the same amount to keep the ramp spaced.
-    -- Backgrounds only -- text and accents untouched. Re-enable this on_colors
-    -- override to switch back to Modus Soft. See dev/.config/theming/MODUS-SOFT.md.
-    -- on_colors = function(colors)
-    --     if colors.bg_main == '#000000' then -- Modus Vivendi (dark), +13
-    --         colors.bg_main = '#0d0d0d'
-    --         colors.bg_dim = '#2b2b2b'
-    --         colors.bg_active = '#3d3d3d'
-    --         colors.bg_inactive = '#353535'
-    --     elseif colors.bg_main == '#ffffff' then -- Modus Operandi (light), -13
-    --         colors.bg_main = '#f2f2f2'
-    --         colors.bg_dim = '#e5e5e5'
-    --         colors.bg_active = '#d3d3d3'
-    --         colors.bg_inactive = '#dcdcdc'
-    --     end
-    -- end,
+    on_colors = dots_appearance.soft and function(colors)
+        local overrides = assert(dots_appearance.overrides[vim.o.background], 'missing Modus Soft overrides')
+        colors.bg_main = overrides.bgMain:lower()
+        colors.bg_dim = overrides.bgDim:lower()
+        colors.bg_active = overrides.bgActive:lower()
+        colors.bg_inactive = overrides.bgInactive:lower()
+    end or nil,
 })
-vim.cmd('colorscheme modus')
+vim.cmd.colorscheme(dots_appearance.scheme)
 
 -- Transparent background (must be after color scheme)
 -- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })

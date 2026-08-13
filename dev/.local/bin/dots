@@ -1,0 +1,542 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+PROGRAM="${0##*/}"
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
+DOTFILES_CONFIG_DIR="${DOTFILES_CONFIG_DIR:-$DOTFILES_DIR/dev/.config/dotfiles}"
+export DOTFILES_DIR DOTFILES_CONFIG_DIR
+
+if [[ ! -f "$DOTFILES_CONFIG_DIR/config.sh" ]]; then
+  printf '%s\n' "$PROGRAM: cannot find $DOTFILES_CONFIG_DIR/config.sh" >&2
+  exit 1
+fi
+
+# shellcheck source=/dev/null
+source "$DOTFILES_CONFIG_DIR/config.sh"
+
+usage() {
+  printf '%s\n' \
+    'Usage: dots <command> [arguments]' \
+    '' \
+    'Keep the dotfiles checkout stowed and its shared appearance in sync.' \
+    '' \
+    'Commands:' \
+    '  sync                         Render appearance files and stow this machine' \
+    '  check                        Validate config and generated appearance files' \
+    '  appearance                   Show the active appearance' \
+    '  appearance apply             Render appearance files and update live tmux' \
+    '  appearance set <theme>       Select and apply a configured theme' \
+    '  appearance themes            List configured themes' \
+    '  appearance mode <mode>       Use system, dark, or light appearance mode' \
+    '  appearance get <path>        Read a value below the appearance key' \
+    '  appearance effective-mode    Print the currently effective dark/light mode' \
+    '  help                         Show this help menu' \
+    '' \
+    'Examples:' \
+    '  dots sync' \
+    '  dots appearance set modus-soft' \
+    '  dots appearance mode system' \
+    '  dots appearance get applications.nvim.transparent'
+}
+
+die() {
+  printf '%s: %s\n' "$PROGRAM" "$*" >&2
+  exit 1
+}
+
+require_command() {
+  command -v "$1" >/dev/null 2>&1 || die "required command not found: $1"
+}
+
+is_hex_color() {
+  [[ "$1" =~ ^#[0-9A-Fa-f]{6}$ ]]
+}
+
+config_get() {
+  dots_config_get "$1" || die "missing configuration value: $1"
+}
+
+appearance_theme() {
+  config_get appearance.theme
+}
+
+effective_mode() {
+  local configured fallback
+  configured="$(config_get appearance.mode)"
+  fallback="$(config_get appearance.fallbackMode)"
+
+  case "$configured" in
+    dark | light)
+      printf '%s\n' "$configured"
+      ;;
+    system)
+      case "$(uname -s)" in
+        Darwin)
+          if defaults read -g AppleInterfaceStyle >/dev/null 2>&1; then
+            printf '%s\n' dark
+          else
+            printf '%s\n' light
+          fi
+          ;;
+        *)
+          printf '%s\n' "$fallback"
+          ;;
+      esac
+      ;;
+    *)
+      die "appearance.mode must be system, dark, or light"
+      ;;
+  esac
+}
+
+validate_config() {
+  local theme mode fallback variant role value app target key soft
+  local roles='bg bg2 ui ui2 ui3 text text2 accent accent2 added removed info'
+
+  awk -f "$DOTFILES_CONFIG_DIR/json.awk" "$DOTFILES_CONFIG_DIR/config.json" >/dev/null ||
+    die "appearance config is not valid JSON"
+
+  theme="${1:-$(appearance_theme)}"
+  mode="$(config_get appearance.mode)"
+  fallback="$(config_get appearance.fallbackMode)"
+  [[ "$theme" =~ ^[a-z0-9][a-z0-9-]*$ ]] || die "invalid theme name: $theme"
+  [[ "$mode" == system || "$mode" == dark || "$mode" == light ]] ||
+    die "appearance.mode must be system, dark, or light"
+  [[ "$fallback" == dark || "$fallback" == light ]] ||
+    die "appearance.fallbackMode must be dark or light"
+
+  for variant in dark light; do
+    for role in $roles; do
+      value="$(config_get "appearance.themes.$theme.variants.$variant.colors.$role")"
+      is_hex_color "$value" || die "$theme.$variant.colors.$role is not a six-digit hex color"
+    done
+  done
+
+  for app in ghostty kitty yazi; do
+    for variant in dark light; do
+      target="$(config_get "appearance.themes.$theme.targets.$app.$variant")"
+      [[ "$target" =~ ^[A-Za-z0-9][A-Za-z0-9._\ -]*$ ]] ||
+        die "unsafe $app $variant target for $theme"
+      case "$app" in
+        ghostty)
+          [[ -f "$DOTFILES_DIR/dev/.config/ghostty/themes/$target" ]] ||
+            die "missing Ghostty theme: $target"
+          ;;
+        kitty)
+          [[ -f "$DOTFILES_DIR/dev/.config/kitty/themes/$target" ]] ||
+            die "missing Kitty theme: $target"
+          ;;
+        yazi)
+          [[ -f "$DOTFILES_DIR/dev/.config/yazi/flavors/$target.yazi/flavor.toml" ]] ||
+            die "missing Yazi flavor: $target"
+          ;;
+      esac
+    done
+  done
+
+  target="$(config_get "appearance.themes.$theme.targets.nvim.scheme")"
+  [[ "$target" == modus ]] || die "unsupported Neovim scheme for this checkout: $target"
+  soft="$(config_get "appearance.themes.$theme.targets.nvim.soft")"
+  [[ "$soft" == true || "$soft" == false ]] || die "nvim.soft must be true or false"
+  if [[ "$soft" == true ]]; then
+    for variant in dark light; do
+      for key in bgMain bgDim bgActive bgInactive; do
+        value="$(config_get "appearance.themes.$theme.overrides.$variant.$key")"
+        is_hex_color "$value" || die "$theme.overrides.$variant.$key is not a six-digit hex color"
+      done
+    done
+  fi
+
+  for variant in dark light; do
+    target="$(config_get "appearance.themes.$theme.targets.emacs.$variant")"
+    [[ -n "$target" ]] || die "missing Emacs $variant target for $theme"
+    target="$(config_get "appearance.themes.$theme.targets.tmuxPalette.$variant")"
+    [[ -f "$DOTFILES_DIR/dev/.config/tmux-palette/themes/$target.json" ]] ||
+      die "missing tmux-palette theme: $target.json"
+  done
+
+  target="$(config_get appearance.applications.ghostty.backgroundOpacity)"
+  [[ "$target" =~ ^(0(\.[0-9]+)?|1(\.0+)?)$ ]] || die "Ghostty opacity must be between 0 and 1"
+  for app in backgroundOpacityCells backgroundBlur; do
+    target="$(config_get "appearance.applications.ghostty.$app")"
+    [[ "$target" == true || "$target" == false ]] || die "Ghostty $app must be true or false"
+  done
+
+  for app in \
+    appearance.applications.opensessions.themeOverride \
+    appearance.applications.wezterm.themeModuleOverride \
+    appearance.applications.zed.mode \
+    appearance.applications.zed.darkThemeOverride \
+    appearance.applications.zed.lightThemeOverride; do
+    target="$(config_get "$app")"
+    [[ "$target" =~ ^[A-Za-z0-9][A-Za-z0-9._\ -]*$ ]] || die "unsafe application target: $app"
+  done
+
+  target="$(config_get appearance.applications.wezterm.themeModuleOverride)"
+  [[ -f "$DOTFILES_DIR/dev/.config/wezterm/lua/$target.lua" ]] ||
+    die "missing WezTerm theme module: $target"
+  target="$(config_get appearance.applications.zed.mode)"
+  [[ "$target" == system || "$target" == dark || "$target" == light ]] ||
+    die "Zed mode must be system, dark, or light"
+}
+
+atomic_write() {
+  local target content directory temporary
+  target="$1"
+  content="$2"
+  directory="${target%/*}"
+  mkdir -p "$directory"
+  temporary="$(mktemp "$directory/.dots.XXXXXX")"
+  if printf '%s' "$content" >"$temporary"; then
+    chmod 0644 "$temporary"
+    mv -f "$temporary" "$target"
+  else
+    rm -f "$temporary"
+    return 1
+  fi
+}
+
+replace_setting_line() {
+  local target pattern replacement directory temporary
+  target="$1"
+  pattern="$2"
+  replacement="$3"
+  directory="${target%/*}"
+  temporary="$(mktemp "$directory/.dots.XXXXXX")"
+
+  if ! awk -v pattern="$pattern" -v replacement="$replacement" '
+    BEGIN { changed = 0 }
+    !changed && $0 ~ pattern {
+      print replacement
+      changed = 1
+      next
+    }
+    { print }
+    END { if (!changed) exit 1 }
+  ' "$target" >"$temporary"; then
+    rm -f "$temporary"
+    die "could not update generated setting in $target"
+  fi
+
+  chmod 0644 "$temporary"
+  mv -f "$temporary" "$target"
+}
+
+render_values() {
+  local theme mode fallback dark light selected_dark selected_light no_preference
+  local opacity opacity_cells blur padding generated ghostty_content yazi_content
+  local opensessions_theme zed_mode zed_dark zed_light
+  theme="$(appearance_theme)"
+  mode="$(config_get appearance.mode)"
+  fallback="$(config_get appearance.fallbackMode)"
+
+  dark="$(config_get "appearance.themes.$theme.targets.ghostty.dark")"
+  light="$(config_get "appearance.themes.$theme.targets.ghostty.light")"
+  selected_dark="$dark"
+  selected_light="$light"
+  if [[ "$mode" == dark ]]; then
+    selected_light="$dark"
+  elif [[ "$mode" == light ]]; then
+    selected_dark="$light"
+  fi
+
+  opacity="$(config_get appearance.applications.ghostty.backgroundOpacity)"
+  opacity_cells="$(config_get appearance.applications.ghostty.backgroundOpacityCells)"
+  blur="$(config_get appearance.applications.ghostty.backgroundBlur)"
+  generated="$DOTFILES_CONFIG_DIR/generated"
+  ghostty_content="# Generated by dots. Edit dotfiles/config.json, then run: dots appearance apply
+theme = dark:$selected_dark, light:$selected_light
+background-opacity = $opacity
+background-opacity-cells = $opacity_cells
+background-blur = $blur
+"
+  atomic_write "$generated/ghostty.conf" "$ghostty_content"
+
+  dark="$(config_get "appearance.themes.$theme.targets.kitty.dark")"
+  light="$(config_get "appearance.themes.$theme.targets.kitty.light")"
+  if [[ "$mode" == dark ]]; then
+    light="$dark"
+  elif [[ "$mode" == light ]]; then
+    dark="$light"
+  fi
+  if [[ "$fallback" == light ]]; then
+    no_preference="$light"
+  else
+    no_preference="$dark"
+  fi
+  atomic_write "$generated/kitty-dark.conf" "include \${XDG_CONFIG_HOME}/kitty/themes/$dark
+"
+  atomic_write "$generated/kitty-light.conf" "include \${XDG_CONFIG_HOME}/kitty/themes/$light
+"
+  atomic_write "$generated/kitty-no-preference.conf" "include \${XDG_CONFIG_HOME}/kitty/themes/$no_preference
+"
+
+  dark="$(config_get "appearance.themes.$theme.targets.yazi.dark")"
+  light="$(config_get "appearance.themes.$theme.targets.yazi.light")"
+  if [[ "$mode" == dark ]]; then
+    light="$dark"
+  elif [[ "$mode" == light ]]; then
+    dark="$light"
+  fi
+  padding="$(config_get appearance.applications.yazi.indicatorPadding)"
+  yazi_content="# Generated by dots. Edit dotfiles/config.json, then run: dots appearance apply
+[flavor]
+dark = \"$dark\"
+light = \"$light\"
+
+[status]
+sep_left = { open = \"\", close = \"\" }
+sep_right = { open = \"\", close = \"\" }
+
+[indicator]
+padding = { open = \"$padding\", close = \"$padding\" }
+"
+  atomic_write "$generated/yazi-theme.toml" "$yazi_content"
+
+  opensessions_theme="$(config_get appearance.applications.opensessions.themeOverride)"
+  replace_setting_line \
+    "$DOTFILES_DIR/dev/.config/opensessions/config.json" \
+    '^[[:space:]]*"theme"[[:space:]]*:' \
+    "  \"theme\": \"$opensessions_theme\""
+
+  zed_mode="$(config_get appearance.applications.zed.mode)"
+  zed_dark="$(config_get appearance.applications.zed.darkThemeOverride)"
+  zed_light="$(config_get appearance.applications.zed.lightThemeOverride)"
+  replace_setting_line \
+    "$DOTFILES_DIR/dev/.config/zed/settings.json" \
+    '^[[:space:]]*"theme"[[:space:]]*:' \
+    "  \"theme\": { \"mode\": \"$zed_mode\", \"light\": \"$zed_light\", \"dark\": \"$zed_dark\" },"
+}
+
+apply_live_theme() {
+  local apply_script
+  apply_script="$DOTFILES_DIR/dev/.config/theming/apply-tmux.sh"
+  if [[ -x "$apply_script" ]]; then
+    DOTFILES_CONFIG_DIR="$DOTFILES_CONFIG_DIR" "$apply_script" "$(effective_mode)"
+  fi
+}
+
+appearance_apply() {
+  validate_config
+  render_values
+  apply_live_theme
+  printf 'Applied %s (%s mode).\n' "$(appearance_theme)" "$(config_get appearance.mode)"
+}
+
+generated_is_current() {
+  local theme mode fallback effective dark light no_preference expected file opacity opacity_cells blur
+  local opensessions_theme zed_mode zed_dark zed_light
+  theme="$(appearance_theme)"
+  mode="$(config_get appearance.mode)"
+  fallback="$(config_get appearance.fallbackMode)"
+  effective="$(effective_mode)"
+
+  [[ -L "$DOTFILES_DIR/dev/.config/yazi/theme.toml" ]] || return 1
+  [[ -L "$DOTFILES_DIR/dev/.config/tmux-palette/theme.json" ]] || return 1
+
+  file="$DOTFILES_CONFIG_DIR/generated/ghostty.conf"
+  [[ -f "$file" ]] || return 1
+  dark="$(config_get "appearance.themes.$theme.targets.ghostty.dark")"
+  light="$(config_get "appearance.themes.$theme.targets.ghostty.light")"
+  if [[ "$mode" == dark ]]; then
+    light="$dark"
+  elif [[ "$mode" == light ]]; then
+    dark="$light"
+  fi
+  opacity="$(config_get appearance.applications.ghostty.backgroundOpacity)"
+  opacity_cells="$(config_get appearance.applications.ghostty.backgroundOpacityCells)"
+  blur="$(config_get appearance.applications.ghostty.backgroundBlur)"
+  grep -Fq "theme = dark:$dark, light:$light" "$file" || return 1
+  grep -Fq "background-opacity = $opacity" "$file" || return 1
+  grep -Fq "background-opacity-cells = $opacity_cells" "$file" || return 1
+  grep -Fq "background-blur = $blur" "$file" || return 1
+
+  dark="$(config_get "appearance.themes.$theme.targets.kitty.dark")"
+  light="$(config_get "appearance.themes.$theme.targets.kitty.light")"
+  if [[ "$mode" == dark ]]; then
+    light="$dark"
+  elif [[ "$mode" == light ]]; then
+    dark="$light"
+  fi
+  no_preference="$dark"
+  [[ "$fallback" == light ]] && no_preference="$light"
+
+  for expected in "dark:$dark" "light:$light" "no-preference:$no_preference"; do
+    file="$DOTFILES_CONFIG_DIR/generated/kitty-${expected%%:*}.conf"
+    [[ -f "$file" ]] || return 1
+    grep -Fq "/kitty/themes/${expected#*:}" "$file" || return 1
+  done
+
+  dark="$(config_get "appearance.themes.$theme.targets.yazi.dark")"
+  light="$(config_get "appearance.themes.$theme.targets.yazi.light")"
+  if [[ "$mode" == dark ]]; then
+    light="$dark"
+  elif [[ "$mode" == light ]]; then
+    dark="$light"
+  fi
+  grep -Fq "dark = \"$dark\"" "$DOTFILES_CONFIG_DIR/generated/yazi-theme.toml" || return 1
+  grep -Fq "light = \"$light\"" "$DOTFILES_CONFIG_DIR/generated/yazi-theme.toml" || return 1
+
+  expected="$(config_get "appearance.themes.$theme.targets.tmuxPalette.$effective")"
+  grep -Fq "\"name\": \"$expected\"" \
+    "$DOTFILES_CONFIG_DIR/generated/tmux-palette-theme.json" || return 1
+
+  opensessions_theme="$(config_get appearance.applications.opensessions.themeOverride)"
+  grep -Fq "\"theme\": \"$opensessions_theme\"" \
+    "$DOTFILES_DIR/dev/.config/opensessions/config.json" || return 1
+
+  zed_mode="$(config_get appearance.applications.zed.mode)"
+  zed_dark="$(config_get appearance.applications.zed.darkThemeOverride)"
+  zed_light="$(config_get appearance.applications.zed.lightThemeOverride)"
+  grep -Fq "\"theme\": { \"mode\": \"$zed_mode\", \"light\": \"$zed_light\", \"dark\": \"$zed_dark\" }," \
+    "$DOTFILES_DIR/dev/.config/zed/settings.json" || return 1
+}
+
+config_set_scalar() {
+  local key value config temporary
+  key="$1"
+  value="$2"
+  config="$DOTFILES_CONFIG_DIR/config.json"
+  temporary="$(mktemp "$DOTFILES_CONFIG_DIR/.config.XXXXXX")"
+
+  if ! awk -v wanted="$key" -v replacement="$value" '
+    BEGIN { changed = 0 }
+    !changed && $0 ~ "^    \"" wanted "\":[[:space:]]*\"" {
+      sub(":.*", ": \"" replacement "\",")
+      changed = 1
+    }
+    { print }
+    END { if (!changed) exit 1 }
+  ' "$config" >"$temporary"; then
+    rm -f "$temporary"
+    die "could not update appearance.$key"
+  fi
+
+  chmod 0644 "$temporary"
+  mv -f "$temporary" "$config"
+}
+
+appearance_show() {
+  local theme configured effective
+  theme="$(appearance_theme)"
+  configured="$(config_get appearance.mode)"
+  effective="$(effective_mode)"
+  printf 'Theme:          %s\n' "$theme"
+  printf 'Mode:           %s\n' "$configured"
+  printf 'Effective mode: %s\n' "$effective"
+  printf 'Ghostty:        %s\n' "$(config_get "appearance.themes.$theme.targets.ghostty.$effective")"
+  printf 'Kitty:          %s\n' "$(config_get "appearance.themes.$theme.targets.kitty.$effective")"
+  printf 'Yazi:           %s\n' "$(config_get "appearance.themes.$theme.targets.yazi.$effective")"
+  printf 'Neovim:         %s\n' "$(config_get "appearance.themes.$theme.targets.nvim.scheme")"
+  printf 'Emacs:          %s\n' "$(config_get "appearance.themes.$theme.targets.emacs.$effective")"
+}
+
+appearance_set_theme() {
+  local theme
+  theme="$1"
+  [[ "$theme" =~ ^[a-z0-9][a-z0-9-]*$ ]] || die "invalid theme name: $theme"
+  validate_config "$theme"
+  config_set_scalar theme "$theme"
+  appearance_apply
+}
+
+appearance_list_themes() {
+  dots_config_prefix appearance.themes |
+    awk -F '\t' '{ split($1, parts, "."); print parts[1] }' |
+    sort -u
+}
+
+appearance_set_mode() {
+  local mode
+  mode="$1"
+  [[ "$mode" == system || "$mode" == dark || "$mode" == light ]] ||
+    die "mode must be system, dark, or light"
+  config_set_scalar mode "$mode"
+  appearance_apply
+}
+
+dots_sync() {
+  local packages
+  require_command stow
+  validate_config
+  render_values
+
+  packages=(dev)
+  case "$(uname -s)" in
+    Darwin)
+      packages+=(dev-macos desktop-macos)
+      ;;
+    Linux)
+      packages+=(dev-linux desktop-linux)
+      ;;
+    *)
+      die "unsupported OS: $(uname -s)"
+      ;;
+  esac
+
+  stow --restow -d "$DOTFILES_DIR" -t "$HOME" "${packages[@]}"
+  apply_live_theme
+  printf 'Synced %s.\n' "${packages[*]}"
+  printf 'Reload the current shell to pick up startup changes: exec zsh\n'
+}
+
+dots_check() {
+  validate_config
+  generated_is_current || die "generated appearance files are stale; run: dots appearance apply"
+  printf 'Dotfiles configuration is valid and current.\n'
+}
+
+command_name="${1:-help}"
+case "$command_name" in
+  help | -h | --help)
+    usage
+    ;;
+  sync)
+    [[ $# -eq 1 ]] || die "usage: dots sync"
+    dots_sync
+    ;;
+  check)
+    [[ $# -eq 1 ]] || die "usage: dots check"
+    dots_check
+    ;;
+  appearance)
+    subcommand="${2:-show}"
+    case "$subcommand" in
+      show)
+        [[ $# -le 2 ]] || die "usage: dots appearance"
+        appearance_show
+        ;;
+      apply)
+        [[ $# -eq 2 ]] || die "usage: dots appearance apply"
+        appearance_apply
+        ;;
+      set)
+        [[ $# -eq 3 ]] || die "usage: dots appearance set <theme>"
+        appearance_set_theme "$3"
+        ;;
+      themes)
+        [[ $# -eq 2 ]] || die "usage: dots appearance themes"
+        appearance_list_themes
+        ;;
+      mode)
+        [[ $# -eq 3 ]] || die "usage: dots appearance mode <system|dark|light>"
+        appearance_set_mode "$3"
+        ;;
+      get)
+        [[ $# -eq 3 ]] || die "usage: dots appearance get <path>"
+        config_get "appearance.$3"
+        ;;
+      effective-mode)
+        [[ $# -eq 2 ]] || die "usage: dots appearance effective-mode"
+        effective_mode
+        ;;
+      *)
+        die "unknown appearance command: $subcommand"
+        ;;
+    esac
+    ;;
+  *)
+    die "unknown command: $command_name (run '$PROGRAM help')"
+    ;;
+esac

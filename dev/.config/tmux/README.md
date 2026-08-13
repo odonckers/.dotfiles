@@ -36,9 +36,9 @@ wired into `tmux.conf` - staged for future use.
 - `C-Space` - command palette.
 - `C-h/j/k/l` and `C-arrow` - unified pane navigation/resizing (tmux + nvim splits).
 - Copy mode uses vi keys, hybrid line numbers, and custom `v`/`y` selection/yank bindings.
-- Theme: warm dark palette (`#1C1B1A` background, `#3AA99F` cyan accent), status bar on top,
-  minimal `#S`/`#H` segments, styled window tabs and single-line pane borders with a
-  mouse-driven pane-border quick-action menu.
+- Theme: semantic colors loaded from the shared `~/.config/dotfiles/config.json`
+  appearance, with live macOS light/dark updates, a status bar on top, styled window
+  tabs, and single-line pane borders with a mouse-driven pane-border quick-action menu.
 
 ## Standout customizations
 

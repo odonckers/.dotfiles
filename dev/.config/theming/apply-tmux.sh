@@ -46,14 +46,16 @@ if tmux info >/dev/null 2>&1; then
   tmux set-environment -g FZF_DEFAULT_OPTS "$(theming_fzf_opts)"
 fi
 
-# tmux-palette's own theme files follow "<theme>" (dark) / "<theme>-light"
-# naming under .config/tmux-palette/themes/ -- drop a matching pair in
-# there for any new theme added to theming/themes/.
-THEME_NAME="$(theming_active_theme)"
-PALETTE_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/tmux-palette"
-mkdir -p "$PALETTE_DIR"
-if [ "$MODE" = light ]; then
-  printf '{\n  "name": "%s-light"\n}\n' "$THEME_NAME" >"$PALETTE_DIR/theme.json"
+# tmux-palette keeps its tiny selection file, but the selected native theme
+# name comes from the same central appearance config as every other target.
+THEME_NAME="$(dots_appearance_target tmuxPalette "$MODE")"
+GENERATED_DIR="$DOTFILES_CONFIG_DIR/generated"
+mkdir -p "$GENERATED_DIR"
+TEMPORARY="$(mktemp "$GENERATED_DIR/.tmux-palette.XXXXXX")"
+if printf '{\n  "name": "%s"\n}\n' "$THEME_NAME" >"$TEMPORARY"; then
+  chmod 0644 "$TEMPORARY"
+  mv -f "$TEMPORARY" "$GENERATED_DIR/tmux-palette-theme.json"
 else
-  printf '{\n  "name": "%s"\n}\n' "$THEME_NAME" >"$PALETTE_DIR/theme.json"
+  rm -f "$TEMPORARY"
+  exit 1
 fi

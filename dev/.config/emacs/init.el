@@ -7,24 +7,48 @@
 (scroll-bar-mode -1)
 (set-fringe-mode 10)
 
-;; Modus Soft (disabled -- using stock Modus): lift the pure black/white
-;; backgrounds one 5% tick (13/255 = 0x0D) off the extremes; adjacent background
-;; greys move by the same amount to keep the ramp spaced. Backgrounds only --
-;; text and accents untouched. Uncomment these palette overrides (before
-;; load-theme) to switch back to Modus Soft. See dev/.config/theming/MODUS-SOFT.md.
-;; (setq modus-vivendi-palette-overrides
-;;       '((bg-main "#0d0d0d")
-;;         (bg-dim "#2b2b2b")
-;;         (bg-active "#3d3d3d")
-;;         (bg-inactive "#353535")))
-;; (setq modus-operandi-palette-overrides
-;;       '((bg-main "#f2f2f2")
-;;         (bg-dim "#e5e5e5")
-;;         (bg-active "#d3d3d3")
-;;         (bg-inactive "#dcdcdc")))
+;; Shared appearance from ~/.config/dotfiles/config.json.
+(require 'json)
 
-;; Built-in dark theme
-(load-theme 'modus-vivendi t)
+(defun dots-appearance--mode (appearance)
+  "Return the effective dark/light mode for APPEARANCE."
+  (let ((configured (gethash "mode" appearance)))
+    (cond
+     ((member configured '("dark" "light")) configured)
+     ((and (string= configured "system")
+           (eq system-type 'darwin))
+      (if (zerop (call-process "defaults" nil nil nil
+                               "read" "-g" "AppleInterfaceStyle"))
+          "dark"
+        "light"))
+     ((string= configured "system")
+      (gethash "fallbackMode" appearance))
+     (t (error "Unknown dots appearance mode: %s" configured)))))
+
+(let* ((config-home (or (getenv "XDG_CONFIG_HOME")
+                        (expand-file-name ".config" "~")))
+       (config-file (expand-file-name "dotfiles/config.json" config-home))
+       (config (json-parse-file config-file
+                                :object-type 'hash-table
+                                :array-type 'list
+                                :null-object nil
+                                :false-object nil))
+       (appearance (gethash "appearance" config))
+       (theme-name (gethash "theme" appearance))
+       (theme (gethash theme-name (gethash "themes" appearance)))
+       (mode (dots-appearance--mode appearance))
+       (target (gethash "emacs" (gethash "targets" theme)))
+       (theme-symbol (intern (gethash mode target))))
+  (when (gethash "soft" target)
+    (let* ((overrides (gethash mode (gethash "overrides" theme)))
+           (palette `((bg-main ,(gethash "bgMain" overrides))
+                      (bg-dim ,(gethash "bgDim" overrides))
+                      (bg-active ,(gethash "bgActive" overrides))
+                      (bg-inactive ,(gethash "bgInactive" overrides)))))
+      (if (string= mode "dark")
+          (setq modus-vivendi-palette-overrides palette)
+        (setq modus-operandi-palette-overrides palette))))
+  (load-theme theme-symbol t))
 
 ;; Enable line numbers
 (global-display-line-numbers-mode 1)

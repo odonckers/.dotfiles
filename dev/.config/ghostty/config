@@ -54,23 +54,13 @@ mouse-hide-while-typing = true
 
 # ---- Appearance -------------------------------------------------------------------
 
-# Modus: the stock WCAG-AAA accessible pair, following macOS appearance.
-# The Modus Soft variant (backgrounds lifted one 5% tick off pure black/white)
-# lives in themes/modus-{vivendi,operandi}-soft (see dev/.config/theming/MODUS-SOFT.md).
-theme = dark:modus-vivendi, light:modus-operandi
+# Generated from ~/.config/dotfiles/config.json by `dots appearance apply`.
+config-file = ../dotfiles/generated/ghostty.conf
 
 # Cursor always contrasts with whatever's underneath instead of a fixed
 # colour pair, like Kitty's default cursor.
 # cursor-color = cell-foreground
 # cursor-text = cell-background
-
-# 1 = fully opaque, 0 = fully transparent.
-background-opacity = 1
-# Make cells that are drawing solid colors have some transparency
-background-opacity-cells = false
-# Blur what shows through the transparent background (only has an effect
-# while background-opacity < 1).
-background-blur = false
 
 # ---- macOS integration ----------------------------------------------------------
 

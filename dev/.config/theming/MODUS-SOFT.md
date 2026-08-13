@@ -32,8 +32,8 @@ Rules:
 
 ## Derived palette
 
-Role tokens are those of the central theming system
-(`themes/modus-soft.sh`; see `colors.sh` for what each means).
+Role tokens are defined under `appearance.themes.modus-soft` in
+`../dotfiles/config.json`; see `colors.sh` for how shell consumers map them.
 
 ### Dark (Vivendi) — backgrounds +13
 
@@ -68,18 +68,17 @@ stock Modus is always one switch away.
 
 | Surface | How | Activate |
 |---------|-----|----------|
-| **tmux / fzf / delta** | central `themes/modus-soft.sh` | `theming/set.sh modus-soft` |
+| **tmux / fzf / delta** | central `dotfiles/config.json` roles | `dots appearance set modus-soft` |
 | **tmux-palette** | `tmux-palette/themes/modus-soft{,-light}.json` | (follows the active theme name) |
-| **Ghostty** | `ghostty/themes/modus-{vivendi,operandi}-soft` | `theme =` line in `ghostty/config` |
-| **Neovim** | `on_colors` override in `nvim/init.lua` | automatic (follows terminal bg) |
-| **Emacs** | `modus-{vivendi,operandi}-palette-overrides` in `emacs/init.el` | automatic |
-| **kitty** | `kitty/themes/modus-{vivendi,operandi}-soft.conf` | `*-theme.auto.conf` includes |
-| **yazi** | `yazi/flavors/modus-{vivendi,operandi}-soft.yazi` | `yazi/theme.toml` |
+| **Ghostty** | `ghostty/themes/modus-{vivendi,operandi}-soft` | generated config fragment |
+| **Neovim** | central `overrides` mapped by `dots-appearance.lua` | automatic |
+| **Emacs** | central `overrides` mapped by `init.el` | automatic |
+| **kitty** | `kitty/themes/modus-{vivendi,operandi}-soft.conf` | generated includes |
+| **yazi** | `yazi/flavors/modus-{vivendi,operandi}-soft.yazi` | generated `theme.toml` |
 
 The **ANSI/palette mapping** for the terminal-level surfaces (Ghostty, kitty):
 soften the pure-black/white `background` plus the background-role ANSI slots
 (`color0`/palette 0 = "black", and the "bright black" grey slot `color8`/palette
 8) by the same +13 / −13. Foreground and text-role slots stay pure.
 
-To revert any tool, point it back at the stock `modus` variant (e.g.
-`theming/set.sh modus`).
+To revert every managed surface to stock Modus, run `dots appearance set modus`.

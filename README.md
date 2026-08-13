@@ -20,10 +20,11 @@ desktop-linux   - Linux desktop/WM configuration
 
 ## Theming
 
-Everything shares one custom color scheme: **[Modus Soft](dev/.config/theming/MODUS-SOFT.md)**,
-a variant of the [Modus themes](https://protesilaos.com/emacs/modus-themes) with
-the backgrounds lifted one tick off pure black/white. The central role-based
-color system lives in [`dev/.config/theming`](dev/.config/theming).
+The shared theme, light/dark mode, semantic colors, and application mappings live under
+`appearance` in [`dev/.config/dotfiles/config.json`](dev/.config/dotfiles/config.json).
+Native theme ports are used where available. Small Bash adapters in
+[`dev/.config/theming`](dev/.config/theming) translate the central configuration for
+shell tools and applications that require their own format.
 
 Each package mirrors the layout of `$HOME`, so stowing a package symlinks its contents straight
 into place. A few configs worth calling out:
@@ -55,13 +56,16 @@ Stow only creates symlinks, so nothing is copied and nothing is overwritten sile
 if a target file already exists, stow will refuse and tell you. Adopt or remove the
 conflicting file, then re-run.
 
-Once `dev` is stowed, a `syncdots` shell function is available from any directory. It always
-targets `~/.dotfiles` and re-runs the correct `stow` command for the current OS, so future
-pulls can be re-synced with a single command:
+Once `dev` is stowed, the `dots` command is available from any directory. It always targets
+`~/.dotfiles`, renders the central appearance configuration, and re-stows the packages for
+the current OS:
 
 ```sh
-syncdots
+dots sync
 ```
+
+Run `dots help` for the complete command menu. Appearance can be inspected or changed with
+`dots appearance`, `dots appearance set <theme>`, and `dots appearance mode <mode>`.
 
 **Note:**
 These are my personal configurations, so they're tailored to my workflow.

@@ -72,7 +72,6 @@ fi
 
 source $XDG_CONFIG_HOME/zsh/functions/claude.zsh
 source $XDG_CONFIG_HOME/zsh/functions/dev.zsh
-source $XDG_CONFIG_HOME/zsh/functions/syncdots.zsh
 
 [[ -f $HOME/.zshrc.linux ]] && source $HOME/.zshrc.linux
 [[ -f $HOME/.zshrc.macos ]] && source $HOME/.zshrc.macos

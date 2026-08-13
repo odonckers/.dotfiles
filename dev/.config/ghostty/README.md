@@ -17,13 +17,10 @@ My [Ghostty](https://ghostty.org) terminal emulator config.
 
 ## Key settings
 
-- **Theme**: stock Modus, following macOS appearance -- `modus-vivendi` /
-  `modus-operandi` theme files in `themes/`
-  (`theme = dark:modus-vivendi, light:modus-operandi`). tmux and fzf
-  mirror this switch too; see [`dev/.config/theming`](../theming). Neovim already
-  follows the terminal's `background` automatically, so it needs no separate wiring. This line
-  is tied to macOS appearance only, not to `theming/active-theme` -- update it by hand if you
-  switch the active theme (e.g. back to Modus Soft with `dark:modus-vivendi-soft, light:modus-operandi-soft`).
+- **Theme**: generated from the shared
+  [`dotfiles/config.json`](../dotfiles/config.json) appearance settings. Run
+  `dots appearance set modus-soft` or `dots appearance set modus` to switch every
+  managed surface together.
 - **Font**: JetBrainsMono Nerd Font Mono @ 12pt, `font-thicken = false` (native weights, no
   synthetic bold), with a slightly taller cell height (`adjust-cell-height = 20%`) for extra
   line spacing.
@@ -31,7 +28,7 @@ My [Ghostty](https://ghostty.org) terminal emulator config.
   (`window-step-resize = false`), and window/tab/split layout always restored on relaunch
   (`window-save-state = always`).
 - **Cursor**: auto-contrasting cursor colors (`cell-foreground`/`cell-background`), Kitty-style.
-- **Background**: fully opaque, no blur.
+- **Background**: opacity and blur are also controlled by the shared appearance config.
 - **Keybindings**: `cmd+shift+i` prompts for a custom tab title.
 
 ## Standout customizations

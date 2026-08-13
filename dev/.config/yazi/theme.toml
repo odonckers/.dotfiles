@@ -1,10 +1,1 @@
-[flavor]
-dark = "modus-vivendi"
-light = "modus-operandi"
-
-[status]
-sep_left = { open = "", close = "" }
-sep_right = { open = "", close = "" }
-
-[indicator]
-padding = { open = "█", close = "█" }
+../dotfiles/generated/yazi-theme.toml

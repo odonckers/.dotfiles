@@ -16,18 +16,19 @@ config.native_macos_fullscreen_mode = false
 
 -- Font
 -- https://github.com/wezterm/wezterm/issues/2431#issuecomment-2361733342
+local appearance = require('lua/dots-appearance')
+local terminal_font = appearance.terminal_font()
 config.font = wezterm.font({
-    family = 'JetBrainsMono Nerd Font Mono',
-    weight = 'Medium',
+    family = terminal_font.family,
+    weight = terminal_font.weight,
     harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' },
 })
-config.font_size = 12
+config.font_size = terminal_font.size
 config.line_height = 1.2
 config.freetype_load_target = 'Light'
 config.freetype_load_flags = 'NO_HINTING'
 
 -- Theme
-local appearance = require('lua/dots-appearance')
 local theme = require('lua/' .. appearance.theme_module())
 config.colors = theme.colors()
 config.window_frame = theme.window_frame()

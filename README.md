@@ -65,6 +65,21 @@ dots appearance get applications.nvim.transparent
 dots appearance effective-mode
 ```
 
+## Terminal font
+
+Ghostty, Kitty, and WezTerm share one font profile. Inspect or change it with:
+
+```sh
+dots terminal font
+dots terminal font family "JetBrainsMono Nerd Font Mono"
+dots terminal font size 12
+dots terminal font weight Medium
+dots terminal font thickness 50
+```
+
+Family, size, and weight apply to all three terminals. Thickness is Ghostty's
+macOS-only stroke thickening value from 1–255; use `0` to disable it.
+
 ## Repository tour
 
 The repository is arranged as GNU Stow packages. Each package mirrors the paths

@@ -23,4 +23,9 @@ function M.theme_module()
     )
 end
 
+function M.terminal_font()
+    local config = read_config()
+    return assert(config.terminal.font, 'dots config is missing the terminal font profile')
+end
+
 return M

@@ -26,10 +26,8 @@ shell-integration-features = ssh-env,ssh-terminfo
 
 # ---- Font ----------------------------------------------------------------------
 
-font-family = JetBrainsMono Nerd Font Mono
-font-size = 12
-font-thicken = true
-font-thicken-strength = 50
+# Family, size, weight, and macOS thickening are generated from
+# ~/.config/dotfiles/config.json by `dots terminal font`.
 
 # Per-cell size tweaks, as a % adjustment from the font's natural metrics.
 adjust-cell-width = 0%
@@ -54,7 +52,7 @@ mouse-hide-while-typing = true
 
 # ---- Appearance -------------------------------------------------------------------
 
-# Generated from ~/.config/dotfiles/config.json by `dots appearance apply`.
+# Generated from ~/.config/dotfiles/config.json by `dots`.
 config-file = ../dotfiles/generated/ghostty.conf
 
 # Cursor always contrasts with whatever's underneath instead of a fixed

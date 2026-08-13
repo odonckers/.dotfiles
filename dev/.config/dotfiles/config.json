@@ -151,5 +151,13 @@
         "lightThemeOverride": "Flexoki Light"
       }
     }
+  },
+  "terminal": {
+    "font": {
+      "family": "JetBrainsMono Nerd Font Mono",
+      "size": 12,
+      "weight": "Medium",
+      "thickness": 50
+    }
   }
 }

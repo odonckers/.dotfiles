@@ -1,93 +1,107 @@
 # Owen's Dotfiles
 
-Welcome! This is my personal `.dotfiles` repository where I keep all my dotfiles and configuration.
-Feel free to browse around, take inspiration, or use anything you find helpful.
+My shared shell, development, and desktop setup for macOS and Linux. The main
+way into the repository is `dots`, a small command for keeping the installed
+dotfiles and their appearance in sync.
 
-## Structure
+## Start with `dots`
 
-Configs are organized into [GNU Stow](https://www.gnu.org/software/stow/) packages, grouped by
-platform and by role:
-
-```
-dev             - shell and dev tooling shared across every machine
-dev-macos       - macOS-specific dev tooling
-desktop-macos   - macOS desktop/WM configuration
-dev-linux       - Linux-specific dev tooling
-desktop-linux   - Linux desktop/WM configuration
-```
-
-(`macos/.setup.sh` is a one-off macOS provisioning script, not a stow package.)
-
-## Theming
-
-The shared theme, light/dark mode, semantic colors, and application mappings live under
-`appearance` in [`dev/.config/dotfiles/config.json`](dev/.config/dotfiles/config.json).
-Native theme ports are used where available. Small Bash adapters in
-[`dev/.config/theming`](dev/.config/theming) translate the central configuration for
-shell tools and applications that require their own format.
-
-Each package mirrors the layout of `$HOME`, so stowing a package symlinks its contents straight
-into place. A few configs worth calling out:
-
-- [`nvim`](dev/.config/nvim) - my primary text editor config
-- [`ghostty`](dev/.config/ghostty) - my terminal emulator config
-- [`tmux`](dev/.config/tmux) - my terminal multiplexer config
-- [`aerospace`](desktop-macos/.config/aerospace) - my tiling window manager config (macOS only)
-- [`Installers`](dev-macos/Installers) - macOS install scripts, stowed to `~/Installers`
-
-## Getting Started
-
-This repo is meant to be cloned and stowed, not copy-pasted. Install [GNU Stow](https://www.gnu.org/software/stow/)
-(`brew install stow` or your distro's package manager), clone this repo, then symlink the
-packages relevant to your machine from the repo root:
-
-```sh
-git clone https://github.com/odonckers/.dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-
-# on macOS
-stow -t ~ dev dev-macos desktop-macos
-
-# on Linux
-stow -t ~ dev dev-linux desktop-linux
-```
-
-Stow only creates symlinks, so nothing is copied and nothing is overwritten silently -
-if a target file already exists, stow will refuse and tell you. Adopt or remove the
-conflicting file, then re-run.
-
-Once `dev` is stowed, the `dots` command is available from any directory. It always targets
-`~/.dotfiles`, renders the central appearance configuration, and re-stows the packages for
-the current OS:
+Run this after pulling changes or editing a config:
 
 ```sh
 dots sync
 ```
 
-Run `dots help` for the complete command menu. Appearance can be inspected or changed with
-`dots appearance`, `dots appearance set <theme>`, and `dots appearance mode <mode>`.
+It selects the packages for the current operating system, refreshes the links
+into your home directory, renders the shared appearance settings, and updates a
+running tmux session. Reload the shell if the command asks you to.
 
-**Note:**
-These are my personal configurations, so they're tailored to my workflow.
-I recommend reviewing and understanding what each config does before applying it to your system,
-and stowing only the packages that make sense for your platform.
+Validate the configuration and rendered appearance without restowing:
 
-## Philosophy
+```sh
+dots check
+```
 
-I believe in keeping configurations clean, well-commented, and modular.
-If something here helps you improve your own setup, that makes me happy!
-Don't hesitate to modify anything to fit your needs.
+For the complete command menu:
 
-## Contributing
+```sh
+dots help
+```
 
-While this is a personal configuration repository, I'm always open to suggestions!
-If you spot a bug, have an optimization idea, or want to share a cool trick,
-feel free to open an issue or submit a pull request.
+## Appearance
 
-## License
+Theme, light or dark mode, shared colors, and application preferences live
+together in [`dev/.config/dotfiles/config.json`](dev/.config/dotfiles/config.json).
+Ghostty, Kitty, Neovim, Emacs, tmux, Yazi, shell tools, and several desktop apps
+read from that shared appearance.
 
-These configurations are shared freely. Use them however you'd like!
+See what is active:
 
----
+```sh
+dots appearance
+```
 
-Happy configuring! 🎉
+The everyday appearance commands are:
+
+```sh
+dots appearance themes
+dots appearance set <theme>
+dots appearance mode system
+dots appearance mode dark
+dots appearance mode light
+```
+
+Use `system` to follow the operating system where supported. After editing the
+JSON directly, apply it without restowing everything:
+
+```sh
+dots appearance apply
+```
+
+For a quick inspection, read any value beneath the `appearance` key:
+
+```sh
+dots appearance get applications.nvim.transparent
+dots appearance effective-mode
+```
+
+## Repository tour
+
+The repository is arranged as GNU Stow packages. Each package mirrors the paths
+it owns beneath the home directory.
+
+| Package | What you will find |
+| --- | --- |
+| [`dev`](dev) | Shared shell setup, `dots`, editors, terminals, tmux, and command-line tools |
+| [`dev-macos`](dev-macos) | macOS development settings, launch agents, and installers |
+| [`desktop-macos`](desktop-macos) | AeroSpace, Karabiner, borders, and other macOS desktop behavior |
+| [`dev-linux`](dev-linux) | Linux-specific shell and terminal settings |
+| [`desktop-linux`](desktop-linux) | Sway, Waybar, Wofi, and the Linux desktop environment |
+
+A few useful stops on the tour:
+
+- [`dev/.local/bin/dots`](dev/.local/bin/dots) is the command used to manage the setup.
+- [`dev/.config`](dev/.config) contains the shared application configurations.
+- [`desktop-macos/.config/aerospace`](desktop-macos/.config/aerospace) contains the macOS window-management setup.
+- [`desktop-linux/.config`](desktop-linux/.config) contains the Linux desktop setup.
+- [`dev-macos/Installers`](dev-macos/Installers) contains optional macOS setup scripts.
+
+## First install
+
+Install [GNU Stow](https://www.gnu.org/software/stow/), clone the repository,
+then link the packages for the machine once:
+
+```sh
+git clone https://github.com/odonckers/.dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+
+# macOS
+stow -t ~ dev dev-macos desktop-macos
+
+# Linux
+stow -t ~ dev dev-linux desktop-linux
+```
+
+After that first install, use `dots sync` instead of choosing the packages by
+hand. These are personal configurations, so review the parts you plan to use
+and adapt them to your machine.

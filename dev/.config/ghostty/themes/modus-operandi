@@ -1,10 +1,7 @@
 # Modus Operandi (light) -- https://protesilaos.com/emacs/modus-themes
 # Base palette from miikanissi/modus-themes.nvim extras/ghostty.
 #
-# Stock Modus: pure-white background. The Modus Soft variant lowers the
-# background one 5% tick (13/255 = 0x0D) off pure white and moves the
-# background-role ANSI slots (palette 0 and palette 8) with it; here those
-# slots keep their canonical values. See dev/.config/theming/MODUS-SOFT.md.
+# Canonical Modus palette with its pure-white background.
 
 palette = 0=#ffffff
 palette = 1=#a60000

@@ -21,9 +21,7 @@ function M.current()
 
     return {
         scheme = assert(target.scheme, 'dots theme has no Neovim scheme'),
-        soft = target.soft == true,
         transparent = appearance.applications.nvim.transparent == true,
-        overrides = theme.overrides,
     }
 end
 

@@ -8,19 +8,13 @@ My [Ghostty](https://ghostty.org) terminal emulator config.
 - `themes/modus-vivendi`, `themes/modus-operandi` - the active themes: the stock
   [Modus](https://protesilaos.com/emacs/modus-themes) pair (WCAG-AAA, pure
   black/white backgrounds).
-- `themes/modus-vivendi-soft`, `themes/modus-operandi-soft` - the Modus Soft
-  variant with backgrounds lifted one 5% tick off pure black/white. Kept for
-  easy switch-back; see
-  [`dev/.config/theming/MODUS-SOFT.md`](../theming/MODUS-SOFT.md) for the math.
 - `themes/vague` - a spare copy of the [vague-ghostty](https://github.com/vague-theme/vague-ghostty)
   theme, kept for reference/future use. Not the active theme.
 
 ## Key settings
 
 - **Theme**: generated from the shared
-  [`dotfiles/config.json`](../dotfiles/config.json) appearance settings. Run
-  `dots appearance set modus-soft` or `dots appearance set modus` to switch every
-  managed surface together.
+  [`dotfiles/config.json`](../dotfiles/config.json) appearance settings.
 - **Font**: JetBrainsMono Nerd Font Mono @ 12pt, `font-thicken = false` (native weights, no
   synthetic bold), with a slightly taller cell height (`adjust-cell-height = 20%`) for extra
   line spacing.

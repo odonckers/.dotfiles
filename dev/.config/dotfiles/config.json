@@ -53,94 +53,15 @@
             "light": "modus-operandi"
           },
           "nvim": {
-            "scheme": "modus",
-            "soft": false
+            "scheme": "modus"
           },
           "emacs": {
             "dark": "modus-vivendi",
-            "light": "modus-operandi",
-            "soft": false
+            "light": "modus-operandi"
           },
           "tmuxPalette": {
             "dark": "modus",
             "light": "modus-light"
-          }
-        }
-      },
-      "modus-soft": {
-        "overrides": {
-          "dark": {
-            "bgMain": "#0D0D0D",
-            "bgDim": "#2B2B2B",
-            "bgActive": "#3D3D3D",
-            "bgInactive": "#353535"
-          },
-          "light": {
-            "bgMain": "#F2F2F2",
-            "bgDim": "#E5E5E5",
-            "bgActive": "#D3D3D3",
-            "bgInactive": "#DCDCDC"
-          }
-        },
-        "variants": {
-          "dark": {
-            "colors": {
-              "bg": "#0D0D0D",
-              "bg2": "#2B2B2B",
-              "ui": "#3D3D3D",
-              "ui2": "#606060",
-              "ui3": "#717171",
-              "text": "#FFFFFF",
-              "text2": "#989898",
-              "accent": "#2FAFFF",
-              "accent2": "#FEACD0",
-              "added": "#44BC44",
-              "removed": "#FF5F59",
-              "info": "#00D3D0"
-            }
-          },
-          "light": {
-            "colors": {
-              "bg": "#F2F2F2",
-              "bg2": "#E5E5E5",
-              "ui": "#D3D3D3",
-              "ui2": "#B7B7B7",
-              "ui3": "#929292",
-              "text": "#000000",
-              "text2": "#595959",
-              "accent": "#0031A9",
-              "accent2": "#721045",
-              "added": "#006800",
-              "removed": "#A60000",
-              "info": "#005E8B"
-            }
-          }
-        },
-        "targets": {
-          "ghostty": {
-            "dark": "modus-vivendi-soft",
-            "light": "modus-operandi-soft"
-          },
-          "kitty": {
-            "dark": "modus-vivendi-soft.conf",
-            "light": "modus-operandi-soft.conf"
-          },
-          "yazi": {
-            "dark": "modus-vivendi-soft",
-            "light": "modus-operandi-soft"
-          },
-          "nvim": {
-            "scheme": "modus",
-            "soft": true
-          },
-          "emacs": {
-            "dark": "modus-vivendi",
-            "light": "modus-operandi",
-            "soft": true
-          },
-          "tmuxPalette": {
-            "dark": "modus-soft",
-            "light": "modus-soft-light"
           }
         }
       }

@@ -169,13 +169,6 @@ require('modus-themes').setup({
         functions = {},
         variables = {},
     },
-    on_colors = dots_appearance.soft and function(colors)
-        local overrides = assert(dots_appearance.overrides[vim.o.background], 'missing Modus Soft overrides')
-        colors.bg_main = overrides.bgMain:lower()
-        colors.bg_dim = overrides.bgDim:lower()
-        colors.bg_active = overrides.bgActive:lower()
-        colors.bg_inactive = overrides.bgInactive:lower()
-    end or nil,
 })
 vim.cmd.colorscheme(dots_appearance.scheme)
 

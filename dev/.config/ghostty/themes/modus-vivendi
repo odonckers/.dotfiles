@@ -1,10 +1,7 @@
 # Modus Vivendi (dark) -- https://protesilaos.com/emacs/modus-themes
 # Base palette from miikanissi/modus-themes.nvim extras/ghostty.
 #
-# Stock Modus: pure-black background. The Modus Soft variant lifts the
-# background one 5% tick (13/255 = 0x0D) off pure black and moves the
-# background-role ANSI slots (palette 0 and palette 8) with it; here those
-# slots keep their canonical values. See dev/.config/theming/MODUS-SOFT.md.
+# Canonical Modus palette with its pure-black background.
 
 palette = 0=#000000
 palette = 1=#ff5f59

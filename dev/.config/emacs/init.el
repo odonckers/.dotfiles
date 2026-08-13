@@ -39,15 +39,6 @@
        (mode (dots-appearance--mode appearance))
        (target (gethash "emacs" (gethash "targets" theme)))
        (theme-symbol (intern (gethash mode target))))
-  (when (gethash "soft" target)
-    (let* ((overrides (gethash mode (gethash "overrides" theme)))
-           (palette `((bg-main ,(gethash "bgMain" overrides))
-                      (bg-dim ,(gethash "bgDim" overrides))
-                      (bg-active ,(gethash "bgActive" overrides))
-                      (bg-inactive ,(gethash "bgInactive" overrides)))))
-      (if (string= mode "dark")
-          (setq modus-vivendi-palette-overrides palette)
-        (setq modus-operandi-palette-overrides palette))))
   (load-theme theme-symbol t))
 
 ;; Enable line numbers

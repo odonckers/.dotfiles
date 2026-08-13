@@ -35,7 +35,7 @@ usage() {
     '' \
     'Examples:' \
     '  dots sync' \
-    '  dots appearance set modus-soft' \
+    '  dots appearance set modus' \
     '  dots appearance mode system' \
     '  dots appearance get applications.nvim.transparent'
 }
@@ -91,7 +91,7 @@ effective_mode() {
 }
 
 validate_config() {
-  local theme mode fallback variant role value app target key soft
+  local theme mode fallback variant role value app target
   local roles='bg bg2 ui ui2 ui3 text text2 accent accent2 added removed info'
 
   awk -f "$DOTFILES_CONFIG_DIR/json.awk" "$DOTFILES_CONFIG_DIR/config.json" >/dev/null ||
@@ -137,16 +137,6 @@ validate_config() {
 
   target="$(config_get "appearance.themes.$theme.targets.nvim.scheme")"
   [[ "$target" == modus ]] || die "unsupported Neovim scheme for this checkout: $target"
-  soft="$(config_get "appearance.themes.$theme.targets.nvim.soft")"
-  [[ "$soft" == true || "$soft" == false ]] || die "nvim.soft must be true or false"
-  if [[ "$soft" == true ]]; then
-    for variant in dark light; do
-      for key in bgMain bgDim bgActive bgInactive; do
-        value="$(config_get "appearance.themes.$theme.overrides.$variant.$key")"
-        is_hex_color "$value" || die "$theme.overrides.$variant.$key is not a six-digit hex color"
-      done
-    done
-  fi
 
   for variant in dark light; do
     target="$(config_get "appearance.themes.$theme.targets.emacs.$variant")"

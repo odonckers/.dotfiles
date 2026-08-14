@@ -27,6 +27,9 @@ dev() {
 
   local name
   name=$(basename "$repo")
+  if [[ "$repo" == "$HOME/dev/worktrees/"* ]]; then
+    name="$(basename "$(dirname "$repo")")/$name"
+  fi
 
   DEV_REPO_ROOT="$repo" DEV_REPO_NAME="$name" tmuxinator start "$template"
 }

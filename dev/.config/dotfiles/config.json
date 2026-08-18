@@ -1,6 +1,6 @@
 {
   "appearance": {
-    "theme": "flexoki",
+    "theme": "jellybeans",
     "mode": "system",
     "fallbackMode": "dark",
     "themes": {
@@ -62,6 +62,67 @@
           "tmuxPalette": {
             "dark": "modus",
             "light": "modus-light"
+          }
+        }
+      },
+      "jellybeans": {
+        "variants": {
+          "dark": {
+            "colors": {
+              "bg": "#151515",
+              "bg2": "#1C1C1C",
+              "ui": "#303030",
+              "ui2": "#404040",
+              "ui3": "#636363",
+              "text": "#E8E8D3",
+              "text2": "#888888",
+              "accent": "#8FBFDC",
+              "accent2": "#C6B6EE",
+              "added": "#99AD6A",
+              "removed": "#CF6A4C",
+              "info": "#668799"
+            }
+          },
+          "light": {
+            "colors": {
+              "bg": "#F5E6D3",
+              "bg2": "#F5F5F5",
+              "ui": "#E8D5C0",
+              "ui2": "#D0CCD1",
+              "ui3": "#787878",
+              "text": "#252525",
+              "text2": "#595959",
+              "accent": "#2952A3",
+              "accent2": "#6A4ABD",
+              "added": "#386014",
+              "removed": "#954D3B",
+              "info": "#2B5B77"
+            }
+          }
+        },
+        "targets": {
+          "ghostty": {
+            "dark": "jellybeans",
+            "light": "jellybeans-light"
+          },
+          "kitty": {
+            "dark": "jellybeans.conf",
+            "light": "jellybeans-light.conf"
+          },
+          "yazi": {
+            "dark": "jellybeans",
+            "light": "jellybeans-light"
+          },
+          "nvim": {
+            "scheme": "jellybeans"
+          },
+          "emacs": {
+            "dark": "modus-vivendi",
+            "light": "modus-operandi"
+          },
+          "tmuxPalette": {
+            "dark": "jellybeans",
+            "light": "jellybeans-light"
           }
         }
       },
@@ -143,7 +204,7 @@
         "themeOverride": "flexoki"
       },
       "wezterm": {
-        "themeModuleOverride": "vague"
+        "themeModuleOverride": "jellybeans"
       },
       "zed": {
         "mode": "system",

@@ -1,0 +1,24 @@
+[app]
+overall = { bg = "#f5e6d3" }
+
+[mgr]
+cwd = { fg = "#2952a3", italic = true }
+hovered = { fg = "#252525", bg = "#e8d5c0" }
+preview_hovered = { bg = "#e8d5c0" }
+marker_copied = { fg = "#386014", bg = "#386014" }
+marker_cut = { fg = "#954d3b", bg = "#954d3b" }
+marker_marked = { fg = "#6a4abd", bg = "#6a4abd" }
+marker_selected = { fg = "#876820", bg = "#876820" }
+border_style = { fg = "#d0ccd1" }
+
+[tabs]
+active = { fg = "#f5e6d3", bg = "#2952a3", bold = true }
+inactive = { fg = "#787878", bg = "#e8d5c0" }
+
+[mode]
+normal_main = { fg = "#f5e6d3", bg = "#2952a3", bold = true }
+normal_alt = { fg = "#252525", bg = "#d0ccd1" }
+select_main = { fg = "#f5e6d3", bg = "#6a4abd", bold = true }
+select_alt = { fg = "#252525", bg = "#d0ccd1" }
+unset_main = { fg = "#f5e6d3", bg = "#5a0069", bold = true }
+unset_alt = { fg = "#252525", bg = "#d0ccd1" }

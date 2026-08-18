@@ -90,6 +90,7 @@ local gh = function(x) return 'https://github.com/' .. x end
 vim.pack.add({
     gh('miikanissi/modus-themes.nvim'),
     gh('kepano/flexoki-neovim'),
+    gh('wtfox/jellybeans.nvim'),
     gh('arborist-ts/arborist.nvim'),
     gh('nvim-mini/mini.icons'),
     gh('folke/which-key.nvim'),
@@ -170,6 +171,14 @@ if dots_appearance.scheme == 'modus' then
             keywords = { italic = false },
             functions = {},
             variables = {},
+        },
+    })
+elseif dots_appearance.scheme == 'jellybeans' then
+    require('jellybeans').setup({
+        transparent = dots_appearance.transparent,
+        background = {
+            dark = 'jellybeans',
+            light = 'jellybeans_light',
         },
     })
 end

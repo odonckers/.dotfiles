@@ -179,7 +179,7 @@ validate_config() {
   done
 
   target="$(config_get "appearance.themes.$theme.targets.nvim.scheme")"
-  [[ "$target" == modus || "$target" == flexoki ]] ||
+  [[ "$target" == modus || "$target" == flexoki || "$target" == jellybeans ]] ||
     die "unsupported Neovim scheme for this checkout: $target"
 
   for variant in dark light; do

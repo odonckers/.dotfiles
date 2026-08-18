@@ -2,15 +2,13 @@
 
 # Claude Code account handling.
 #
-# The CLI never relies on an ambient default: `claude` is wrapped so every
-# invocation picks a profile and runs with CLAUDE_CONFIG_DIR pointed at it.
-# That keeps the account an explicit, per-invocation decision instead of
-# something inherited from whatever was switched to last.
+# Plain `claude` follows ~/.claude, the same profile selected for Claude
+# Desktop. `claude-personal` and `claude-bethel` are explicit one-off overrides
+# that do not change the desktop selection.
 #
-# ~/.claude is left to Claude Desktop, which writes its own Claude Code
-# sessions there and has no way to be told otherwise -- the macOS package's
-# claude-desktop.zsh symlinks it alongside the app's data dir, reusing the
-# helpers below.
+# Claude Desktop writes its own Claude Code sessions under ~/.claude and has no
+# way to be told otherwise. The macOS package's claude-desktop.zsh symlinks it
+# alongside the app's data dir, reusing the helpers below.
 
 # Yes/no prompt defaulting to no. read -q talks to the terminal rather than
 # stdin, so a non-interactive caller can't answer -- it fails, which lands on
@@ -84,27 +82,22 @@ _claude_link_profile() {
 }
 
 if (( $+commands[claude] )); then
-  # Wraps the CLI so a profile is always chosen explicitly. A leading
-  # "personal"/"bethel" selects one outright -- and is what scripts should use,
-  # since the picker cannot be answered non-interactively. Anything else falls
-  # through to the picker and is forwarded untouched, so `claude -c` prompts
-  # and then resumes, while `claude personal -c` goes straight there.
-  #
-  # The tradeoff: an unquoted prompt whose first word happens to be a profile
-  # name ('claude personal notes') is read as the profile. Quoting it, as a
-  # prompt would normally be passed anyway, avoids that.
-  claude() {
-    local profile
-    case "$1" in
-      personal|bethel)
-        profile="$1"
-        shift
-        ;;
-      *)
-        profile=$(_claude_pick_profile) || return 1
-        ;;
-    esac
+  # Keep the three entry points consistent and forward every argument unchanged.
+  _claude_run_profile() {
+    local config_dir="$1"
+    shift
+    CLAUDE_CONFIG_DIR="$config_dir" command claude "$@"
+  }
 
-    CLAUDE_CONFIG_DIR="$HOME/.claude-$profile" command claude "$@"
+  claude() {
+    _claude_run_profile "$HOME/.claude" "$@"
+  }
+
+  claude-personal() {
+    _claude_run_profile "$HOME/.claude-personal" "$@"
+  }
+
+  claude-bethel() {
+    _claude_run_profile "$HOME/.claude-bethel" "$@"
   }
 fi

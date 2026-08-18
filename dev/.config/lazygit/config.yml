@@ -5,11 +5,11 @@ gui:
 os:
   editPreset: 'nvim' # see 'Configuring File Editing' section
 git:
-  pagers:
+  diffRenderers:
     - # delta, themed to match the active theme for the current OS
       # appearance -- see dev/.config/theming/delta-pager.sh
       colorArg: always
-      pager: ${XDG_CONFIG_HOME:-$HOME/.config}/theming/delta-pager.sh --paging=never
+      command: ${XDG_CONFIG_HOME:-$HOME/.config}/theming/delta-pager.sh --paging=never
       # ydiff
       # colorArg: never
       # pager: ydiff -p cat -s --wrap --width={{columnWidth}}

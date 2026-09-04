@@ -190,9 +190,9 @@
     },
     "applications": {
       "ghostty": {
-        "backgroundOpacity": 0.9,
+        "backgroundOpacity": 1.0,
         "backgroundOpacityCells": false,
-        "backgroundBlur": true
+        "backgroundBlur": false
       },
       "nvim": {
         "transparent": true

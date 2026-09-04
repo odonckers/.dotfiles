@@ -13,7 +13,7 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   ZSH_THEME=robbyrussell
   ZSH_DISABLE_COMPFIX=true
 
-  plugins=(archlinux brew bun dotnet eza fzf gh git ng terraform tmux tmuxinator vi-mode vscode zoxide zsh-interactive-cd)
+  plugins=(1password archlinux brew bun dotnet eza fzf gh git ng terraform tmux tmuxinator vi-mode vscode zoxide zsh-interactive-cd)
 
   # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode#settings
   VI_MODE_SET_CURSOR=true
@@ -69,6 +69,7 @@ if (( $+commands[nvim] )); then
   alias v="nvim"
   alias vs="nvim -S"
 fi
+(( $+commands[op] )) && [[ -f $XDG_CONFIG_HOME/op/plugins.sh ]] && source $XDG_CONFIG_HOME/op/plugins.sh
 
 source $XDG_CONFIG_HOME/zsh/functions/claude.zsh
 source $XDG_CONFIG_HOME/zsh/functions/dev.zsh

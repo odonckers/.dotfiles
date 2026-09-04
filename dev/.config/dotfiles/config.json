@@ -1,6 +1,6 @@
 {
   "appearance": {
-    "theme": "jellybeans",
+    "theme": "modus",
     "mode": "system",
     "fallbackMode": "dark",
     "themes": {
@@ -190,9 +190,9 @@
     },
     "applications": {
       "ghostty": {
-        "backgroundOpacity": 1,
+        "backgroundOpacity": 0.9,
         "backgroundOpacityCells": false,
-        "backgroundBlur": false
+        "backgroundBlur": true
       },
       "nvim": {
         "transparent": true
@@ -217,7 +217,7 @@
     "font": {
       "family": "JetBrainsMono Nerd Font Mono",
       "size": 12,
-      "weight": "Medium",
+      "weight": "Regular",
       "thickness": 50
     }
   }

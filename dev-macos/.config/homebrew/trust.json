@@ -5,12 +5,15 @@
     "jetbrains/utils/kotlin-lsp"
   ],
   "trustedtaps": [
+    "alajmo/mani",
     "anomalyco/tap",
-    "docker/tap"
+    "docker/tap",
+    "hashicorp/tap",
+    "jetbrains/utils",
+    "jstkdng/programs"
   ],
   "trustedcasks": [
     "docker/tap/sbx",
-    "mediosz/tap/swipeaerospace",
     "nikitabobko/tap/aerospace"
   ]
 }

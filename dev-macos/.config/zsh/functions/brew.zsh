@@ -6,6 +6,7 @@ brew-backup() {
 
 brew-restore() {
   brew bundle install --global
+  brew bundle cleanup --global
 }
 
 brew-update() {

@@ -14,3 +14,5 @@ git:
       # colorArg: never
       # pager: ydiff -p cat -s --wrap --width={{columnWidth}}
   overrideGpg: true
+worktree:
+  defaultPath: "~/dev/worktrees"

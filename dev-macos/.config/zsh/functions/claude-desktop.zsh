@@ -74,8 +74,3 @@ claude-set-desktop-profile() {
     open -a "Claude"
   fi
 }
-
-# Launch a specific profile without touching the symlink -- one-off access to
-# the other account while the linked one stays put.
-alias open-claude-desktop-personal='open -n -a "Claude" --args --user-data-dir="$HOME/Library/Application Support/Claude-Personal"'
-alias open-claude-desktop-bethel='open -n -a "Claude" --args --user-data-dir="$HOME/Library/Application Support/Claude-Bethel"'

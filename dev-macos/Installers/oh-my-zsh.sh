@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if command -v omz &>/dev/null; then
+if [ -d "${ZSH:-$HOME/.oh-my-zsh}" ]; then
   echo "✨ Oh-My-ZSH is already installed"
 else
   echo "✨ Installing Oh-My-ZSH..."

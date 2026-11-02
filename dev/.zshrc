@@ -3,10 +3,6 @@
 # If not running interactively, don't do anything
 [[ -o interactive ]] || return
 
-if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
-  source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
-fi
-
 if [[ -d "$HOME/.oh-my-zsh" ]]; then
   export ZSH="$HOME/.oh-my-zsh"
 
@@ -19,7 +15,6 @@ if [[ -d "$HOME/.oh-my-zsh" ]]; then
   VI_MODE_SET_CURSOR=true
 
   # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/terraform#prompt-function
-  RPROMPT='$(tf_prompt_info)'
   RPROMPT='$(tf_version_prompt_info)'
 
   # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode#choosing-an-editor

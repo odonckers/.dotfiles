@@ -110,7 +110,7 @@ echo "Journald: $journal_before  ->  $journal_after"
 
 # ---------- 6. Failed systemd units --------------------------------------
 announce "Scanning for failed systemd services"
-if systemctl --failed --quiet; then
+if [[ -z "$(systemctl --failed --plain --no-legend)" ]]; then
   echo "No failed units detected."
 else
   systemctl --failed --no-pager --plain

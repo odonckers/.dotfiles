@@ -13,7 +13,6 @@
     "jstkdng/programs"
   ],
   "trustedcasks": [
-    "docker/tap/sbx",
-    "nikitabobko/tap/aerospace"
+    "docker/tap/sbx"
   ]
 }

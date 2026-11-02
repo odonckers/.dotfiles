@@ -52,7 +52,7 @@ defaults write com.apple.dock "autohide-time-modifier" -float "0.5"
 # Disable autohide delay (https://macos-defaults.com/dock/autohide-delay.html)
 defaults write com.apple.dock "autohide-delay" -float "0"
 
-# Group expose windows by app (https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control)
+# Group expose windows by app
 defaults write com.apple.dock expose-group-apps -bool true
 
 killall Dock

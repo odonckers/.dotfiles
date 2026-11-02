@@ -36,7 +36,7 @@ it owns beneath the home directory.
 | --- | --- |
 | [`dev`](dev) | Shared shell setup, `dots`, editors, terminals, tmux, and command-line tools |
 | [`dev-macos`](dev-macos) | macOS development settings, Homebrew, and installers |
-| [`desktop-macos`](desktop-macos) | AeroSpace, Karabiner, borders, and other macOS desktop behavior |
+| [`desktop-macos`](desktop-macos) | Karabiner and other macOS desktop behavior |
 | [`dev-linux`](dev-linux) | Linux-specific shell and terminal settings |
 | [`desktop-linux`](desktop-linux) | Sway, Waybar, Wofi, and the Linux desktop environment |
 
@@ -44,7 +44,6 @@ A few useful stops on the tour:
 
 - [`dev/.local/bin/dots`](dev/.local/bin/dots) is the command used to manage the setup.
 - [`dev/.config`](dev/.config) contains the shared application configurations.
-- [`desktop-macos/.config/aerospace`](desktop-macos/.config/aerospace) contains the macOS window-management setup.
 - [`desktop-linux/.config`](desktop-linux/.config) contains the Linux desktop setup.
 - [`dev-macos/Installers`](dev-macos/Installers) contains optional macOS setup scripts.
 

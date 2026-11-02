@@ -17,32 +17,6 @@ type = "pane"
 command = "lazygit"
 description = "run lazygit"
 
-[theme]
-name = "vesper" # base theme is irrelevant — every token below is overridden
-auto_switch = false
-
-[theme.custom]
-# Flexoki Dark, matched to this repo's existing Flexoki colors already
-# used by tmux's agent-indicator (red/blue) and tmux-palette's flexoki.json
-# (bg/panel/selected/fg/muted/accent). Full scale: Flexoki's dark base
-# tones with the 400-series accents.
-accent      = "#3AA99F" # cyan-400 — highlights, active borders
-panel_bg    = "#100F0F" # base — base background
-surface_dim = "#1C1B1A" # 950 — dim separators
-surface0    = "#282726" # 900 — selected/focused surface
-surface1    = "#343331" # 850 — hover/active surface
-overlay1    = "#878580" # 500 — brighter overlay text
-overlay0    = "#6F6E69" # 600 — muted secondary text
-text        = "#CECDC3" # 200 — main text
-subtext0    = "#B7B5AC" # 300 — subdued labels
-mauve       = "#8B7EC8" # purple-400 — branch/special labels
-green       = "#879A39" # green-400 — done/idle
-yellow      = "#D0A215" # yellow-400 — working/running
-red         = "#D14D41" # red-400 — needs attention/blocked
-blue        = "#4385BE" # blue-400 — unseen/done notifications
-teal        = "#3AA99F" # cyan-400 — notification accent
-peach       = "#DA702C" # orange-400 — interrupted/warning
-
 [ui]
 sidebar_width = 48
 sidebar_min_width = 16

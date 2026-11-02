@@ -7,40 +7,6 @@
 (scroll-bar-mode -1)
 (set-fringe-mode 10)
 
-;; Shared appearance from ~/.config/dotfiles/config.json.
-(require 'json)
-
-(defun dots-appearance--mode (appearance)
-  "Return the effective dark/light mode for APPEARANCE."
-  (let ((configured (gethash "mode" appearance)))
-    (cond
-     ((member configured '("dark" "light")) configured)
-     ((and (string= configured "system")
-           (eq system-type 'darwin))
-      (if (zerop (call-process "defaults" nil nil nil
-                               "read" "-g" "AppleInterfaceStyle"))
-          "dark"
-        "light"))
-     ((string= configured "system")
-      (gethash "fallbackMode" appearance))
-     (t (error "Unknown dots appearance mode: %s" configured)))))
-
-(let* ((config-home (or (getenv "XDG_CONFIG_HOME")
-                        (expand-file-name ".config" "~")))
-       (config-file (expand-file-name "dotfiles/config.json" config-home))
-       (config (json-parse-file config-file
-                                :object-type 'hash-table
-                                :array-type 'list
-                                :null-object nil
-                                :false-object nil))
-       (appearance (gethash "appearance" config))
-       (theme-name (gethash "theme" appearance))
-       (theme (gethash theme-name (gethash "themes" appearance)))
-       (mode (dots-appearance--mode appearance))
-       (target (gethash "emacs" (gethash "targets" theme)))
-       (theme-symbol (intern (gethash mode target))))
-  (load-theme theme-symbol t))
-
 ;; Enable line numbers
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type t)

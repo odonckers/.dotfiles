@@ -2,83 +2,30 @@
 
 My shared shell, development, and desktop setup for macOS and Linux. The main
 way into the repository is `dots`, a small command for keeping the installed
-dotfiles and their appearance in sync.
+dotfiles linked.
 
 ## Start with `dots`
 
-Run this after pulling changes or editing a config:
+Run this after pulling changes or adding a config:
 
 ```sh
 dots sync
 ```
 
-It selects the packages for the current operating system, refreshes the links
-into your home directory, renders the shared appearance settings, and updates a
-running tmux session. Reload the shell if the command asks you to.
+It selects the packages for the current operating system and refreshes the
+links into your home directory. Reload the shell if the command asks you to.
 
-Validate the configuration and rendered appearance without restowing:
+Preview the restow and report conflicts without changing anything:
 
 ```sh
 dots check
 ```
 
-For the complete command menu:
-
-```sh
-dots help
-```
-
 ## Appearance
 
-Theme, light or dark mode, shared colors, and application preferences live
-together in [`dev/.config/dotfiles/config.json`](dev/.config/dotfiles/config.json).
-Ghostty, Kitty, Neovim, Emacs, tmux, Yazi, shell tools, and several desktop apps
-read from that shared appearance.
-
-See what is active:
-
-```sh
-dots appearance
-```
-
-The everyday appearance commands are:
-
-```sh
-dots appearance themes
-dots appearance set <theme>
-dots appearance mode system
-dots appearance mode dark
-dots appearance mode light
-```
-
-Use `system` to follow the operating system where supported. After editing the
-JSON directly, apply it without restowing everything:
-
-```sh
-dots appearance apply
-```
-
-For a quick inspection, read any value beneath the `appearance` key:
-
-```sh
-dots appearance get applications.nvim.transparent
-dots appearance effective-mode
-```
-
-## Terminal font
-
-Ghostty, Kitty, and WezTerm share one font profile. Inspect or change it with:
-
-```sh
-dots terminal font
-dots terminal font family "JetBrainsMono Nerd Font Mono"
-dots terminal font size 12
-dots terminal font weight Medium
-dots terminal font thickness 50
-```
-
-Family, size, and weight apply to all three terminals. Thickness is Ghostty's
-macOS-only stroke thickening value from 1–255; use `0` to disable it.
+There is no shared theme layer. Ghostty, tmux, Neovim, and the other tools use
+their own default colors and follow the system light/dark setting where they
+support it. Fonts are set directly in each terminal's config.
 
 ## Repository tour
 
@@ -88,7 +35,7 @@ it owns beneath the home directory.
 | Package | What you will find |
 | --- | --- |
 | [`dev`](dev) | Shared shell setup, `dots`, editors, terminals, tmux, and command-line tools |
-| [`dev-macos`](dev-macos) | macOS development settings, launch agents, and installers |
+| [`dev-macos`](dev-macos) | macOS development settings, Homebrew, and installers |
 | [`desktop-macos`](desktop-macos) | AeroSpace, Karabiner, borders, and other macOS desktop behavior |
 | [`dev-linux`](dev-linux) | Linux-specific shell and terminal settings |
 | [`desktop-linux`](desktop-linux) | Sway, Waybar, Wofi, and the Linux desktop environment |

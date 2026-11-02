@@ -34,31 +34,6 @@ if (( $+commands[eza] )); then
   alias l="eza -l --git"
   alias ll="eza -ahl --git"
 fi
-if (( $+commands[fzf] )); then
-  source "$XDG_CONFIG_HOME/theming/colors.sh"
-  source "$XDG_CONFIG_HOME/theming/appearance.sh"
-  source "$XDG_CONFIG_HOME/theming/fzf-opts.sh"
-
-  # Recomputed every prompt so a mid-session light/dark flip (macOS System
-  # Settings, or the appearance watcher on a wake/sleep cycle) is picked up
-  # without opening a new shell -- matches Ghostty's live switching. This
-  # only covers fzf run from an interactive shell prompt -- fzf invocations
-  # tmux spawns directly (tmux-fzf's C-s, the `prefix + e` popup) skip
-  # .zshrc entirely, so apply-tmux.sh pushes the same value into tmux's
-  # environment table for those.
-  _theming_last_mode=""
-  _theming_fzf_opts() {
-    local mode
-    mode="$(theming_mode)"
-    [[ "$mode" == "$_theming_last_mode" ]] && return
-    _theming_last_mode="$mode"
-    theming_colors "$mode"
-    export FZF_DEFAULT_OPTS="$(theming_fzf_opts)"
-  }
-  _theming_fzf_opts
-  autoload -Uz add-zsh-hook
-  add-zsh-hook precmd _theming_fzf_opts
-fi
 (( $+commands[lazygit] )) && alias lg=lazygit
 if (( $+commands[ng] )); then
   alias ngr="ng serve"

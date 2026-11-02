@@ -4,7 +4,6 @@
 /dev/.config/tmux/plugins
 /dev/.config/yazi/plugins
 /dev/.config/zed/prompts
-/dev/.config/dotfiles/generated
 
 /desktop-macos/.config/karabiner/automatic_backups
 

@@ -101,3 +101,49 @@ if (( $+commands[claude] )); then
     _claude_run_profile "$HOME/.claude-bethel" "$@"
   }
 fi
+
+# howto <plain-English request> -- ask Haiku (always the personal account) for
+# a single shell command, copy it to the clipboard, and print it. Never runs it.
+if (( $+commands[claude] )); then
+  howto() {
+    emulate -L zsh -o extended_glob
+
+    if (( $# == 0 )); then
+      print -u2 "usage: howto <what you want to do>"
+      return 1
+    fi
+
+    local os="$(uname -s)"
+    local system_prompt="You convert a request into a shell command for zsh on ${os}. \
+Reply with ONLY the command: no explanation, no markdown, no code fences, no \
+leading \$. Prefer a single line; chain with && or pipes if needed. If the \
+request is ambiguous, pick the most common interpretation."
+
+    local cmd
+    cmd="$(CLAUDE_CONFIG_DIR="$HOME/.claude-personal" command claude -p "$*" \
+      --model haiku \
+      --system-prompt "$system_prompt" \
+      --tools "" \
+      --strict-mcp-config \
+      --setting-sources "" \
+      --no-session-persistence </dev/null)" || return 1
+
+    # Strip any code fences Haiku sneaks in anyway, plus surrounding blank lines.
+    cmd="$(print -r -- "$cmd" | sed -e '/^```/d' -e 's/^\$ //')"
+    cmd="${cmd##[[:space:]]#}"
+    cmd="${cmd%%[[:space:]]#}"
+    [[ -z "$cmd" ]] && { print -u2 "howto: empty response"; return 1 }
+
+    if (( $+commands[pbcopy] )); then
+      print -rn -- "$cmd" | pbcopy
+    elif (( $+commands[wl-copy] )); then
+      print -rn -- "$cmd" | wl-copy
+    elif (( $+commands[xclip] )); then
+      print -rn -- "$cmd" | xclip -selection clipboard
+    fi
+
+    print -r -- "$cmd"
+  }
+  # noglob so a trailing "?" or "*" in the request isn't treated as a glob.
+  alias howto="noglob howto"
+fi

@@ -83,6 +83,10 @@ vim.opt.redrawtime = 10000 -- Allow slow files more time before disabling highli
 vim.opt.maxmempattern = 20000 -- Memory ceiling for pattern matching (KB)
 vim.cmd('syntax sync minlines=256') -- Limit syntax look-behind for large files
 
+-- Set background to be transparent
+-- vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+-- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+
 -- Package helpers
 local gh = function(x) return 'https://github.com/' .. x end
 
@@ -111,9 +115,6 @@ vim.pack.add({
 
     -- quick-fix
     gh('yorickpeterse/nvim-pqf'),
-
-    -- splits
-    gh('mrjones2014/smart-splits.nvim'),
 
     -- lsp
     gh('neovim/nvim-lspconfig'),

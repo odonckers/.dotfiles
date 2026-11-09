@@ -13,9 +13,6 @@
   "agent_servers": {
     "claude-acp": {
       "type": "registry"
-    },
-    "github-copilot-cli": {
-      "type": "registry"
     }
   },
   "outline_panel": {
@@ -42,32 +39,7 @@
   "agent": {
     "sidebar_side": "left",
     "dock": "right",
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-4.6",
-      "enable_thinking": false,
-    },
-    "favorite_models": [
-      {
-        "provider": "copilot_chat",
-        "model": "claude-sonnet-4.6",
-        "enable_thinking": false,
-      },
-      {
-        "provider": "copilot_chat",
-        "model": "claude-opus-4.6",
-        "enable_thinking": false,
-      },
-      {
-        "provider": "copilot_chat",
-        "model": "gpt-5.2-codex",
-        "enable_thinking": false,
-      },
-    ],
     "model_parameters": [],
-  },
-  "edit_predictions": {
-    "provider": "copilot",
   },
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "telemetry": {

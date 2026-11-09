@@ -144,8 +144,6 @@ cask "claude"
 cask "claude-code@latest"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
-# Brings the power of Copilot coding agent directly to your terminal
-cask "copilot-cli@prerelease"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
 # Web browser
@@ -192,7 +190,6 @@ npm "@anthropic-ai/sandbox-runtime"
 npm "@apps/cli"
 npm "@apps/jetpack"
 npm "@fission-ai/openspec"
-npm "@github/copilot-language-server"
 npm "@vtsls/language-server"
 npm "azurite"
 npm "gulp"

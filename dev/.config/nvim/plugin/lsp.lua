@@ -74,6 +74,17 @@ local capabilities = vim.tbl_deep_extend(
 )
 vim.lsp.config('*', { capabilities = capabilities })
 
+vim.lsp.config('vtsls', {
+    handlers = {
+        -- vtsls' bundled TS extension calls the VS Code-only `setContext` command,
+        -- which vtsls logs as an error. It's harmless, so drop it from lsp.log.
+        ['window/logMessage'] = function(err, result, ctx)
+            if result and result.message == 'Command setContext not found' then return end
+            return vim.lsp.handlers['window/logMessage'](err, result, ctx)
+        end,
+    },
+})
+
 vim.lsp.config('roslyn', {
     settings = {
         ['csharp|symbol_search'] = {
